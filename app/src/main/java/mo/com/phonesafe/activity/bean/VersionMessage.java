@@ -1,0 +1,41 @@
+package mo.com.phonesafe.activity.bean;
+
+/**
+ * 作者：Administrator on 2015/8/28 20:14
+ * 邮箱：xxxx@qq.com
+ *
+ *
+ * 更新版本的信息
+ */
+
+
+public class VersionMessage {
+
+    private int versionCode;
+    private String desc;
+    private String downloadurl;
+
+    public int getVersionCode() {
+        return versionCode;
+    }
+
+    public void setVersionCode(int versionCode) {
+        this.versionCode = versionCode;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDownloadurl() {
+        return downloadurl;
+    }
+
+    public void setDownloadurl(String downloadurl) {
+        this.downloadurl = downloadurl;
+    }
+}
