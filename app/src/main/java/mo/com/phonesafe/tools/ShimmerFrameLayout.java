@@ -1,6 +1,6 @@
 // Copyright 2004-present Facebook. All Rights Reserved.
 
-package mo.com.phonesafe.activity.tools;
+package mo.com.phonesafe.tools;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;

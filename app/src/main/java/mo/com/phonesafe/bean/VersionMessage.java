@@ -1,4 +1,4 @@
-package mo.com.phonesafe.activity.bean;
+package mo.com.phonesafe.bean;
 
 /**
  * 作者：Administrator on 2015/8/28 20:14
@@ -37,5 +37,14 @@ public class VersionMessage {
 
     public void setDownloadurl(String downloadurl) {
         this.downloadurl = downloadurl;
+    }
+
+    @Override
+    public String toString() {
+        return "VersionMessage{" +
+                "versionCode=" + versionCode +
+                ", desc='" + desc + '\'' +
+                ", downloadurl='" + downloadurl + '\'' +
+                '}';
     }
 }

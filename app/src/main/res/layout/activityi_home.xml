@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activity.HomeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="主界面"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:padding="5dp"
+        android:background="@mipmap/ae">
+
+        <ImageView
+            android:id="@+id/iv_home_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/mo"/>
+
+        <LinearLayout
+            android:layout_toRightOf="@id/iv_home_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/tv_home_titil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/iv_home_icon"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:textSize="28sp"
+                android:singleLine="true"
+                android:textColor="@android:color/holo_blue_light"
+                android:text="手机安全卫士"
+                />
+            <mo.com.phonesafe.view.FocusedTextView
+                android:id="@+id/tv_home_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:textColor="@android:color/holo_red_light"
+                android:text="Welcome to Momxmo Team let's show ......."
+                />
+        </LinearLayout>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="clickSetting"
+            android:background="@drawable/setting_selector"
+            android:src="@mipmap/jx"/>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_home_gridview"
+        android:numColumns="2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:horizontalSpacing="25dp"
+        android:verticalSpacing="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></GridView>
 
 
 </LinearLayout>

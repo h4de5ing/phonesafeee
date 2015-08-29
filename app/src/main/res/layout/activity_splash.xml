@@ -4,10 +4,10 @@
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg_splash"
+    android:background="@mipmap/bg_splash"
     android:orientation="vertical" >
 
-    <mo.com.phonesafe.activity.tools.ShimmerFrameLayout
+    <mo.com.phonesafe.tools.ShimmerFrameLayout
         android:id="@+id/shimmer_view_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
                 android:id="@+id/iv_mo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mo"/>
+                android:src="@mipmap/mo"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                 android:text="Welcome MoMxMo"
                 style="@style/thin.white.large"/>
         </LinearLayout>
-    </mo.com.phonesafe.activity.tools.ShimmerFrameLayout>
+    </mo.com.phonesafe.tools.ShimmerFrameLayout>
 
 
 </FrameLayout>

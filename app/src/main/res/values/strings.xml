@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">PhoneSafe</string>
+    <string name="app_name">MO安全卫士</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="versionurl">http://188.188.7.85/ps11version.json</string>
+    <string name="versionurl">http://192.168.23.1/psversion.json</string>
 </resources>
