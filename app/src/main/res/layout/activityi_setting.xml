@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mo="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.HomeActivity">
+    android:orientation="vertical">
 
     <!--显示标题-->
     
@@ -18,22 +18,42 @@
         <ImageView
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:onClick="exitSetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ah"/>
+            android:background="@drawable/setting_exit_selector"/>
     </RelativeLayout>
    
 
     <mo.com.phonesafe.view.SettingItemView
+        android:id="@+id/setting_siv_autoupdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-
+        mo:sivBackground="green"
+        mo:sivTitle="自动更新"
         />
     <mo.com.phonesafe.view.SettingItemView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        mo:sivBackground="blue"
+        mo:sivTitle="拦截设置"
         android:layout_marginTop="10dp"
+        />
+    <mo.com.phonesafe.view.SettingItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mo:sivBackground="purple"
+        mo:sivTitle="归属地设置"
+        android:layout_marginTop="10dp"
+        />
+    <mo.com.phonesafe.view.SettingItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mo:sivBackground="purple"
+        mo:sivTitle="归属地风格设置"
+        android:layout_marginTop="10dp"
+        mo:sivToggle="false"
         />
 
 

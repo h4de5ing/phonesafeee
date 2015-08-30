@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/item_setting_last_selector"
-    android:clickable="true"
+    android:background="@drawable/item_setting_blue_selector"
+    android:id="@+id/view_root"
     android:padding="12dp">
 
     <TextView
+        android:id="@+id/view_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -15,6 +16,7 @@
         android:textColor="@android:color/holo_blue_light"
         android:textSize="18sp"/>
     <ImageView
+        android:id="@+id/view_iv_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

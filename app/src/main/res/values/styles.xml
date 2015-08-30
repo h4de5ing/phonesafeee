@@ -26,7 +26,71 @@
         <item name="android:background">#1086F4</item>
         <item name="android:gravity">center</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/bright_foreground_material_dark</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--textView默认样式-->
+    <style name="NormalTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+    </style>
+
+
+    <!--设置向导中的textView样式-->
+    <style name="SetupTextViewStyle" parent="NormalTextViewStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <!--设置向导界面中的item样式-->
+    <style name="SetupTextViewItemStyle" parent="@style/NormalTextViewStyle">
+        <item name="android:drawableLeft">@mipmap/li</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!--设置导向标题样式-->
+    <style name="settingTitlebarStyle" parent="@style/titlebarStyle">
+        <item name="android:padding">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+    <!-- Button默认样式 -->
+
+    <style name="NormalBtnStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/btn_primary_selector</item>
+    </style>
+
+
+    <!--上一步的样式-->
+    <style name="PreBtnStyle" parent="@style/NormalBtnStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:drawableLeft">@mipmap/ah</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <!--下一步的样式-->
+    <style name="NextBtnStyle" parent="@style/NormalBtnStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:drawableRight">@mipmap/ah_1</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">8dp</item>
     </style>
 </resources>

@@ -2,8 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
-
+    buildToolsVersion '22.0.1'
     defaultConfig {
         applicationId "mo.com.phonesafe"
         minSdkVersion 15
@@ -17,10 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
     compile project(':xUtils-2.6.14')
+    compile 'com.android.support:appcompat-v7:22.1.1'
 }

@@ -57,8 +57,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:onClick="clickSetting"
-            android:background="@drawable/setting_selector"
-            android:src="@mipmap/jx"/>
+            android:background="@drawable/setting_selector"/>
     </RelativeLayout>
 
     <GridView
@@ -69,6 +68,7 @@
         android:layout_marginRight="15dp"
         android:horizontalSpacing="25dp"
         android:verticalSpacing="35dp"
+        android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></GridView>
 

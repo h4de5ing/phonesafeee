@@ -23,6 +23,11 @@
         </activity>
         <activity android:name=".activity.HomeActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SjfdSetup1Activity"></activity>
+        <activity android:name=".activity.SjfdSetup2Activity"></activity>
+        <activity android:name=".activity.SjfdSetup3Activity"></activity>
+        <activity android:name=".activity.SjfdSetup4Activity"></activity>
+        <activity android:name=".activity.SjfdSetup5Activity"></activity>
     </application>
 
 

@@ -35,6 +35,8 @@ import java.io.IOException;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.VersionMessage;
+import mo.com.phonesafe.preference.PreferenceUtils;
+import mo.com.phonesafe.tools.Constants;
 import mo.com.phonesafe.tools.PackageInfoUtil;
 import mo.com.phonesafe.tools.ShimmerFrameLayout;
 
@@ -134,10 +136,18 @@ public class SplashActivity extends Activity {
             mCurrentversionCode = PackageInfoUtil.getVersionCode(SplashActivity.this);
 
             //开启线程去访问网络，获取版本信息
-            new CheckVersionThread().start();
+            //判断用户设置了自动更新
+            if(PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE)) {
+                new CheckVersionThread().start();
+            }else {
+
+                //进入主页
+                loadHome();
+            }
 
 
         } catch (PackageManager.NameNotFoundException e) {
+            // TODO:
             e.printStackTrace();
         }
 
@@ -413,7 +423,7 @@ public class SplashActivity extends Activity {
     public void finish() {
         super.finish();
         //停止闪动效果
-        mShimmerViewContainer.stopShimmerAnimation();
+//        mShimmerViewContainer.stopShimmerAnimation();
     }
 
     /**
