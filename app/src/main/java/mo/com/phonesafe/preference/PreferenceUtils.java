@@ -70,7 +70,7 @@ public class PreferenceUtils {
      * @return
      */
     public static String getString(Context context, String key) {
-       return   getString(context,key,null);
+       return   getString(context, key, null);
     }
 
     /**
@@ -83,6 +83,18 @@ public class PreferenceUtils {
         SharedPreferences sp = getSp(context);
         String value = sp.getString(key, defValue);
         return value;
+    }
+
+
+    /**
+     * 保存String类型的数据,没有时默认值为null
+     * @param context
+     * @param key
+     * @return
+     */
+    public static void putString(Context context, String key, String value) {
+        SharedPreferences sp = getSp(context);
+        sp.edit().putString(key, value).commit();
     }
 
 }

@@ -1,6 +1,6 @@
 package mo.com.phonesafe.activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,7 +12,7 @@ import mo.com.phonesafe.R;
  */
 
 
-public class SjfdSetup4Activity extends Activity {
+public class SjfdSetup4Activity extends SjfdSetupBaseActivity {
     private static final String TAG = "SjfdSetup1Activity";
 
     @Override
@@ -22,4 +22,20 @@ public class SjfdSetup4Activity extends Activity {
 
         Log.i(TAG, "SjfdSetup1Activity//...........");
     }
+    //有上一步
+    @Override
+    protected boolean doPre() {
+        Intent intent = new Intent(this, SjfdSetup3Activity.class);
+        startActivity(intent);
+        return false;
+    }
+
+    //执行下一步操作
+    @Override
+    protected boolean doNext() {
+        Intent intent = new Intent(this, SjfdSetup5Activity.class);
+        startActivity(intent);
+        return false;
+    }
+
 }

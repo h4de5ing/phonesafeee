@@ -34,6 +34,7 @@
         mo:sivTitle="自动更新"
         />
     <mo.com.phonesafe.view.SettingItemView
+        android:id="@+id/setting_siv_autouIntercept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         mo:sivBackground="blue"

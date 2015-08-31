@@ -15,6 +15,7 @@
         android:text="通过绑定手机卡：\n下次手机重启时SIM卡发生变化,就会发送警报短信" />
 
     <RelativeLayout
+        android:id="@+id/setup2_rl_bind"
         android:layout_marginLeft="15sp"
         android:layout_marginRight="15sp"
         android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             android:text="点击绑定/解绑SIM卡"/>
 
         <ImageView
+            android:id="@+id/setup_bing_icon"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="8dp"

@@ -1,6 +1,6 @@
 package mo.com.phonesafe.activity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -12,14 +12,26 @@ import mo.com.phonesafe.R;
  */
 
 
-public class SjfdSetup1Activity extends Activity {
+public class SjfdSetup1Activity extends SjfdSetupBaseActivity {
     private static final String TAG = "SjfdSetup1Activity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sjfd_setup1);
-
         Log.i(TAG, "SjfdSetup1Activity//...........");
+    }
+
+    //没有上一步
+    @Override
+    protected boolean doPre() {
+        return true;
+    }
+
+    //执行下一步操作
+    @Override
+    protected boolean doNext() {
+        Intent intent = new Intent(this, SjfdSetup2Activity.class);
+        startActivity(intent);
+        return false;
     }
 }

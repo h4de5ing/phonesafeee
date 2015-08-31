@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -23,11 +25,13 @@
         </activity>
         <activity android:name=".activity.HomeActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SjfdSetupActivity"></activity>
         <activity android:name=".activity.SjfdSetup1Activity"></activity>
         <activity android:name=".activity.SjfdSetup2Activity"></activity>
         <activity android:name=".activity.SjfdSetup3Activity"></activity>
         <activity android:name=".activity.SjfdSetup4Activity"></activity>
         <activity android:name=".activity.SjfdSetup5Activity"></activity>
+        <activity android:name=".activity.ContactActivity"></activity>
     </application>
 
 
