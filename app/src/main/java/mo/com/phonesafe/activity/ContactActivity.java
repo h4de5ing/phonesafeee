@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,12 +28,14 @@ import mo.com.phonesafe.tools.ContactUtils;
  */
 
 
-public class ContactActivity extends Activity implements AdapterView.OnItemClickListener{
+public class ContactActivity extends Activity implements AdapterView.OnItemClickListener {
 
     public static final String KEY_NUMBER = "key_number";
     private static final String TAG = "ContactActivity";
     ListView lv_contact;
     List<ContactInfo> list_contact;
+    ProgressBar pb_contact;
+    ContactAdater mContactAdater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,40 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
      * 初始化数据
      */
     private void initData() {
-        lv_contact.setAdapter(new ContactAdater());
+        mContactAdater = new ContactAdater();
+
+
+        //设置适配器
+        lv_contact.setAdapter(mContactAdater);
+        //显示监督条
+        pb_contact.setVisibility(View.VISIBLE);
+
+//        获取数据的优化,在主线程中获取资源太消耗时间，我们使用子线程进行操作
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                //获取手机联系人
+                list_contact = ContactUtils.getAllPhone(ContactActivity.this);
+
+                //当用户进入的时候显示进度
+
+                //使用这个方法在主线程中显示UI
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //关闭进度条
+                        pb_contact.setVisibility(ProgressBar.GONE);
+
+                        // 更新adapter--->UI
+                        mContactAdater.notifyDataSetChanged();
+                    }
+                });
+            }
+        }
+        ).start();
+
+
     }
 
     /**
@@ -58,11 +94,8 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
      */
 
     private void initView() {
-
-        //获取手机联系人
-        list_contact = ContactUtils.getAllPhone(this);
         lv_contact = (ListView) findViewById(R.id.lv_contact);
-
+        pb_contact = (ProgressBar) findViewById(R.id.pb_contact);
         // 设置点击事件
         lv_contact.setOnItemClickListener(this);
     }
@@ -70,6 +103,7 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
 
     /**
      * 监听联系人条目点击事件，将数据返回给启动者
+     *
      * @param parent
      * @param view
      * @param position
@@ -137,7 +171,7 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
 //                获取到联系人的头像
 //                显示
                 vHolder.ivIcon.setImageBitmap(bitmap);
-            }else{
+            } else {
                 vHolder.ivIcon.setImageResource(R.mipmap.vc);
             }
             return view;
@@ -145,7 +179,7 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
 
         @Override
         public int getCount() {
-            if (list_contact.size() > 0) {
+            if (list_contact != null) {
                 return list_contact.size();
             }
             return 0;
@@ -153,7 +187,7 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
 
         @Override
         public Object getItem(int position) {
-            if (list_contact.size() > 0) {
+            if (list_contact != null) {
                 return list_contact.get(position);
             }
             return null;
@@ -163,7 +197,6 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
         public long getItemId(int position) {
             return position;
         }
-
 
     }
 

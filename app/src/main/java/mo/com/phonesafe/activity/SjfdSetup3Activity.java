@@ -49,7 +49,11 @@ public class SjfdSetup3Activity extends SjfdSetupBaseActivity {
             @Override
             public void onClick(View v) {
 //                进入ContactActivity选择联系人，并将结果返回
-                Intent intent = new Intent(SjfdSetup3Activity.this, ContactActivity.class);
+//                Intent intent = new Intent(SjfdSetup3Activity.this, ContactActivity.class);
+
+
+                //使用大数据量的CursorAdater的方式去获取数据，减少内存的销毁，性能得到提高
+                Intent intent = new Intent(SjfdSetup3Activity.this, ContactActivity2.class);
 
                 startActivityForResult(intent, CONTACT_CODE_PHONE);
             }
@@ -85,6 +89,7 @@ public class SjfdSetup3Activity extends SjfdSetupBaseActivity {
      * 初始化view
      */
     private void initView() {
+
         sjfd_phone_number = (EditText) findViewById(R.id.sjfd_et_phoneNumber);
         select_contace = (RelativeLayout) findViewById(R.id.select_contact);
 

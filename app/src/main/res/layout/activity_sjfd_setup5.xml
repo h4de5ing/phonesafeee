@@ -15,6 +15,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <CheckBox
+            android:id="@+id/cb_sjfd_protect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

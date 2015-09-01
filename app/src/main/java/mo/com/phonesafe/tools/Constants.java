@@ -35,4 +35,9 @@ public interface Constants {
      * 手机防盗安全号码
      */
     String SJFD_PHONE_NUMBER = "sjfd_phone_number";
+
+    /**
+     * 手机防盗开启和关闭
+     */
+    String SJFD_PROTECT = "sjfd_protect";
 }

@@ -55,11 +55,13 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         //初始化View
         initView();
 
+
         //加载事件
         initEvent();
 
         //加载数据
         initDate();
+
     }
 
     /**
@@ -100,6 +102,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         //打开设置界面
         startActivity(intent);
 
+
     }
 
     /**
@@ -108,7 +111,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private void initView() {
         home_icon = (ImageView) findViewById(R.id.iv_home_icon);
         home_gridview = (GridView) findViewById(R.id.gv_home_gridview);
+
     }
+
 
     /**
      * 监听主界面的点击事件
@@ -123,10 +128,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         switch (position) {
             case 0:
-                Toast.makeText(this, "gggggg", Toast.LENGTH_SHORT).show();
                 //进入手机防盗界面  先设置跳过进入密码设置的界面 TODO
-                /*performSjfd();*/
-                loadSjfd1Activity();
+
+                /*判断用户是否已经开启防盗功能
+                */
+                performSjfd();
                 break;
             default:
                 break;
@@ -153,17 +159,17 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     }
 
     /*进入手机防盗设置向导界面*/
-   private void  loadSjfd1Activity(){
-       //进入设置向导 TODO:
-       Intent intent = new Intent(this, SjfdSetup1Activity.class);
-       startActivity(intent);
+    private void loadSjfd1Activity() {
+        //进入设置向导 TODO:
+        Intent intent = new Intent(this, SjfdSetup1Activity.class);
+        startActivity(intent);
     }
 
     /*进入手机防盗界面*/
-   private void  loadSjfdActivity(){
-       //进入手机防盗 TODO:
-       Intent intent = new Intent(this, SjfdSetupActivity.class);
-       startActivity(intent);
+    private void loadSjfdActivity() {
+        //进入手机防盗 TODO:
+        Intent intent = new Intent(this, SjfdSetupActivity.class);
+        startActivity(intent);
     }
 
 
@@ -202,7 +208,17 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 //如果用户是
                 // 第一次进入设置页面，显示设置向导
                 // 进入手机防盗页面 TODO:
-                loadSjfd1Activity();
+
+//                判断用户是否已经开启防盗功能
+                boolean sjfd_protect = PreferenceUtils.getBoolean(HomeActivity.this, Constants.SJFD_PROTECT);
+                if (sjfd_protect) {
+                    // 已经开启防盗功能，直接进入到SjfdSetupActivity的设置界面中
+                    loadSjfdActivity();
+                } else {
+
+                    //进入设置向导界面
+                    loadSjfd1Activity();
+                }
 
             }
         });
@@ -224,15 +240,18 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      */
     private void showInitPwdDialog() {
 
-        final MyDialog builder = new MyDialog(this, R.style.MyDialog);
+       /* //向老师咨询Dialog的显示风格为什么不样   TODO:
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view= View.inflate(this,R.layout.dialog_init_pwd,null);
+        builder.setView(view);
+        builder.show();*/
 
-        //向老师咨询Dialog的显示风格为什么不样   TODO:
-//       View view= View.inflate(this,R.layout.dialog_init_pwd,null);
-//        builder.setView(view);
+
+        final MyDialog builder = new MyDialog(this, R.style.MyDialog);
         builder.setContentView(R.layout.dialog_init_pwd);
         builder.show();
 
-        //用户确认输入的是监听事件
+      //用户确认输入的是监听事件
         builder.findViewById(R.id.dialog_btn_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

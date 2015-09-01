@@ -52,12 +52,12 @@ public abstract class SjfdSetupBaseActivity extends Activity {
                     return false;
                 }
 
-                if (x1 < x2) {
-                    /*向上一步滑动*/
+                if (x1 > x2) {
+                    /*向下一步滑动*/
                     preformNext();
                     return true;
                 }else{
-                    //下下一步滑动
+                    //向下一步滑动
                     preformPre();
                     return true;
                 }
