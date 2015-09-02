@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="versionurl">http://192.168.23.1/psversion.json</string>
+    <string name="sample_device_admin">手机安全卫士</string>
+    <string name="sample_device_admin_description">手机安全卫士为您保驾护航</string>
 </resources>

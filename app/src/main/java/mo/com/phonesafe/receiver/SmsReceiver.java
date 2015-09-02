@@ -1,6 +1,8 @@
 package mo.com.phonesafe.receiver;
 
+import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -9,6 +11,7 @@ import android.util.Log;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.preference.PreferenceUtils;
+import mo.com.phonesafe.service.GPSService;
 import mo.com.phonesafe.tools.Constants;
 
 /**
@@ -68,24 +71,20 @@ public class SmsReceiver extends BroadcastReceiver {
 
             if (body.equals("#*location*#")) {
                 //获取GPS定位 TODO
+
+                Intent service = new Intent(context, GPSService.class);
+                context.startService(service);
+
             } else if (body.equals("#*alarm*#")) {
                 //播放报警音乐 TODO:
-
                 Log.i(TAG, "执行报警声音。。。。。。");
-
-
                 // 报警音乐
-                Log.d(TAG, "报警音乐 ");
-
                 MediaPlayer player = MediaPlayer.create(context, R.raw.alarm);
-
                 player.setLooping(true);
                 player.setVolume(1.0f, 1.0f);
                 player.start();
-
                 //中断短信（中断广播）
                 abortBroadcast();
-
                /* SoundPool soundPool;
                 int id;
                 //定义声音池
@@ -101,13 +100,26 @@ public class SmsReceiver extends BroadcastReceiver {
             } else if (body.equals("#*wipeddata*#")) {
                 //远程销毁数据 TODO:
 
-            } else if (body.equals("#*lockscreen*#")) {
-                //远程锁频 TODO:
+            } else {
+                if (body.equals("#*lockscreen*#")) {
+                    //远程锁屏幕 TODO:
 
+                /*判断用户是否已经开启了设备管理员*/
+
+                    DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+
+                    ComponentName  whoN = new ComponentName(context, SjfdAdminReceicer.class);
+                    if (dpm.isAdminActive(whoN)) {
+                        //用户已经开启激活功能，可以进行锁屏幕操作
+                        dpm.lockNow();
+                    }
+
+                }
             }
 
 
         }
 
     }
+
 }

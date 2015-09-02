@@ -15,6 +15,7 @@
         android:text="激活设备管理员：\n可远程锁屏，远程擦除数据" />
 
     <RelativeLayout
+        android:id="@+id/set_rl_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
@@ -30,6 +31,7 @@
             android:textColor="@android:color/white" />
 
         <ImageView
+            android:id="@+id/set_iv_admin"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"
