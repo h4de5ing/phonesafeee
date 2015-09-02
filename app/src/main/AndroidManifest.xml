@@ -49,6 +49,12 @@
         <activity android:name=".activity.ContactActivity2"></activity>
 
 
+        <!--黑名单管理-->
+        <activity android:name=".activity.BlackManagerActivity"></activity>
+
+        <!--黑名单添加-->
+        <activity android:name=".activity.BlackAddActivity"></activity>
+
         <!--手机启动广播-->
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter android:priority="1000">

@@ -40,7 +40,6 @@ public class SjfdSetup4Activity extends SjfdSetupBaseActivity {
         //初始化监听事件
         initEvent();
 
-
         Log.i(TAG, "SjfdSetup1Activity//...........");
     }
 

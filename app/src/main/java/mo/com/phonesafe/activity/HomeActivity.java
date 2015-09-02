@@ -134,9 +134,20 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 */
                 performSjfd();
                 break;
+            case 1:
+                preformBlackManager();
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 进入手机拦截骚扰功能
+     */
+    private void preformBlackManager() {
+        Intent intent = new Intent(HomeActivity.this, BlackManagerActivity.class);
+        startActivity(intent);
     }
 
     /**

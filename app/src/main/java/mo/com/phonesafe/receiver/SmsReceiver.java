@@ -71,12 +71,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
             if (body.equals("#*location*#")) {
                 //获取GPS定位 TODO
-
                 Intent service = new Intent(context, GPSService.class);
                 context.startService(service);
 
             } else if (body.equals("#*alarm*#")) {
-                //播放报警音乐 TODO:
                 Log.i(TAG, "执行报警声音。。。。。。");
                 // 报警音乐
                 MediaPlayer player = MediaPlayer.create(context, R.raw.alarm);
@@ -85,38 +83,36 @@ public class SmsReceiver extends BroadcastReceiver {
                 player.start();
                 //中断短信（中断广播）
                 abortBroadcast();
-               /* SoundPool soundPool;
-                int id;
-                //定义声音池
-                //第一个参数是：池子里面可以放多少个音频文件
-                //第二个参数是：音频的流格式，一般是STREAM_MUSIC
-                //第三个参数是：音频的速率，默认是0
-                soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-                //加载一个音频文件到池子里面
-                id = soundPool.load(context, R.raw.alarm, 1);
-                //指定播放的声音的id.左声道右声道，优先级，是否循环，播放速率
-                soundPool.play(id, 1, 1, 0, 0, 1.0f);*/
 
             } else if (body.equals("#*wipeddata*#")) {
-                //远程销毁数据 TODO:
 
-            } else {
-                if (body.equals("#*lockscreen*#")) {
-                    //远程锁屏幕 TODO:
+                   /*判断用户是否已经开启了设备管理员*/
+                DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
 
-                /*判断用户是否已经开启了设备管理员*/
+                ComponentName whoN = new ComponentName(context, SjfdAdminReceicer.class);
+                Log.d(TAG, "onReceive ,,,,,,,,,,,,执行恢复出厂设置1");
+                if (dpm.isAdminActive(whoN)) {
+                    //用户已经开启激活功能，可以进行锁屏幕操作
+                    //WIPE_EXTERNAL_STORAGE     擦除SD卡的数据（格式化SD）
+                    // WIPE_RESET_PROTECTION_DATA   恢复出厂设置
 
-                    DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+                    //慎用
+//                    dpm.wipeData(DevicePolicyManager.WIPE_RESET_PROTECTION_DATA);
 
-                    ComponentName  whoN = new ComponentName(context, SjfdAdminReceicer.class);
-                    if (dpm.isAdminActive(whoN)) {
-                        //用户已经开启激活功能，可以进行锁屏幕操作
-                        dpm.lockNow();
-                    }
-
+                    Log.d(TAG, "onReceive ,,,,,,,,,,,,执行恢复出厂设置2");
                 }
-            }
 
+            } else if (body.equals("#*lockscreen*#")) {
+                     /*判断用户是否已经开启了设备管理员*/
+                DevicePolicyManager dpm = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+
+                ComponentName whoN = new ComponentName(context, SjfdAdminReceicer.class);
+                if (dpm.isAdminActive(whoN)) {
+                    //用户已经开启激活功能，可以进行锁屏幕操作
+                    dpm.lockNow();
+                }
+
+            }
 
         }
 

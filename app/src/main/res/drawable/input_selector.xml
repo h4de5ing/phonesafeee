@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--获取焦点-->
+    <item android:drawable="@drawable/input_shape_press"
+        android:state_focused="true"
+        android:state_pressed="true"></item>
+
+    <!--默认-->
+    <item android:drawable="@drawable/input_shape_normal"></item>
+</selector>
