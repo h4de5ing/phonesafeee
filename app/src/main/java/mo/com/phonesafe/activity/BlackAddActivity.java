@@ -1,8 +1,10 @@
 package mo.com.phonesafe.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -19,6 +21,8 @@ import mo.com.phonesafe.dao.BlackDao;
 
 
 public class BlackAddActivity extends Activity {
+    private static final int CONTACT_CODE_PHONE = 100;
+    private static final String TAG = "BlackAddActivity";
     EditText viewById;
     RadioGroup ba_tyle;
 
@@ -50,6 +54,18 @@ public class BlackAddActivity extends Activity {
      * 事件的监听
      */
     private void initEvent() {
+
+        /**
+         * 通讯录中获取名单，添加到黑名单中
+         */
+        findViewById(R.id.select_contact).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //进入联系人选取号码中，使用On
+                Intent intent = new Intent(BlackAddActivity.this, ContactActivity2.class);
+                startActivityForResult(intent,CONTACT_CODE_PHONE);
+            }
+        });
 
         //确定
         findViewById(R.id.tb_ba_OK).setOnClickListener(new View.OnClickListener() {
@@ -85,10 +101,14 @@ public class BlackAddActivity extends Activity {
                 if (insert) {
                     Toast.makeText(BlackAddActivity.this, "成功添加黑名单", Toast.LENGTH_SHORT).show();
 
-                    //关闭当前页面
+                    gotoBlackManger();
                     finish();
                 } else {
                     Toast.makeText(BlackAddActivity.this, "添加黑名单失败", Toast.LENGTH_SHORT).show();
+
+                    gotoBlackManger();
+                    //关闭当前页面
+                    finish();
                 }
 
             }
@@ -101,5 +121,39 @@ public class BlackAddActivity extends Activity {
                  finish();
              }
          });
+    }
+
+
+    //接收返回的联系人数据
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == CONTACT_CODE_PHONE) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    //获取数据
+                    String number = data.getStringExtra(ContactActivity.KEY_NUMBER);
+
+                    Log.i(TAG, "...........number:" + number);
+                    viewById.setText(number);
+
+                    if (!TextUtils.isEmpty(number)) {
+                        //设置光标的位置在number的后面
+                        viewById.setSelection(number.length());
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    /**
+     * 回到黑名单管理界面
+     */
+    private void gotoBlackManger() {
+        Intent intent = new Intent(BlackAddActivity.this, BlackManagerActivity.class);
+        startActivity(intent);
+        //关闭当前页面
     }
 }

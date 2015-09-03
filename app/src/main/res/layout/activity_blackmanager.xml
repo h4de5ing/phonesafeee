@@ -21,10 +21,11 @@
             android:layout_height="36dp"
             android:src="@drawable/iv_bm_seletor"/>
     </RelativeLayout>
-    <LinearLayout
+    <ListView
+        android:id="@+id/lv_bm_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </LinearLayout>
+    </ListView>
 
 
 

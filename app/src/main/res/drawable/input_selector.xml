@@ -4,7 +4,7 @@
     <!--获取焦点-->
     <item android:drawable="@drawable/input_shape_press"
         android:state_focused="true"
-        android:state_pressed="true"></item>
+        android:state_enabled="true" ></item>
 
     <!--默认-->
     <item android:drawable="@drawable/input_shape_normal"></item>

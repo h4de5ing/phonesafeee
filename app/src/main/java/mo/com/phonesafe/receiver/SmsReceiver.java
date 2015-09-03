@@ -70,7 +70,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
 
             if (body.equals("#*location*#")) {
-                //获取GPS定位 TODO
+                //开启GPS服务
                 Intent service = new Intent(context, GPSService.class);
                 context.startService(service);
 

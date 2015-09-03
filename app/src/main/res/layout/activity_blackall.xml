@@ -25,6 +25,24 @@
         android:inputType="number"
         android:hint="号码不能为空"/>
 
+    <RelativeLayout
+        android:id="@+id/select_contact"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/btn_primary_selector">
+        <TextView
+            android:padding="4dp"
+            android:layout_marginTop="20dp"
+            style="@style/SetupTextViewStyle"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:text="通讯录选择号码"/>
+    </RelativeLayout>
+
     <TextView
         style="@style/SetupTextViewStyle"
         android:text="拦截类型"/>
