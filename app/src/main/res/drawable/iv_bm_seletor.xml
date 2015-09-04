@@ -4,6 +4,5 @@
     <!--按下-->
     <item android:drawable="@mipmap/ed" android:state_pressed="true"></item>
 
-
     <item android:drawable="@mipmap/ed_2"></item>
 </selector>

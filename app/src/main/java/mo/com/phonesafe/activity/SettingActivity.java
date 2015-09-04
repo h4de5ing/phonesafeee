@@ -1,13 +1,16 @@
 package mo.com.phonesafe.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.preference.PreferenceUtils;
+import mo.com.phonesafe.service.CallSmsInterceptService;
 import mo.com.phonesafe.tools.Constants;
+import mo.com.phonesafe.tools.ServiceStateUtils;
 import mo.com.phonesafe.view.SettingItemView;
 
 /**
@@ -49,6 +52,9 @@ public class SettingActivity extends Activity {
 
             }
         });
+
+
+        //拦截服务点击事件的监听
         mSivAutoIntercept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,12 +62,31 @@ public class SettingActivity extends Activity {
 
                 //UI图标开的时候就关，关的时候就开
                 mSivAutoIntercept.toggle();
-
                 //业务逻辑：下次进入时，不检测网络更新--》持久化存储
-                PreferenceUtils.putBoolean(SettingActivity.this, Constants.AUTO_INTERCEPT, mSivAutoIntercept.getToggleState());
+
+                if (ServiceStateUtils.getServiceState(SettingActivity.this, CallSmsInterceptService.class)) {
+                    //服务是开启的，点击停止服务
+                    Intent intent = new Intent(SettingActivity.this, CallSmsInterceptService.class);
+                    stopService(intent);
+                }else {
+                    //服务没有开启，点击开启服务
+                    Intent intent = new Intent(SettingActivity.this, CallSmsInterceptService.class);
+                    startService(intent);
+                }
+
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //显示服务开启的状态(在onstart状态获取实时服务启动的状态)
+        //设置拦截
+        mSivAutoIntercept.setToggleState(ServiceStateUtils.getServiceState(this,CallSmsInterceptService.class));
+
     }
 
     //初始化View
@@ -73,9 +98,8 @@ public class SettingActivity extends Activity {
         //设置初始化用户设置更新的状态
         mSivAutoUpdate.setToggleState(PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE));
 
-
-        //设置拦截
-        mSivAutoIntercept.setToggleState(PreferenceUtils.getBoolean(this, Constants.AUTO_INTERCEPT));
+        Log.i(TAG, "initView 更新：" + PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE));
+        Log.i(TAG, "initView 拦截："+PreferenceUtils.getBoolean(this, Constants.AUTO_INTERCEPT));
     }
 
     //点击返回主界面

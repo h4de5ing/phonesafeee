@@ -140,7 +140,6 @@ public class SplashActivity extends Activity {
             if(PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE)) {
                 new CheckVersionThread().start();
             }else {
-
                 //进入主页
                 loadHome();
             }
@@ -183,7 +182,7 @@ public class SplashActivity extends Activity {
     };
 
     /**
-     * 显示提示用户进行更新   TODO
+     * 显示提示用户进行更新
      */
     private void showUpdateDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -257,14 +256,14 @@ public class SplashActivity extends Activity {
                  <data android:mimeType="application/vnd.android.package-archive" />
                  </intent-filter>
                  </activity>
-                */
+                 */
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
                 intent.addCategory("android.intent.category.DEFAULT");
                 intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
 
                 //启动的系统安装的界面
-                startActivityForResult(intent,REQUEST_INSTALL_CODE);
+                startActivityForResult(intent, REQUEST_INSTALL_CODE);
 
             }
 
@@ -349,13 +348,13 @@ public class SplashActivity extends Activity {
                 HttpEntity entity = response.getEntity();
 
                 //获取服务器返回的数据
-                String json = EntityUtils.toString(entity,"UTF-8");
+                String json = EntityUtils.toString(entity, "UTF-8");
 
 
                 //解析json格式数据
                 versionMessage = parseJson(json);
 
-                Log.i(TAG,"versionMessage:"+versionMessage.toString());
+                Log.i(TAG, "versionMessage:" + versionMessage.toString());
 
 
                 //本地版本号

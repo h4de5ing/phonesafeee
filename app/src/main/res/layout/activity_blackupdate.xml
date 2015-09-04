@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.BlackManagerActivity"
+    >
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:text="更新黑名单"/>
+    <TextView
+       style="@style/SetupTextViewStyle"
+        android:text="电话号码"/>
+
+    <EditText
+        android:id="@+id/et_bm_number"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_selector"
+        android:singleLine="true"
+        android:inputType="number"
+        android:enabled="false"
+        android:hint="号码不能为空"/>
+
+
+    <TextView
+        style="@style/SetupTextViewStyle"
+        android:text="拦截类型"/>
+
+    <RadioGroup
+        android:id="@+id/rg_ba_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rg_ba_type_call"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="电话"/>
+        <RadioButton
+            android:id="@+id/rg_ba_type_sms"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="短信"/>
+        <RadioButton
+            android:id="@+id/rg_ba_type_all"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="全部"/>
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/tb_ba_Update"
+                android:layout_weight="1"
+                style="@style/NormalBtnStyle.OK"
+                android:background="@drawable/btn_info_selector"
+                android:gravity="center"
+                android:text="更新"/>
+            <Button
+                android:id="@+id/tb_ba_cancel"
+                android:layout_weight="1"
+                android:gravity="center"
+                style="@style/NormalBtnStyle.OK"
+                android:background="@drawable/btn_info_selector"
+                android:text="取消"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

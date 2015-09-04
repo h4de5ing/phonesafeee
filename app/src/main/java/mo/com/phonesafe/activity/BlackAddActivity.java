@@ -101,12 +101,10 @@ public class BlackAddActivity extends Activity {
                 if (insert) {
                     Toast.makeText(BlackAddActivity.this, "成功添加黑名单", Toast.LENGTH_SHORT).show();
 
-                    gotoBlackManger();
                     finish();
                 } else {
                     Toast.makeText(BlackAddActivity.this, "添加黑名单失败", Toast.LENGTH_SHORT).show();
 
-                    gotoBlackManger();
                     //关闭当前页面
                     finish();
                 }
@@ -148,12 +146,12 @@ public class BlackAddActivity extends Activity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-    /**
-     * 回到黑名单管理界面
-     */
-    private void gotoBlackManger() {
+
+    @Override
+    public void finish() {
         Intent intent = new Intent(BlackAddActivity.this, BlackManagerActivity.class);
         startActivity(intent);
         //关闭当前页面
+        super.finish();
     }
 }

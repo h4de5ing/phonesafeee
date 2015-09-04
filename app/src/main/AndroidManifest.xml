@@ -8,9 +8,19 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
 
+
+    <!--电话拦截-->
+    <uses-permission android:name="android.permission.CALL_PHONE" ></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
     <!--手机发送短信的权限 和 广播接收-->
     <uses-permission android:name="android.permission.SEND_SMS" ></uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
 
     <!--手机启动获取广播的权限-->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
@@ -54,6 +64,8 @@
 
         <!--黑名单添加-->
         <activity android:name=".activity.BlackAddActivity"></activity>
+        <!--黑名单更新-->
+        <activity android:name=".activity.BlackUpdateActivity"></activity>
 
         <!--手机启动广播-->
         <receiver android:name=".receiver.BootCompleteReceiver">
@@ -73,6 +85,10 @@
 
         <!-- GPS服务-->
         <service android:name=".service.GPSService"></service>
+
+
+        <!--电话和短信拦截的服务-->
+        <service android:name=".service.CallSmsInterceptService"></service>
         
         <!--注册设备管理员-->
         <receiver android:name=".receiver.SjfdAdminReceicer"

@@ -88,7 +88,7 @@ public class SettingItemView extends RelativeLayout {
      */
     public void toggle(){
         //开的时候关：关的时候关
-        mIvIcon.setImageResource(isOpen ? R.mipmap.vg : R.mipmap.zg);
+        mIvIcon.setImageResource(isOpen ? R.mipmap.zg : R.mipmap.vg);
         isOpen = !isOpen;
     }
 
@@ -104,7 +104,7 @@ public class SettingItemView extends RelativeLayout {
      */
     public void setToggleState(boolean flag) {
         isOpen = flag;
-        mIvIcon.setImageResource(isOpen?R.mipmap.zg:R.mipmap.vg);
+        mIvIcon.setImageResource(isOpen?R.mipmap.vg:R.mipmap.zg);
     }
 
 }

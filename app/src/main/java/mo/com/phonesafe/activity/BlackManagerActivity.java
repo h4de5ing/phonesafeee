@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +29,21 @@ import mo.com.phonesafe.dao.BlackDao;
  */
 
 
-public class BlackManagerActivity extends Activity {
+public class BlackManagerActivity extends Activity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "BlackManagerActivity";
+    public static final String BLACK_NUMBER = "black_number";
+    public static final String BLACK_TYPE = "black_type";
+    private static final int REQUEST_CODE_UPDATE = 100;
     private ImageView lm_ivon;
     private ListView bm_list;
     private List<BlackBean> listdata;
     private BlackListAdater listAdater;
+    private LinearLayout pb_load;
+    private BlackDao blackDao;
+    private int pageSize = 20;
+    private boolean isLoading = false;
+    private boolean hasMore  = true;    //是否有更多数据加载
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +53,12 @@ public class BlackManagerActivity extends Activity {
         //初始化view
         initView();
 
-//        初始化event
-        initEvent();
-
         //初始化数据
         initData();
+
+        // 初始化event
+        initEvent();
+
     }
 
     private void initEvent() {
@@ -59,14 +71,152 @@ public class BlackManagerActivity extends Activity {
                 finish();
             }
         });
+        //listView 点击事件
+        bm_list.setOnItemClickListener(this);
+
+        //listView的滑动监听事件
+        bm_list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                // 当 滚动状态改变时 的回调
+                // view: mListView
+                // scrollState: 当前的状态
+                // SCROLL_STATE_IDLE = 0:闲置状态
+                // SCROLL_STATE_TOUCH_SCROLL = 1 ： 触摸滚动状态
+                // SCROLL_STATE_FLING = 2:惯性滑动
+
+               /* //数据为空的时候，禁止滑动刷新
+                if (listdata == null) {
+                    return;
+                }
+
+                //判断是否正在加载，如果正在加载，则，不进入
+                if (isLoading) {
+                    return;
+                }
+                int currentlast  = bm_list.getLastVisiblePosition();    //当前listview最后的位置是
+
+                if (scrollState == SCROLL_STATE_IDLE && currentlast == listdata.size() - 1) {
+                    Log.i(TAG, "加载更多数据。。。。。。");
+
+                    //显示加载进度
+                    pb_load.setVisibility(View.VISIBLE);
+
+                    isLoading = true;   //正在加载
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(10000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            //分页查询加载黑名单
+                            final List<BlackBean> list = blackDao.querySize(pageSize, listdata.size());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listdata.addAll(list);
+                                    //主线程中操作UI
+                                    pb_load.setVisibility(View.GONE);
+                                    listAdater.notifyDataSetChanged();
+                                    //当listview为空的时候，可以显示指定的View
+                                    bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
+                                }
+                            });
+
+                            //加载完毕
+                            isLoading = false;
+                        }
+                    }).start();
+
+                }
+                */
+                        
+            }
+
+            /**
+             * 一值在滑动
+             */
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                // 当 滚动时的回调
+                // firstVisibleItem: 第一个可见的item的position
+                // visibleItemCount:可见的item的数量
+                // totalItemCount:item的总数量
+                //加载更多
+                loadMore();
+            }
+        });
+
 
     }
 
-    private void initData() {
-        BlackDao blackDao = new BlackDao(BlackManagerActivity.this);
+    private void loadMore() {
+        //数据为空的时候，禁止滑动刷新
+        if (listdata == null) {
+            return;
+        }
 
-        //获取所有的黑名单
-        listdata = blackDao.queryAll();
+        //判断当前还有没有数据加载
+        if (!hasMore) {
+
+            //已经没有更多数据
+            return;
+        }
+
+        //判断是否正在加载，如果正在加载，则，不进入
+        if (isLoading) {
+            return;
+        }
+        int currentlast  = bm_list.getLastVisiblePosition();    //当前listview最后的位置是
+
+        //当滑动到底部的时候（底部位置可见的时候）
+        if (currentlast == listAdater.getCount() - 1) {
+            Log.i(TAG, "加载更多数据。。。。。。");
+
+            //显示加载进度
+            pb_load.setVisibility(View.VISIBLE);
+
+            isLoading = true;   //正在加载
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //分页查询加载黑名单
+                    final List<BlackBean> list = blackDao.querySize(pageSize, listdata.size());
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            /*判断还有没有更多数据*/
+                            if (list.size() < pageSize) {
+                                Toast.makeText(BlackManagerActivity.this, "没有更多数据", Toast.LENGTH_SHORT).show();
+                                hasMore = false;
+                            }
+
+                            listdata.addAll(list);
+                            //主线程中操作UI
+                            pb_load.setVisibility(View.GONE);
+                            listAdater.notifyDataSetChanged();
+                            //当listview为空的时候，可以显示指定的View
+                            bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
+                        }
+                    });
+
+                    //加载完毕
+                    isLoading = false;
+                }
+            }).start();
+        }
+    }
+
+    private void initData() {
 
         //避免删除的时候  重新常见Adapter
         if (listAdater == null) {
@@ -75,19 +225,94 @@ public class BlackManagerActivity extends Activity {
         } else {
             listAdater.notifyDataSetChanged();
         }
+        blackDao = new BlackDao(BlackManagerActivity.this);
+
+        //显示加载的
+        pb_load.setVisibility(View.VISIBLE);
+
+        /*使用线程去加载数据*/
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //获取所有的黑名单
+            // listdata = blackDao.queryAll();
+
+                //分页参训
+                listdata = blackDao.querySize(pageSize, 0);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //主线程中操作UI
+                        pb_load.setVisibility(View.GONE);
+                        listAdater.notifyDataSetChanged();
+                        //当listview为空的时候，可以显示指定的View
+                        bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
+                        //刷新完数据之后
+                        isLoading = false;
+                    }
+                });
+            }
+        }).start();
+
+
     }
 
     private void initView() {
         lm_ivon = (ImageView) findViewById(R.id.iv_lm_icon);
         bm_list = (ListView) findViewById(R.id.lv_bm_list);
+        pb_load = (LinearLayout) findViewById(R.id.pb_bm_load);
 
+        /*设置加载进度的样式图片*/
+
+    }
+
+    /**
+     * 点击进入修改界面
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG, "onItemSelected 当前点击的是：" + position);
+        //点击进入更新界面
+        Intent intent = new Intent(BlackManagerActivity.this, BlackUpdateActivity.class);
+
+        //获取当前号码
+        BlackBean blackBean = listdata.get(position);
+
+        //将当前号码发送到下一个界面
+        intent.putExtra(BLACK_NUMBER, blackBean.number);
+        intent.putExtra(BLACK_TYPE, blackBean.type);
+
+        //优化，使用result放回的方式，将更改的数据从在内存中添加，不用再去搜索数据库
+        startActivityForResult(intent, REQUEST_CODE_UPDATE);
+    }
+
+    /**
+     * 获取更新的值，添加到listdata中，不用再去查询数据库
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private class BlackListAdater extends BaseAdapter {
 
         @Override
         public int getCount() {
-            if (listdata.size()>0) {
+            if (listdata != null) {
                 return listdata.size();
             }
             return 0;
@@ -95,7 +320,7 @@ public class BlackManagerActivity extends Activity {
 
         @Override
         public Object getItem(int position) {
-            if (listdata.size() > 0) {
+            if (listdata != null) {
                 return listdata.get(position);
             }
             return null;
@@ -107,7 +332,7 @@ public class BlackManagerActivity extends Activity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;
             if (convertView == null) {
                 convertView = View.inflate(BlackManagerActivity.this, R.layout.item_black, null);
@@ -145,14 +370,21 @@ public class BlackManagerActivity extends Activity {
             holder.item_delete_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    BlackDao dao = new BlackDao(BlackManagerActivity.this);
-                    boolean delete = dao.delete(blackBean.number);
-                    Log.i(TAG, "onClick delete itme: number-->"+blackBean.number);
+                    boolean delete = blackDao.delete(blackBean.number);
+                    Log.i(TAG, "onClick delete itme: number-->" + blackBean.number);
                     if (delete) {
                         Toast.makeText(BlackManagerActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
 
-                        //通知list数据已经发生改变
-                        initData();
+                        //从内容中移除，不再查找数据库
+                        listdata.remove(position);
+
+                        //删除一条添加一条
+                        List<BlackBean> list = blackDao.querySize(1, listAdater.getCount());
+
+                        //添加到数据内存中
+                        listdata.addAll(list);
+
+                        listAdater.notifyDataSetChanged();
 
                     } else {
                         Toast.makeText(BlackManagerActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
@@ -171,7 +403,6 @@ public class BlackManagerActivity extends Activity {
         TextView item_type;
         ImageView item_delete_icon;
     }
-
 
 
 }
