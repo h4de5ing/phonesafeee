@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UI360</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_ui">360UI</string>
+</resources>

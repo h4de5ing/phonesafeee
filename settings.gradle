@@ -1,1 +1,1 @@
-include ':app', ':xUtils-2.6.14', ':gpstest'
+include ':app', ':xUtils-2.6.14', ':rocket', ':ui360'
