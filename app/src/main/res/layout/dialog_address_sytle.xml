@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:layout_width="match_parent"
+        android:text="请选择样式"/>
+
+   <ListView
+       android:id="@+id/lv_dialog_address"
+       android:layout_width="match_parent"
+       android:divider="@color/switch_thumb_normal_material_dark"
+       android:dividerHeight="1dp"
+       android:scrollbars="none"
+       android:listSelector="@android:color/holo_purple"
+       android:layout_height="248dp">
+   </ListView>
+</LinearLayout>

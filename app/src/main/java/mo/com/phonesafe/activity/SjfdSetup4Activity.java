@@ -137,9 +137,7 @@ public class SjfdSetup4Activity extends SjfdSetupBaseActivity {
      * @return
      */
     private boolean isAdminActive() {
-
         dpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-
         whoN = new ComponentName(SjfdSetup4Activity.this,SjfdAdminReceicer.class);
         return dpm.isAdminActive(whoN);
     }

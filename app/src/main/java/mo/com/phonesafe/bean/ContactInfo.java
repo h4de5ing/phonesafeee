@@ -7,7 +7,6 @@ package mo.com.phonesafe.bean;
  * 手机联系人对象
  */
 
-
 public class ContactInfo {
 
     public String name;

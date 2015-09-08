@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="100"
+    android:exitFadeDuration="100"
+    >
 
     <!--按下显示的效果-->
-    <item android:drawable="@android:color/holo_blue_light" android:state_pressed="true"/>
+    <item android:drawable="@android:color/holo_blue_light"
+        android:state_pressed="true" />
 
     <!--默认-->
-    <item android:drawable="@android:color/white"/>
+    <item android:drawable="@android:color/white" />
 
 </selector>

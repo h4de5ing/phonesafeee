@@ -96,5 +96,38 @@ public class PreferenceUtils {
         SharedPreferences sp = getSp(context);
         sp.edit().putString(key, value).commit();
     }
+    /**
+     * 获得int类型的数据,没有时默认值为-1
+     * @param context
+     * @param key
+     * @return
+     */
+    public static int getInt(Context context, String key) {
+       return   getInt(context, key, -1);
+    }
+
+    /**
+     * 获得int类型的数据,没有时默认值为null
+     * @param context
+     * @param key
+     * @return
+     */
+    public static int getInt(Context context, String key,int defValue) {
+        SharedPreferences sp = getSp(context);
+        int value = sp.getInt(key, defValue);
+        return value;
+    }
+
+
+    /**
+     * 保存int类型的数据,没有时默认值为-1
+     * @param context
+     * @param key
+     * @return
+     */
+    public static void putInt(Context context, String key, int value) {
+        SharedPreferences sp = getSp(context);
+        sp.edit().putInt(key, value).commit();
+    }
 
 }

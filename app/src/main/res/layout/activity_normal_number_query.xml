@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/titlebarStyle"
+        android:text="常用号码查询"/>
+
+  <ExpandableListView
+      android:id="@+id/el_normal_number"
+      android:layout_width="match_parent"
+      android:groupIndicator="@null"
+      android:childIndicator="@null"
+      android:listSelector="@android:color/holo_purple"
+      android:dividerHeight="1dp"
+      android:divider="@android:color/darker_gray"
+      android:layout_height="match_parent">
+  </ExpandableListView>
+
+
+</LinearLayout>

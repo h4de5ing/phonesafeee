@@ -1,76 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.HomeActivity">
+    android:orientation="vertical">
 
-    <RelativeLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:padding="5dp"
-        android:background="@mipmap/ae">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.HomeActivity">
 
-        <ImageView
-            android:id="@+id/iv_home_icon"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/mo"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:background="@drawable/skin1"
+            android:padding="5dp">
 
-        <LinearLayout
-            android:layout_toRightOf="@id/iv_home_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
-
-            <TextView
-                android:id="@+id/tv_home_titil"
+            <ImageView
+                android:id="@+id/iv_home_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_toRightOf="@+id/iv_home_icon"
-                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:textSize="28sp"
-                android:singleLine="true"
-                android:textColor="@android:color/holo_blue_light"
-                android:text="手机安全卫士"
-                />
-            <mo.com.phonesafe.view.FocusedTextView
-                android:id="@+id/tv_home_desc"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/mo" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="10dp"
-                android:singleLine="true"
-                android:textSize="15sp"
-                android:textColor="@android:color/holo_red_light"
-                android:text="Welcome to Momxmo Team let's show ......."
-                />
-        </LinearLayout>
-        <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:onClick="clickSetting"
-            android:background="@drawable/setting_selector"/>
-    </RelativeLayout>
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/iv_home_icon"
+                android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/gv_home_gridview"
-        android:numColumns="2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:horizontalSpacing="25dp"
-        android:verticalSpacing="35dp"
-        android:listSelector="@android:color/transparent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></GridView>
+                <TextView
+                    android:id="@+id/tv_home_titil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_home_icon"
+                    android:singleLine="true"
+                    android:text="手机安全卫士"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
 
+                <mo.com.phonesafe.view.FocusedTextView
+                    android:id="@+id/tv_home_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:singleLine="true"
+                    android:text="Welcome to Momxmo Team let's show ......."
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-</LinearLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/setting_selector"
+                android:onClick="clickSetting" />
+        </RelativeLayout>
+
+        <GridView
+            android:id="@+id/gv_home_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:horizontalSpacing="1dp"
+            android:listSelector="@drawable/item_home_selector"
+            android:numColumns="2"
+            android:scrollbarSize="1dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dp"></GridView>
+    </LinearLayout>
+
+    <!--
+            android:horizontalSpacing="35dp"
+             android:scrollbarSize="1dp"-->
+
+    <ImageView
+        android:id="@+id/iv_up_more"
+        android:layout_width="124dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/nn" />
+</RelativeLayout>

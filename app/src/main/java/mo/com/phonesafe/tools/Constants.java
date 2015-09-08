@@ -40,4 +40,9 @@ public interface Constants {
      * 手机防盗开启和关闭
      */
     String SJFD_PROTECT = "sjfd_protect";
+
+    /**
+     * 手机来电去点归属地显示的风格
+     */
+    String ADDRESS_STYLE = "address_style";
 }

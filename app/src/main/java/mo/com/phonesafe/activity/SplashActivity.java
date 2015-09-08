@@ -31,12 +31,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.VersionMessage;
 import mo.com.phonesafe.preference.PreferenceUtils;
 import mo.com.phonesafe.tools.Constants;
+import mo.com.phonesafe.tools.CopyUtils;
+import mo.com.phonesafe.tools.GZIPUtils;
 import mo.com.phonesafe.tools.PackageInfoUtil;
 import mo.com.phonesafe.tools.ShimmerFrameLayout;
 
@@ -53,7 +58,6 @@ public class SplashActivity extends Activity {
     private ShimmerFrameLayout mShimmerViewContainer;   //布局的闪动对象
     TextView tv_app_version;    //显示版本名称
     int mCurrentversionCode;    //版本号
-    private long mDuration;    //动画执行的时间
     VersionMessage versionMessage;
 
 
@@ -66,7 +70,65 @@ public class SplashActivity extends Activity {
         initData();
         //启动动画
         startAnimation();
-        //事件
+
+        //复制常见号码到files文件下
+        copyCommonNormalPhone();
+
+        //解压号码归属地数据库
+        unZipAddressDB();
+
+
+    }
+
+    /**
+     * 复制常见号码
+     */
+    private void copyCommonNormalPhone() {
+
+        final File file = new File(getFilesDir(), "commonnum.db");
+        if (!file.exists()) {
+            //耗时的操作放到子线程中
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    InputStream is = null;
+                    OutputStream os = null;
+                    try {
+                        is = getAssets().open("commonnum.db");
+                        OutputStream out = new FileOutputStream(file);
+                        CopyUtils.copy(is, out);
+                    } catch (IOException e) {
+                        //出现异常，删除解压产生的数据
+                        file.delete();
+                    }
+                }
+            }).start();
+        }
+    }
+
+    //拷贝和解压号码归属地的数据包
+    private void unZipAddressDB() {
+        final File file = new File(getFilesDir(), "address.db");
+        if (!file.exists()) {
+            //耗时的操作放到子线程中
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    InputStream is = null;
+                    OutputStream os = null;
+                    try {
+                        is = getAssets().open("address.zip");
+                        Log.i(TAG, "流的大小：" + (is == null));
+                        os = new FileOutputStream(file);
+                        GZIPUtils.unzip(is, os);
+                    } catch (IOException e) {
+                        //出现异常，删除解压产生的数据
+                        file.delete();
+                    }
+                }
+            }).start();
+
+        }
     }
 
     /**
@@ -137,9 +199,9 @@ public class SplashActivity extends Activity {
 
             //开启线程去访问网络，获取版本信息
             //判断用户设置了自动更新
-            if(PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE)) {
+            if (PreferenceUtils.getBoolean(this, Constants.AUTO_UPDATE)) {
                 new CheckVersionThread().start();
-            }else {
+            } else {
                 //进入主页
                 loadHome();
             }
@@ -289,6 +351,7 @@ public class SplashActivity extends Activity {
 
     /**
      * 安装软件的结果回调函数
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -300,8 +363,8 @@ public class SplashActivity extends Activity {
         resultleCode：对方的activity提供的
         data:对方放回的数据
          */
-        if(requestCode == REQUEST_INSTALL_CODE){
-            switch (resultCode){
+        if (requestCode == REQUEST_INSTALL_CODE) {
+            switch (resultCode) {
                 case Activity.RESULT_CANCELED:
                     //用户取消动作
                     Log.i(TAG, "用户取消动作");

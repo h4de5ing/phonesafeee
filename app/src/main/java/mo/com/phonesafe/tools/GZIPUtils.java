@@ -14,10 +14,7 @@ import java.util.zip.GZIPOutputStream;
  * 邮箱：xxxx@qq.com
  *
  */
-
-
 public class GZIPUtils {
-
     /**
      * 压缩
      * @param is    输入流
@@ -54,7 +51,6 @@ public class GZIPUtils {
             int len = -1;
             while ((len = gzip.read(buf)) != -1) {
                 os.write(buf,0,len);
-                os.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,16 +62,16 @@ public class GZIPUtils {
 
     /**
      * 关闭资源
-     * @param stream
+     * @param io
      */
-    public static void closeIO(Closeable stream) {
-        if (stream != null) {
+    public static void closeIO(Closeable io) {
+        if (io != null) {
             try {
-                stream.close();
+                io.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            stream = null;
+            io = null;
         }
     }
 }

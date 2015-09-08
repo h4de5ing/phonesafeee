@@ -40,8 +40,10 @@
         mo:sivBackground="blue"
         mo:sivTitle="拦截设置"
         android:layout_marginTop="10dp"
+
         />
     <mo.com.phonesafe.view.SettingItemView
+        android:id="@+id/setting_siv_numberaddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         mo:sivBackground="purple"
@@ -49,6 +51,7 @@
         android:layout_marginTop="10dp"
         />
     <mo.com.phonesafe.view.SettingItemView
+        android:id="@+id/setting_siv_numberaddress_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         mo:sivBackground="purple"

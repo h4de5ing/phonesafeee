@@ -138,28 +138,24 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
      * 手机联系人的适配器
      */
     private class ContactAdater extends BaseAdapter {
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view = null;
             ViewHolder vHolder = null;
             if (convertView == null) {
-                //加载联系人条目
-                view = View.inflate(ContactActivity.this, R.layout.item_contact, null);
-
+                //加载布局条目，希望能看得懂
+                convertView = View.inflate(ContactActivity.this, R.layout.item_contact, null);
                 vHolder = new ViewHolder();
                 //将获得到的对象放到Holder中，并将其标记到converView中
-                vHolder.ivIcon = (ImageView) view.findViewById(R.id.iv_contact_icon);
-                vHolder.tvName = (TextView) view.findViewById(R.id.tv_contact_name);
-                vHolder.tvNumber = (TextView) view.findViewById(R.id.tv_contact_number);
-
-                view.setTag(vHolder);
-
+                vHolder.ivIcon = (ImageView) convertView.findViewById(R.id.iv_contact_icon);
+                vHolder.tvName = (TextView) convertView.findViewById(R.id.tv_contact_name);
+                vHolder.tvNumber = (TextView) convertView.findViewById(R.id.tv_contact_number);
+                //添加标记
+                convertView.setTag(vHolder);
             } else {
-                view = convertView;
-                vHolder = (ViewHolder) view.getTag();
+                //获取标记
+                vHolder = (ViewHolder) convertView.getTag();
             }
-
+            //获取list集合中的数据
             ContactInfo conInfo = list_contact.get(position);
 
             vHolder.tvName.setText(conInfo.name);
@@ -167,16 +163,12 @@ public class ContactActivity extends Activity implements AdapterView.OnItemClick
             Bitmap bitmap = ContactUtils.getContactBitmap(ContactActivity.this, conInfo.contactId);
 
             if (bitmap != null) {
-
-//                获取到联系人的头像
-//                显示
                 vHolder.ivIcon.setImageBitmap(bitmap);
             } else {
                 vHolder.ivIcon.setImageResource(R.mipmap.vc);
             }
-            return view;
+            return convertView;
         }
-
         @Override
         public int getCount() {
             if (list_contact != null) {

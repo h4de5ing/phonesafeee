@@ -26,7 +26,6 @@ public abstract class SjfdSetupBaseActivity extends Activity {
 
 
         mGestrue = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
-
             //监听手势识别器的动作
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -82,11 +81,6 @@ public abstract class SjfdSetupBaseActivity extends Activity {
         mGestrue.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
-
-    /**
-     * 手指滑动的事件监听
-     */
-
 
     //执行上一步操作
     private void preformPre() {

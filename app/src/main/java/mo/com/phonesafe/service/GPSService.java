@@ -162,8 +162,6 @@ public class GPSService extends Service {
                         // 发送短信
                         final SmsManager sms = SmsManager.getDefault();
                         // 获取安全号码
-
-
                         sms.sendTextMessage(phone_number, null, "longitude:" + mdoubles[0] +
                                 "   latitude:" + mdoubles[1] +
                                 "phone_number:"

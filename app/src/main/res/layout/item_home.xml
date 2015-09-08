@@ -2,19 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/item_home_selector"
+    android:layout_centerInParent="true"
     >
     <ImageView
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
         android:id="@+id/iv_home_item_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:src="@mipmap/qh"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:layout_toRightOf="@+id/iv_home_item_icon">
 
         <TextView
@@ -23,9 +26,12 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textSize="18sp"
+            android:clickable="false"
             android:text="zzzz"/>
         <TextView
+
             android:id="@+id/tv_home_item_desc"
+            android:layout_below="@+id/tv_home_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -33,6 +39,6 @@
             android:textSize="15sp"
             android:text="zzzz"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
