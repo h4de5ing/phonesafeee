@@ -18,5 +18,15 @@ public class AppBean {
     public boolean isInstallSD; //安装在手机SD卡
     public boolean isSystem; //是否是系统应用
 
-
+    @Override
+    public String toString() {
+        return "AppBean{" +
+                "icon=" + icon +
+                ", name='" + name + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", size=" + size +
+                ", isInstallSD=" + isInstallSD +
+                ", isSystem=" + isSystem +
+                '}';
+    }
 }

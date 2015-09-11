@@ -3,7 +3,6 @@
 
     <!--自定义SettingItemView属性-->
     <declare-styleable name="SettingItemView">
-
         <!--标题属性-->
         <attr name="sivTitle" format="string"></attr>
 
@@ -16,7 +15,28 @@
             <enum name="green" value="1" />
             <enum name="purple" value="2" />
         </attr>
+    </declare-styleable>
 
+
+    <!--自定义SettingItemView属性-->
+    <declare-styleable name="NormalItemView">
+        <attr name="nivIcon" format="reference|color"></attr>
+
+        <!--文本标题-->
+        <attr name="nivTile" format="string"></attr>
+
+        <!--文本颜色-->
+        <attr name="nivTextColor" format="color"/>
+
+        <!--后面的图标-->
+        <attr name="nivGo" format="boolean"></attr>
+
+        <!--背景属性    三种个颜色：blue green purple-->
+        <attr name="nivBackground">
+            <enum name="blue" value="0" />
+            <enum name="green" value="1" />
+            <enum name="purple" value="2" />
+        </attr>
     </declare-styleable>
 
 

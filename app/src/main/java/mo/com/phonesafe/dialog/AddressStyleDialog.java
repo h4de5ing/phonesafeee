@@ -22,11 +22,9 @@ import mo.com.phonesafe.R;
 
 
 public class AddressStyleDialog extends Dialog{
-
     private ListAdapter mAdapter;
     private ListView lv_address_style;
     private OnItemClickListener mListener;
-
     public AddressStyleDialog(Context context) {
         super(context, R.style.AddressStyleDialog);
     }
@@ -36,9 +34,12 @@ public class AddressStyleDialog extends Dialog{
         super.onCreate(savedInstanceState);
 
         Window mWindow = getWindow();
-        WindowManager.LayoutParams l = mWindow.getAttributes();
-        l.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-        mWindow.setAttributes(l);
+        WindowManager.LayoutParams mParams = mWindow.getAttributes();
+        mParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+
+        mWindow.setAttributes(mParams);
+
+
 
         setContentView(R.layout.dialog_address_sytle);
         lv_address_style = (ListView) findViewById(R.id.lv_dialog_address);
@@ -46,19 +47,16 @@ public class AddressStyleDialog extends Dialog{
         if (mAdapter != null) {
             lv_address_style.setAdapter(mAdapter);
         }
-
         if (lv_address_style != null) {
             lv_address_style.setOnItemClickListener(mListener);
         }
     }
-
     public void setAdapter(ListAdapter adapter) {
         mAdapter = adapter;
         if (lv_address_style!=null) {
             lv_address_style.setAdapter(adapter);
         }
     }
-
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
         if (lv_address_style != null) {

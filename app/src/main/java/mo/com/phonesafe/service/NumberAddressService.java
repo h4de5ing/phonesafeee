@@ -95,7 +95,11 @@ public class NumberAddressService extends Service{
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            //获取拨打出去的号码
             String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+
+            //通过号码归属地查询号码的归属地，也可以通过网络查询的方式
             String address = AddressDao.getAddress(NumberAddressService.this, number);
             if (at == null) {
                 at = new AddressToast(NumberAddressService.this);

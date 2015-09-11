@@ -45,4 +45,14 @@ public interface Constants {
      * 手机来电去点归属地显示的风格
      */
     String ADDRESS_STYLE = "address_style";
+
+    /**
+     * 显示系统进程的开关
+     */
+    String SHOW_SYS_PROCESS = "show_sys_pro";
+
+    /**
+     * 锁屏自动清理进程
+     */
+    String AUTO_CLEAN_LOCK = "auto_clean_lock";
 }

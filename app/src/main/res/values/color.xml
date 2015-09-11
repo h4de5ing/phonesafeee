@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--颜色的搭配-->
+    <color name="addressToast">#44000000</color>
+    <color name="normalColor">#ff55</color>
+    <color name="normalblue">#1086F7</color>
+    <color name="normalblue_right">#ff33b5e5</color>
+
+    <color name="normalpurple">#ffaa66cc</color>
+    <color name="normalgray">#66000000</color>
+    <color name="normalwidte">#ffffff</color>
+    <color name="textColorPrimaryDark">#ff000000</color>
+    <color name="textColorPrimary">#ffffffff</color>
+
+
+    <color name="preset_button_background">@android:color/transparent</color>
+    <color name="preset_button_background_selected">#66000000</color>
 
 </resources>

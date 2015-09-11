@@ -234,6 +234,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             case 2:
                 preformNextActivity(AppManagerActivity.class);
                 break;
+            case 3:
+                preformNextActivity(ProcessManagerActivity.class);
+                break;
             case 7:
                 preformNextActivity(CommonToolActivity.class);
                 break;
@@ -589,8 +592,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             home_itme_icon.setImageResource(homebean.icon);
             home_item_desc.setText(homebean.desc);
             home_item_title.setText(homebean.title);
-
-
             return convertView;
         }
     }

@@ -11,11 +11,11 @@
     <!--Toast在 Window显示的权限-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
-    <!-- 电话拦截 -->
+    <!-- 来电电话拦截 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <!--电话来电监听权限-->
+    <!--电话去电监听权限-->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
 
@@ -32,6 +32,9 @@
 
     <!-- GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--清理进程的权限-->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
         android:allowBackup="true"
@@ -61,6 +64,9 @@
         <activity android:name=".activity.SjfdSetup5Activity" />
         <activity android:name=".activity.ContactActivity" />
         <activity android:name=".activity.ContactActivity2" />
+
+        <!--进程管理-->
+        <activity android:name=".activity.ProcessManagerActivity"></activity>
 
         <!--常见号码查询-->
         <activity android:name=".activity.NormalNumerActivity" />
@@ -118,6 +124,29 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+        <!--手机锁屏自动清理进程服务-->
+        <service android:name=".service.AutoCleanService"></service>
+
+        <!--桌面效果据Widget-->
+        <receiver android:name=".receiver.ProcessWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/process_widget_provider" />
+        </receiver>
+
+        <!--一键清理广播-->
+        <receiver android:name=".receiver.OneKeyCleanReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="mo.com.phonesafe.onekeyclean"></action>
+            </intent-filter>
+
+        </receiver>
+
+        <!--一键清理的后台服务-->
+        <service android:name=".service.ProcessService"></service>
 
 
     </application>

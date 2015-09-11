@@ -8,59 +8,75 @@
         style="@style/titlebarStyle"
         android:text="常用工具类"/>
 
-    <mo.com.phonesafe.view.SettingItemView
+
+
+    <mo.com.phonesafe.view.NormalItemView
         android:id="@+id/si_address_query"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="2dp"
-        mo:sivBackground="green"
-        mo:sivTitle="号码归属地查询"
-        mo:sivToggle="false"
+        mo:nivTile="号码归属地查询"
+        mo:nivBackground="purple"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/bd"
+        mo:nivGo="true"
         />
-    <mo.com.phonesafe.view.SettingItemView
+    <mo.com.phonesafe.view.NormalItemView
+        android:layout_marginTop="2dp"
         android:id="@+id/si_normal_query"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="常用号码查询"
-        mo:sivToggle="false"
+        android:layout_height="48dp"
+        mo:nivTile="常用号码查询"
+        mo:nivBackground="green"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/ic_share"
+        mo:nivGo="true"
         />
-    <mo.com.phonesafe.view.SettingItemView
+    <mo.com.phonesafe.view.NormalItemView
+        android:layout_marginTop="8dp"
         android:id="@+id/si_sms_backup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="短信备份"
-        mo:sivToggle="false"
+        android:layout_height="48dp"
+        mo:nivTile="短信备份"
+        mo:nivBackground="green"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/cd"
+        mo:nivGo="false"
         />
-    <mo.com.phonesafe.view.SettingItemView
+    <mo.com.phonesafe.view.NormalItemView
+        android:layout_marginTop="2dp"
         android:id="@+id/si_sms_restore"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="短信还原"
-        mo:sivToggle="false"
+        android:layout_height="48dp"
+        mo:nivTile="短信还原"
+        mo:nivBackground="green"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/qc"
+        mo:nivGo="false"
         />
-    <mo.com.phonesafe.view.SettingItemView
+
+
+    <mo.com.phonesafe.view.NormalItemView
+        android:layout_marginTop="8dp"
         android:id="@+id/si_appsocke_manager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="程序锁管理"
-        mo:sivToggle="false"
+        android:layout_height="48dp"
+        mo:nivTile="程序锁管理"
+        mo:nivBackground="green"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/ad"
+        mo:nivGo="true"
         />
-    <mo.com.phonesafe.view.SettingItemView
+    <mo.com.phonesafe.view.NormalItemView
+        android:layout_marginTop="2dp"
         android:id="@+id/si_open_dog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="开启电子狗服务"
-        mo:sivToggle="false"
+        android:layout_height="48dp"
+        mo:nivTile="开启电子狗服务"
+        mo:nivBackground="green"
+        mo:nivTextColor="@color/normalblue_right"
+        mo:nivIcon="@drawable/fd"
+        mo:nivGo="true"
         />
 
 </LinearLayout>

@@ -19,7 +19,6 @@ import mo.com.phonesafe.tools.Constants;
  * 显示号码归属地的自定义Toast
  */
 
-
 public class AddressToast implements View.OnTouchListener {
     private View mView;
     private WindowManager mWM;
@@ -28,17 +27,14 @@ public class AddressToast implements View.OnTouchListener {
     private float mDownY;
     private final LinearLayout ll_style;
     private Context mContext;
-
     public AddressToast(Context context) {
         mContext = context;
-
         //1.WindowManager
         mWM = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         //2.显示View
         mView = View.inflate(context, R.layout.addresstoast, null);
         ll_style = (LinearLayout) mView.findViewById(R.id.ll_address_style);
-
 
         //3.WindowManager.LayoutParams
         mParams = new WindowManager.LayoutParams();
@@ -52,6 +48,7 @@ public class AddressToast implements View.OnTouchListener {
         mView.setOnTouchListener(this);
     }
 
+    //显示自定义的Toast样式
     public void show(String text) {
         hide();
         TextView tv = (TextView) mView.findViewById(R.id.tv_address_show);
@@ -61,6 +58,7 @@ public class AddressToast implements View.OnTouchListener {
         mWM.addView(mView, mParams);
     }
 
+    //隐藏自定义Toast
     public void hide() {
         if (mView != null) {
             if (mView.getParent() != null) {
@@ -70,8 +68,7 @@ public class AddressToast implements View.OnTouchListener {
     }
 
     /**
-     * 触摸移动的焦点事件
-     *
+     * 触摸移动的焦点事件（自定义的Toast是可以进行移动的）
      * @param v
      * @param event
      * @return

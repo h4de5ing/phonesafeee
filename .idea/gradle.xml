@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/gson-2.2.4" />
             <option value="$PROJECT_DIR$/rocket" />
             <option value="$PROJECT_DIR$/ui360" />
             <option value="$PROJECT_DIR$/xUtils-2.6.14" />
