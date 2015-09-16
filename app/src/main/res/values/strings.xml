@@ -6,4 +6,14 @@
     <string name="versionurl">http://192.168.23.1/psversion.json</string>
     <string name="sample_device_admin">手机安全卫士</string>
     <string name="sample_device_admin_description">手机安全卫士为您保驾护航</string>
+
+
+    <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
+    <string name="crash_dialog_title">CrashTest has crashed</string>
+    <string name="crash_dialog_text">An unexpected error occurred forcing the
+    application to stop. Please help us fix this by sending us error data,
+    all you have to do is click OK.</string>
+    <string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
+    <string name="crash_dialog_ok_toast">Thank you !</string>
+    <string name="crash_user_email_label">xxx@xx.com</string>
 </resources>

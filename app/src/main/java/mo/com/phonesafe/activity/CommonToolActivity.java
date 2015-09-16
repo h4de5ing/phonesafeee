@@ -3,25 +3,40 @@ package mo.com.phonesafe.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.gc.materialdesign.views.ButtonFloatSmall;
+import com.gc.materialdesign.views.LayoutRipple;
+import com.gc.materialdesign.widgets.ColorSelector;
+import com.nineoldandroids.view.ViewHelper;
+
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.business.SmsProvider;
+import mo.com.phonesafe.service.AppLockDogService;
+import mo.com.phonesafe.tools.ServiceStateUtils;
 import mo.com.phonesafe.view.NormalItemView;
+import mo.com.phonesafe.view.SettingItemView;
 
 /**
  * 常用工具Activity
  */
-public class CommonToolActivity extends Activity {
+public class CommonToolActivity extends Activity implements ColorSelector.OnColorSelectedListener {
+
+    int backgroundColor = Color.parseColor("#1E88E5");
+    ButtonFloatSmall buttonSelectColor;
+
 
     private static final String TAG = "CommonToolActivity";
     private NormalItemView ct_address_que;
     private NormalItemView ct_normal_que;
     private NormalItemView mSms_backup;
     private NormalItemView mSms_restore;
+    private NormalItemView si_appsocke_manager;
+    private SettingItemView open_dog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +48,44 @@ public class CommonToolActivity extends Activity {
 
         //事件的监听
         initEvent();
+
+        //初始化数据
+        initData();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+
+
     }
 
 
     private void initEvent() {
+
+        /**
+         * 电子狗的点击监听事件
+         */
+        open_dog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isStart = ServiceStateUtils.getServiceState(CommonToolActivity.this, AppLockDogService.class);
+
+                if (isStart) {
+                    //点击关闭电子狗服务
+                    Intent intent = new Intent(CommonToolActivity.this, AppLockDogService.class);
+                    stopService(intent);
+                } else {
+                    //点击开启电子狗服务
+                    Intent intent = new Intent(CommonToolActivity.this, AppLockDogService.class);
+                    startService(intent);
+                }
+
+                //更新UI
+                open_dog.setToggleState(!isStart);
+            }
+        });
 
         //点击进入号码归属地查询
         ct_address_que.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +154,8 @@ public class CommonToolActivity extends Activity {
                 dialog.setCanceledOnTouchOutside(false);    //设置外侧获取不到焦点
                 dialog.show();
 
-                //数据的还原
-                SmsProvider.restore(CommonToolActivity.this, new SmsProvider.onRestoreListener() {
+                //数据的还原 真机测试权限短信还原代码 TODO
+                /*SmsProvider.restore(CommonToolActivity.this, new SmsProvider.onRestoreListener() {
                     @Override
                     public void onProgress(int progress, int max) {
                         //监听进度
@@ -124,15 +173,30 @@ public class CommonToolActivity extends Activity {
                             Toast.makeText(CommonToolActivity.this, "短信还原失败", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
-
+                });*/
             }
         });
 
+        /**
+         * 点击进入程序锁管理
+         */
+        si_appsocke_manager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preNextActivty(AppLockManagerAcitivity.class);
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        open_dog.setToggleState(ServiceStateUtils.getServiceState(CommonToolActivity.this,
+                AppLockDogService.class));
     }
 
     private void preNextActivty(Class clazz) {
-        Intent intent = new Intent(CommonToolActivity.this,clazz);
+        Intent intent = new Intent(CommonToolActivity.this, clazz);
         startActivity(intent);
         //左右切入
         overridePendingTransition(R.anim.next_enter, R.anim.next_exit);
@@ -145,6 +209,43 @@ public class CommonToolActivity extends Activity {
         ct_normal_que = (NormalItemView) findViewById(R.id.si_normal_query);
         mSms_backup = (NormalItemView) findViewById(R.id.si_sms_backup);
         mSms_restore = (NormalItemView) findViewById(R.id.si_sms_restore);
+        si_appsocke_manager = (NormalItemView) findViewById(R.id.si_appsocke_manager);
+        open_dog = (SettingItemView) findViewById(R.id.siv_open_dog);
+
+
+        /*5.0新特性的*/
+        LayoutRipple layoutRipple = (LayoutRipple) findViewById(R.id.itemButtons);
+        setOriginRiple(layoutRipple);
+        layoutRipple.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                Log.i(TAG, "onClick 我被点击了。。。。。。。。。。");
+                preNextActivty(AddressQueryActivity.class);
+            }
+        });
+    }
+
+
+    /*5.0新特性的应用*/
+    private void setOriginRiple(final LayoutRipple layoutRipple) {
+        layoutRipple.post(new Runnable() {
+
+            @Override
+            public void run() {
+                View v = layoutRipple.getChildAt(0);
+                layoutRipple.setxRippleOrigin(ViewHelper.getX(v) + v.getWidth() / 2);
+                layoutRipple.setyRippleOrigin(ViewHelper.getY(v) + v.getHeight() / 2);
+                layoutRipple.setRippleColor(Color.parseColor("#1E88E5"));
+                layoutRipple.setRippleSpeed(30);
+            }
+        });
+    }
+
+    @Override
+    public void onColorSelected(int color) {
+        backgroundColor = color;
+        buttonSelectColor.setBackgroundColor(color);
     }
 
 }

@@ -5,6 +5,8 @@
     <color name="normalColor">#ff55</color>
     <color name="normalblue">#1086F7</color>
     <color name="normalblue_right">#ff33b5e5</color>
+    <color name="normalblue_green">#009D04</color>
+    <color name="press_color">#88DDDDDD</color>
 
     <color name="normalpurple">#ffaa66cc</color>
     <color name="normalgray">#66000000</color>

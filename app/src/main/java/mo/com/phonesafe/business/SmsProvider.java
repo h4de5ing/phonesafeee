@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +32,8 @@ import mo.com.phonesafe.bean.SmsBean;
 
 public class SmsProvider {
 
+
+    private static final String TAG = "SmsProvider";
 
     /**
      * 短信的还原
@@ -85,18 +88,24 @@ public class SmsProvider {
                     //还原到数据库中
                     ContentResolver resolver = context.getContentResolver();
                     Uri uri = Uri.parse("content://sms");
-
                     if (list != null && list.size() > 0) {
                         int count = list.size();  //还原短信的总数量
                         int progress = 0;   //还原短信的进度
                         for (SmsBean bean : list) {
                             ContentValues values = new ContentValues();
-                            /*values.put("_id", bean._id);*/
+                            Log.i(TAG, " bean:....." + bean.toString());
+                            /*values.put("_id", bean._id);
+                            *
+                            * String[] projection = {"_id","address","date","body","type"};
+                            * */
                             values.put("address",bean.address);
                             values.put("date",bean.date);
                             values.put("body", bean.body);
-                            values.put("type",bean.type);
-                            resolver.insert(uri, values);
+                            values.put("type",bean.type+"");
+
+                            Uri insert = resolver.insert(uri, values);
+                            Log.i(TAG, "doInBackground "+insert.toString());
+
 
                             progress++;
                             Thread.sleep(200);
@@ -194,7 +203,6 @@ public class SmsProvider {
                         fos.flush();
                     } catch (Exception e) {
                         e.printStackTrace();
-                        //备份文件失败 TODO
                         return false;
                     }finally {
                         if (fos != null) {

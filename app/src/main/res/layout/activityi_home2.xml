@@ -71,6 +71,14 @@
                 android:background="@drawable/setting_selector"
                 android:onClick="clickSetting" />
         </RelativeLayout>
+   <!--     <com.gc.materialdesign.views.ButtonFlat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true">-->
+             <!--
+                   android:focusable="false"
+            android:clickable="false"
+            android:focusableInTouchMode="false"-->
 
         <GridView
             android:id="@+id/gv_home_gridview"
@@ -83,11 +91,13 @@
             android:scrollbarSize="1dp"
             android:stretchMode="columnWidth"
             android:verticalSpacing="1dp"></GridView>
+        <!--</com.gc.materialdesign.views.ButtonFlat>-->
     </LinearLayout>
+<!--
 
-    <!--
             android:horizontalSpacing="35dp"
-             android:scrollbarSize="1dp"-->
+             android:scrollbarSize="1dp"
+-->
 
     <ImageView
         android:id="@+id/iv_up_more"

@@ -94,7 +94,6 @@ public class AppManagerActivity extends Activity {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }
-
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (listdataUser != null && firstVisibleItem == 0) {
@@ -110,6 +109,8 @@ public class AppManagerActivity extends Activity {
 
     private void showPopup(View view, final AppBean bean) {
         LinearLayout ll_popup = (LinearLayout) View.inflate(AppManagerActivity.this, R.layout.popup_app_option, null);
+
+        //设置宽度和高度
         int width = ViewGroup.LayoutParams.WRAP_CONTENT;
         int height = ViewGroup.LayoutParams.WRAP_CONTENT;
         final PopupWindow window = new PopupWindow(ll_popup, width, height);
@@ -124,7 +125,7 @@ public class AppManagerActivity extends Activity {
         //设置进出动画
         window.setAnimationStyle(R.style.PopupAnimation);
 
-        //展示位置
+        //展示位置，在当前Activity位置
         window.showAsDropDown(view,view.getWidth(),-view.getHeight());
 
         //卸载

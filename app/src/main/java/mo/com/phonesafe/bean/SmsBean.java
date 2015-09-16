@@ -12,4 +12,15 @@ public class SmsBean {
     public String date;
     public String body;
     public int type;
+
+    @Override
+    public String toString() {
+        return "SmsBean{" +
+                "_id='" + _id + '\'' +
+                ", address='" + address + '\'' +
+                ", date='" + date + '\'' +
+                ", body='" + body + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

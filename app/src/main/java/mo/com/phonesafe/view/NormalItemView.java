@@ -23,18 +23,14 @@ public class NormalItemView extends RelativeLayout {
     private static final int BACKGROUND_GREEN = 1;
     private static final int BACKGROUND_PURPLE = 2;
     private static final int TITILE_COLOR = 3;
-
-
     private ImageView mIvIcon;  //图标
     private ImageView mIvGo;    //下个Acitivity图标
     private TextView mTvTile;  //设置的文本
     private RelativeLayout rl_item_normal;
-
     //java
     public NormalItemView(Context context) {
         super(context);
     }
-
     //xml
     public NormalItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,7 +44,6 @@ public class NormalItemView extends RelativeLayout {
 
         //读属性值
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NormalItemView);
-
 
         //读取属性
         String mTitle = ta.getString(R.styleable.NormalItemView_nivTile);

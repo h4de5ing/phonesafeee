@@ -55,4 +55,8 @@ public interface Constants {
      * 锁屏自动清理进程
      */
     String AUTO_CLEAN_LOCK = "auto_clean_lock";
+    /**
+     * 程序是否安装了
+     */
+    String SHORTCUT = "shortcut";
 }

@@ -39,15 +39,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     ImageView home_icon;
     GridView home_gridview;
     List<HomeBean> mDatas;
-
     private ImageView iv_ui;
     private ImageView iv_ui2;
     private ImageView iv_ui3;
     private ImageView iv_up_more;
     private ObjectAnimator oa2;
     private ObjectAnimator oa3;
-
-
     private final static String[] TITLES = new String[]{"手机防盗", "骚扰拦截",
             "软件管家", "进程管理", "流量统计", "手机杀毒", "缓存清理", "常用工具"};
     private final static String[] DESCS = new String[]{"远程定位手机", "全面拦截骚扰",
@@ -60,6 +57,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     };
     private TextView tv_precent;
     private Animation bottnm_animation;
+    private HomeAdapter mAdapter;
 
 
     @Override
@@ -87,7 +85,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         oa3.start();
 
         iv_up_more.startAnimation(bottnm_animation);
-
         /*累加显示百分比*/
         new Thread(new Runnable() {
             @Override
@@ -102,11 +99,10 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tv_precent.setText(finalI+"");
+                            tv_precent.setText(finalI + "");
                         }
                     });
                 }
-
             }
         }).start();
         super.onStart();
@@ -123,19 +119,22 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             @Override
             public void onAnimationStart(Animator animation) {
             }
+
             @Override
             public void onAnimationEnd(Animator animation) {
             }
+
             @Override
             public void onAnimationCancel(Animator animation) {
             }
+
             @Override
             public void onAnimationRepeat(Animator animation) {
             }
         });
 
         //外边园动画
-        oa3 = ObjectAnimator.ofFloat(iv_ui3, "rotation", new float[]{360,20});
+        oa3 = ObjectAnimator.ofFloat(iv_ui3, "rotation", new float[]{360, 20});
         oa3.setDuration(1500);
         oa3.setRepeatCount(1);
         oa3.setRepeatMode(ObjectAnimator.REVERSE);
@@ -157,9 +156,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 onStart();
             }
         });
-
-
-
     }
 
     /**
@@ -175,8 +171,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             homebean.icon = ICONS[i];
             mDatas.add(homebean);
         }
+        mAdapter = new HomeAdapter();
         //添加适配器对象
-        home_gridview.setAdapter(new HomeAdapter());
+        home_gridview.setAdapter(mAdapter);
     }
 
 
@@ -219,11 +216,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         switch (position) {
             case 0:
                 //进入手机防盗界面  先设置跳过进入密码设置的界面
-
                 /*判断用户是否已经开启防盗功能
                 */
                 performSjfd();
@@ -237,6 +232,18 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             case 3:
                 preformNextActivity(ProcessManagerActivity.class);
                 break;
+            case 4:
+                /*流量统计*/
+                preformNextActivity(TrafficActivity.class);
+                break;
+            case 5:
+                /*手机杀毒*/
+                preformNextActivity(AnitVirusActivity.class);
+                break;
+            case 6:
+                /*缓存清理*/
+                preformNextActivity(CacheCleanActivity.class);
+                break;
             case 7:
                 preformNextActivity(CommonToolActivity.class);
                 break;
@@ -247,6 +254,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
     /**
      * 到下一个界面
+     *
      * @param clazz
      */
     private void preformNextActivity(Class clazz) {
@@ -290,9 +298,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      * 弹出dialog.提示用户输入密码,
      */
     private void showEnterPwdDialog() {
-        //向老师咨询Dialog的显示风格为什么不样   TODO:
+        //向老师咨询Dialog的显示风格为什么不样
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final View view= View.inflate(this, R.layout.dialog_enter_pwd, null);
+        final View view = View.inflate(this, R.layout.dialog_enter_pwd, null);
         builder.setView(view);
         final AlertDialog dialog = builder.create();
 
@@ -308,10 +316,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 if (TextUtils.isEmpty(password)) {
                     //用户输入的密码为空
                     Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-
                     return;
                 }
-
                 String Sjfd_pwd = PreferenceUtils.getString(HomeActivity.this, Constants.SJFD_PWD);
 
                 //判断用户输入的密码和初始密码是否一致
@@ -411,9 +417,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      */
     private void showInitPwdDialog() {
 
-        //向老师咨询Dialog的显示风格为什么不样   TODO:
+        //向老师咨询Dialog的显示风格为什么不样
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final View view= View.inflate(this, R.layout.dialog_init_pwd, null);
+        final View view = View.inflate(this, R.layout.dialog_init_pwd, null);
         builder.setView(view);
         final AlertDialog dialog = builder.create();
 
@@ -578,14 +584,13 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = View.inflate(HomeActivity.this, R.layout.item_home, null);
             }
             ImageView home_itme_icon = (ImageView) convertView.findViewById(R.id.iv_home_item_icon);
             TextView home_item_title = (TextView) convertView.findViewById(R.id.tv_home_item_title);
             TextView home_item_desc = (TextView) convertView.findViewById(R.id.tv_home_item_desc);
-
 
             HomeBean homebean = mDatas.get(position);
 

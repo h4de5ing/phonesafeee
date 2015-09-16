@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.Bundle;
@@ -77,6 +79,68 @@ public class SplashActivity extends Activity {
         //解压号码归属地数据库
         unZipAddressDB();
 
+        //复制病毒库到files文件夹下
+        copyAnitVirusDB();
+
+        // 生成快捷图标
+        //
+        // <receiver
+        // android:name="com.android.launcher2.InstallShortcutReceiver"
+        // android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
+        // <intent-filter>
+        // <action android:name="com.android.launcher.action.INSTALL_SHORTCUT"
+        // />
+        // </intent-filter>
+        // </receiver>
+        boolean flag = PreferenceUtils.getBoolean(this, Constants.SHORTCUT);
+        if (!flag) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            /* icon，name，点击功能  */
+            // name
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士");
+            // icon 图标显示
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                    R.mipmap.mo);
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);
+            // 点击的意图
+            Intent clickIntent = new Intent(this, HomeActivity.class);
+            clickIntent.setAction("mo.com.phonesafe");
+            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, clickIntent);
+            // 发送广播
+            sendBroadcast(intent);
+
+            PreferenceUtils.putBoolean(this, Constants.SHORTCUT, true);
+        }
+
+
+    }
+
+    /**
+     * 复制病毒库
+     */
+    private void copyAnitVirusDB() {
+        final File file = new File(getFilesDir(), "antivirus.db");
+        if (!file.exists()) {
+            /*使用线程进行复制*/
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    InputStream is = null;
+                    OutputStream os = null;
+                    try {
+                        is = getAssets().open("antivirus.db");
+                        Log.i(TAG, "流的大小：" + (is == null));
+                        os = new FileOutputStream(file);
+                        CopyUtils.copy(is, os);
+                    } catch (IOException e) {
+                        //出现异常，删除解压产生的数据
+                        file.delete();
+                    }
+
+                }
+            }).start();
+        }
 
     }
 
@@ -208,7 +272,6 @@ public class SplashActivity extends Activity {
 
 
         } catch (PackageManager.NameNotFoundException e) {
-            // TODO:
             e.printStackTrace();
         }
 
@@ -227,7 +290,7 @@ public class SplashActivity extends Activity {
 
     private Handler mHandler = new Handler() {
 
-        //检测网络更新的:TODO
+        //检测网络更新的
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

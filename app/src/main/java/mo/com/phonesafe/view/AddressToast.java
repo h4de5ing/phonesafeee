@@ -53,7 +53,13 @@ public class AddressToast implements View.OnTouchListener {
         hide();
         TextView tv = (TextView) mView.findViewById(R.id.tv_address_show);
         tv.setText(text);
-        ll_style.setBackgroundResource(PreferenceUtils.getInt(mContext, Constants.ADDRESS_STYLE));
+
+        /*当用户还没有选择的时候，默认显示样式*/
+        if (PreferenceUtils.getInt(mContext, Constants.ADDRESS_STYLE) == -1) {
+            ll_style.setBackgroundResource( R.drawable.address_shape_color_yellow);
+        } else {
+            ll_style.setBackgroundResource(PreferenceUtils.getInt(mContext, Constants.ADDRESS_STYLE));
+        }
         //显示
         mWM.addView(mView, mParams);
     }

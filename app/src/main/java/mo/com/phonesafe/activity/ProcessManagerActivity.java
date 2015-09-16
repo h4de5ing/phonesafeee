@@ -205,11 +205,12 @@ public class ProcessManagerActivity extends Activity {
                         iterator.remove();
 
                         //判断当前是否是系统的进程，并将此进程从当前集合中移除
-                        if (bean.isSystem) {
-                            mlistSystem.remove(bean);
-                        } else {
-                            mlistUser.remove(bean);
-                        }
+                       if (show_sys_process) {
+                           mlistUser.remove(bean);
+                       } else {
+                           listData.remove(bean);
+                       }
+
 
                         totalMemory += bean.memory;
                         count++;

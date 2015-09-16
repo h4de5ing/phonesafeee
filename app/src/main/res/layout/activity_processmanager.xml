@@ -98,7 +98,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone">
-
             <include
                 layout="@layout/normal_loading"></include>
         </RelativeLayout>

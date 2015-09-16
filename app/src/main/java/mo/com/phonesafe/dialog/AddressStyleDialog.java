@@ -39,8 +39,6 @@ public class AddressStyleDialog extends Dialog{
 
         mWindow.setAttributes(mParams);
 
-
-
         setContentView(R.layout.dialog_address_sytle);
         lv_address_style = (ListView) findViewById(R.id.lv_dialog_address);
 

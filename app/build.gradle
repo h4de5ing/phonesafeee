@@ -5,7 +5,7 @@ android {
     buildToolsVersion '22.0.1'
     defaultConfig {
         applicationId "mo.com.phonesafe"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
         versionName "手机卫士 v1.0"
@@ -25,4 +25,6 @@ dependencies {
     compile project(':xUtils-2.6.14')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile project(':gson-2.2.4')
+    compile project(':MaterialDesign')
+    compile project(':acra-4.6.2')
 }

@@ -28,7 +28,6 @@ public class AddressDao {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, SQLiteDatabase.OPEN_READONLY);
         String address = "";
 
-
         //手机号码正则表达式
         String match = "^1[34578]\\d{9}$";
         if (number.matches(match)) {
