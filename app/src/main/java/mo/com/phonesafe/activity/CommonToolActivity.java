@@ -3,16 +3,10 @@ package mo.com.phonesafe.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.gc.materialdesign.views.ButtonFloatSmall;
-import com.gc.materialdesign.views.LayoutRipple;
-import com.gc.materialdesign.widgets.ColorSelector;
-import com.nineoldandroids.view.ViewHelper;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.business.SmsProvider;
@@ -24,11 +18,7 @@ import mo.com.phonesafe.view.SettingItemView;
 /**
  * 常用工具Activity
  */
-public class CommonToolActivity extends Activity implements ColorSelector.OnColorSelectedListener {
-
-    int backgroundColor = Color.parseColor("#1E88E5");
-    ButtonFloatSmall buttonSelectColor;
-
+public class CommonToolActivity extends Activity  {
 
     private static final String TAG = "CommonToolActivity";
     private NormalItemView ct_address_que;
@@ -49,18 +39,7 @@ public class CommonToolActivity extends Activity implements ColorSelector.OnColo
         //事件的监听
         initEvent();
 
-        //初始化数据
-        initData();
     }
-
-    /**
-     * 初始化数据
-     */
-    private void initData() {
-
-
-    }
-
 
     private void initEvent() {
 
@@ -213,39 +192,6 @@ public class CommonToolActivity extends Activity implements ColorSelector.OnColo
         open_dog = (SettingItemView) findViewById(R.id.siv_open_dog);
 
 
-        /*5.0新特性的*/
-        LayoutRipple layoutRipple = (LayoutRipple) findViewById(R.id.itemButtons);
-        setOriginRiple(layoutRipple);
-        layoutRipple.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Log.i(TAG, "onClick 我被点击了。。。。。。。。。。");
-                preNextActivty(AddressQueryActivity.class);
-            }
-        });
-    }
-
-
-    /*5.0新特性的应用*/
-    private void setOriginRiple(final LayoutRipple layoutRipple) {
-        layoutRipple.post(new Runnable() {
-
-            @Override
-            public void run() {
-                View v = layoutRipple.getChildAt(0);
-                layoutRipple.setxRippleOrigin(ViewHelper.getX(v) + v.getWidth() / 2);
-                layoutRipple.setyRippleOrigin(ViewHelper.getY(v) + v.getHeight() / 2);
-                layoutRipple.setRippleColor(Color.parseColor("#1E88E5"));
-                layoutRipple.setRippleSpeed(30);
-            }
-        });
-    }
-
-    @Override
-    public void onColorSelected(int color) {
-        backgroundColor = color;
-        buttonSelectColor.setBackgroundColor(color);
     }
 
 }

@@ -2,11 +2,6 @@ package mo.com.phonesafe;
 
 import android.app.Application;
 
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
-import org.acra.log.ACRALog;
-
-import mo.com.phonesafe.tools.Logger;
 
 /**
  * 作者：MoMxMo on 2015/9/16 19:07
@@ -15,7 +10,7 @@ import mo.com.phonesafe.tools.Logger;
  * 设置日志的上传到服务器上（使用到开源框架）
  */
 
-@ReportsCrashes(formUri = "http://192.168.23.1/CrashWeb/crash",
+/*@ReportsCrashes(formUri = "http://192.168.23.1/CrashWeb/crash",
         mode = ReportingInteractionMode.DIALOG,
         resToastText = R.string.crash_toast_text, // optional,
         resDialogText = R.string.crash_dialog_text,
@@ -23,7 +18,7 @@ import mo.com.phonesafe.tools.Logger;
         resDialogTitle = R.string.crash_dialog_title, // optional. default is your
         resDialogCommentPrompt = R.string.crash_dialog_comment_prompt, // optional. When
         resDialogEmailPrompt = R.string.crash_user_email_label, // optional. When
-        resDialogOkToast = R.string.crash_dialog_ok_toast)
+        resDialogOkToast = R.string.crash_dialog_ok_toast)*/
 public class BaseApplication extends Application {
     private static final String TAG = "BaseApplication";
 
@@ -57,7 +52,7 @@ public class BaseApplication extends Application {
         });*/
     }
 
-    private class ACRALOG implements ACRALog {
+    /*private class ACRALOG implements ACRALog {
 
         @Override
         public int d(String arg0, String arg1) {
@@ -132,5 +127,5 @@ public class BaseApplication extends Application {
         }
 
         ;
-    }
+    }*/
 }

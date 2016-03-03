@@ -19,12 +19,15 @@ android {
     productFlavors {
     }
 }
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':xUtils-2.6.14')
     compile 'com.android.support:appcompat-v7:22.1.1'
-    compile project(':gson-2.2.4')
-    compile project(':MaterialDesign')
-    compile project(':acra-4.6.2')
+    compile 'com.google.code.gson:gson:2.4'
 }

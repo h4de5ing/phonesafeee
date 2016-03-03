@@ -1,103 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".activity.HomeActivity">
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  tools:context=".activity.HomeActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="315dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/skin1"
             android:padding="5dp">
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/skin1" >
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:background="@drawable/skin1">
 
                 <ImageView
                     android:id="@+id/iv_ui_360"
-                    android:layout_gravity="center"
                     android:layout_width="192dp"
                     android:layout_height="192dp"
+                    android:layout_gravity="center"
                     android:src="@drawable/sh"/>
+
                 <ImageView
                     android:id="@+id/iv_ui2_360"
-                    android:layout_gravity="center"
                     android:layout_width="192dp"
                     android:layout_height="192dp"
-                    android:src="@drawable/th" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/th"/>
+
                 <ImageView
                     android:id="@+id/iv_ui3_360"
-                    android:layout_gravity="center"
                     android:layout_width="220dp"
                     android:layout_height="220dp"
-                    android:src="@drawable/circle_ui_360" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/circle_ui_360"/>
 
                 <TextView
                     android:id="@+id/tv_home_precent"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="92"
                     android:textColor="@android:color/white"
-                    android:textSize="56sp"
-                    android:text="92"/>
+                    android:textSize="56sp"/>
 
             </FrameLayout>
 
             <ImageView
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="4dp"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_alignParentLeft="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
                 android:background="@mipmap/mo"
-                android:onClick="clickSetting" />
+                android:onClick="clickSetting"/>
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/setting_selector"
-                android:onClick="clickSetting" />
+                android:onClick="clickSetting"/>
         </RelativeLayout>
-   <!--     <com.gc.materialdesign.views.ButtonFlat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true">-->
-             <!--
-                   android:focusable="false"
-            android:clickable="false"
-            android:focusableInTouchMode="false"-->
+
 
         <GridView
             android:id="@+id/gv_home_gridview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:horizontalSpacing="1dp"
             android:listSelector="@drawable/item_home_selector"
             android:numColumns="2"
             android:scrollbarSize="1dp"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="1dp"></GridView>
-        <!--</com.gc.materialdesign.views.ButtonFlat>-->
+            android:verticalSpacing="1dp"/>
     </LinearLayout>
-<!--
-
-            android:horizontalSpacing="35dp"
-             android:scrollbarSize="1dp"
--->
 
     <ImageView
         android:id="@+id/iv_up_more"
@@ -106,5 +97,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/nn" />
+        android:src="@drawable/nn"/>
 </RelativeLayout>

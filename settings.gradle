@@ -1,1 +1,1 @@
-include ':app', ':xUtils-2.6.14', ':rocket', ':ui360', ':gson-2.2.4'
+include ':app', ':xUtils-2.6.14'
