@@ -91,7 +91,7 @@
         <activity android:name=".activity.CacheCleanActivity" />
 
         <!--进程管理-->
-        <activity android:name=".activity.ProcessManagerActivity"></activity>
+        <activity android:name=".activity.ProcessManagerActivity"/>
 
         <!--常见号码查询-->
         <activity android:name=".activity.NormalNumerActivity" />
@@ -105,16 +105,16 @@
         <activity android:name=".activity.BlackUpdateActivity" />
 
         <!--常用工具-->
-        <activity android:name=".activity.CommonToolActivity"></activity>
+        <activity android:name=".activity.CommonToolActivity"/>
 
         <!--号码归属地查询-->
-        <activity android:name=".activity.AddressQueryActivity"></activity>
+        <activity android:name=".activity.AddressQueryActivity"/>
 
         <!--手机APP管理-->
-        <activity android:name=".activity.AppManagerActivity"></activity>
+        <activity android:name=".activity.AppManagerActivity"/>
 
         <!--程序锁管理-->
-        <activity android:name=".activity.AppLockManagerAcitivity"></activity>
+        <activity android:name=".activity.AppLockManagerAcitivity"/>
 
         <!-- 手机启动广播 -->
         <receiver android:name=".receiver.BootCompleteReceiver">

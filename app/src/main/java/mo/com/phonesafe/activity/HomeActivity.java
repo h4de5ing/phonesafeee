@@ -42,7 +42,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private ImageView iv_ui;
     private ImageView iv_ui2;
     private ImageView iv_ui3;
-    private ImageView iv_up_more;
     private ObjectAnimator oa2;
     private ObjectAnimator oa3;
     private final static String[] TITLES = new String[]{"手机防盗", "骚扰拦截",
@@ -84,7 +83,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         oa2.start();
         oa3.start();
 
-        iv_up_more.startAnimation(bottnm_animation);
         /*累加显示百分比*/
         new Thread(new Runnable() {
             @Override
@@ -172,7 +170,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             mDatas.add(homebean);
         }
         mAdapter = new HomeAdapter();
-        //添加适配器对象
         home_gridview.setAdapter(mAdapter);
     }
 
@@ -184,7 +181,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      */
     public void clickSetting(View view) {
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
-        //打开设置界面
         startActivity(intent);
 
     }
@@ -201,7 +197,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         iv_ui2 = (ImageView) findViewById(R.id.iv_ui2_360);
         iv_ui3 = (ImageView) findViewById(R.id.iv_ui3_360);
         tv_precent = (TextView) findViewById(R.id.tv_home_precent);
-        iv_up_more = (ImageView) findViewById(R.id.iv_up_more);
 
     }
 
@@ -275,7 +270,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             showInitPwdDialog();
         } else {
             // 显示Dialog,提示用户输入密码
-
             Log.i(TAG, "提示用户输入密码");
             showEnterPwdDialog();
         }
@@ -298,7 +292,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      * 弹出dialog.提示用户输入密码,
      */
     private void showEnterPwdDialog() {
-        //向老师咨询Dialog的显示风格为什么不样
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View view = View.inflate(this, R.layout.dialog_enter_pwd, null);
         builder.setView(view);
@@ -315,7 +308,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 String password = EtPwd.getText().toString().trim();
                 if (TextUtils.isEmpty(password)) {
                     //用户输入的密码为空
-                    Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    EtPwd.setError("密码不能为空");
                     return;
                 }
                 String Sjfd_pwd = PreferenceUtils.getString(HomeActivity.this, Constants.SJFD_PWD);
@@ -323,7 +317,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 //判断用户输入的密码和初始密码是否一致
                 if (!password.equals(Sjfd_pwd)) {
                     //用户输入密码不一致
-                    Toast.makeText(HomeActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                    EtPwd.setError("密码错误");
                     return;
                 }
 
@@ -354,62 +349,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             }
         });
 
-       /* final MyDialog mDialog = new MyDialog(this, R.style.MyDialog);
-        mDialog.setContentView(R.layout.dialog_enter_pwd);
-        //确认点击事件
-        mDialog.findViewById(R.id.dialog_btn_ok).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //获取用户输入的密码
-                EditText EtPwd = (EditText) mDialog.findViewById(R.id.dialog_et_pwd);
-                String password = EtPwd.getText().toString().trim();
-                if (TextUtils.isEmpty(password)) {
-                    //用户输入的密码为空
-                    Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
 
-                    return;
-                }
-
-                String Sjfd_pwd = PreferenceUtils.getString(HomeActivity.this, Constants.SJFD_PWD);
-
-                //判断用户输入的密码和初始密码是否一致
-                if (!password.equals(Sjfd_pwd)) {
-                    //用户输入密码不一致
-                    Toast.makeText(HomeActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //关闭Dialog
-                mDialog.dismiss();
-
-                //如果用户是
-                // 第一次进入设置页面，显示设置向导
-                // 进入手机防盗页面
-
-                //判断用户是否已经开启防盗功能
-                boolean sjfd_protect = PreferenceUtils.getBoolean(HomeActivity.this, Constants.SJFD_PROTECT);
-                if (sjfd_protect) {
-                    // 已经开启防盗功能，直接进入到SjfdSetupActivity的设置界面中
-                    loadSjfdActivity();
-                } else {
-
-                    //进入设置向导界面
-                    loadSjfd1Activity();
-                }
-
-            }
-        });
-
-        //用户取消输入密码
-        mDialog.findViewById(R.id.dialog_btn_cancel).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //关闭dialog
-                mDialog.dismiss();
-            }
-        });
-        mDialog.show();*/
     }
 
     /**
@@ -441,7 +381,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     //用户输入的密码为空
                     //让用户的输入框获取焦点
                     mPwd.requestFocus();
-                    Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                    mPwd.setError("密码不能为空");
                     return;
                 }
                 // 判断用户输入的确认密码是否为空
@@ -449,14 +390,16 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     //用户输入的确认密码为空
                     //让用户的输入框获取焦点
                     mPwdConfirm.requestFocus();
-                    Toast.makeText(HomeActivity.this, "确认密码不能为空", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "确认密码不能为空", Toast.LENGTH_SHORT).show();
+                    mPwdConfirm.setError("密码不能为空");
                     return;
                 }
 
                 //判断用户输入的密码和确认密码是否一致
                 if (!password.equals(confirm)) {
-                    mPwd.requestFocus();
-                    Toast.makeText(HomeActivity.this, "密码不一致", Toast.LENGTH_SHORT).show();
+                    //mPwd.requestFocus();
+                    //Toast.makeText(HomeActivity.this, "密码不一致", Toast.LENGTH_SHORT).show();
+                    mPwdConfirm.setError("两次密码不一致");
                     return;
                 }
 
@@ -467,10 +410,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
                 //进入手机防盗向导页面
                 loadSjfd1Activity();
-
-                Log.i(TAG, "mpwd:" + password + "............mPwdConfirm:" + confirm);
-
-                //将Dialog页面关闭
+                //Log.i(TAG, "mpwd:" + password + "............mPwdConfirm:" + confirm);
                 dialog.dismiss();
             }
         });
@@ -478,83 +418,10 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         view.findViewById(R.id.dialog_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //将Dialog页面关闭
                 dialog.dismiss();
-
-                Log.i(TAG, "用户取消输入Cancel");
+                //Log.i(TAG, "用户取消输入Cancel");
             }
         });
-
-
-
-
-        /*   final MyDialog builder = new MyDialog(this, R.style.MyDialog);
-        builder.setContentView(R.layout.dialog_init_pwd);
-        builder.show();
-
-        //用户确认输入的是监听事件
-        builder.findViewById(R.id.dialog_btn_ok).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                EditText mPwd = (EditText) builder.findViewById(R.id.dialog_et_pwd);
-                EditText mPwdConfirm = (EditText) builder.findViewById(R.id.dialog_et_confirm);
-
-                //获取用户输入的密码和确认密码
-
-                String password = mPwd.getText().toString().trim();
-                String confirm = mPwdConfirm.getText().toString().trim();
-
-                //判断用户输入的密码是否为空
-                if (TextUtils.isEmpty(password)) {
-                    //用户输入的密码为空
-                    //让用户的输入框获取焦点
-                    mPwd.requestFocus();
-                    Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-               // 判断用户输入的确认密码是否为空
-                if (TextUtils.isEmpty(confirm)) {
-                    //用户输入的确认密码为空
-                    //让用户的输入框获取焦点
-                    mPwdConfirm.requestFocus();
-                    Toast.makeText(HomeActivity.this, "确认密码不能为空", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //判断用户输入的密码和确认密码是否一致
-                if (!password.equals(confirm)) {
-                    mPwd.requestFocus();
-                    Toast.makeText(HomeActivity.this, "密码不一致", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //用户输入密码和确认密码是一致的
-                //将用户输入的密码保存到配置文件中
-                PreferenceUtils.putString(HomeActivity.this, Constants.SJFD_PWD, password);
-
-                //将Dialog页面关闭
-                builder.dismiss();
-
-                //进入手机防盗向导页面
-                loadSjfd1Activity();
-
-                Log.i(TAG, "mpwd:" + password + "............mPwdConfirm:" + confirm);
-
-            }
-        });
-
-        //用户取消输入
-        builder.findViewById(R.id.dialog_btn_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //将Dialog页面关闭
-                builder.dismiss();
-
-                Log.i(TAG, "用户取消输入Cancel");
-            }
-        });*/
     }
 
 

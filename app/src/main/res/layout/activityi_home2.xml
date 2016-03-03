@@ -90,12 +90,4 @@
             android:verticalSpacing="1dp"/>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_up_more"
-        android:layout_width="124dp"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/nn"/>
 </RelativeLayout>
