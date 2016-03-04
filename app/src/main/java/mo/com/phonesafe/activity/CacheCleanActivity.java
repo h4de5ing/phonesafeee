@@ -46,7 +46,6 @@ import mo.com.phonesafe.bean.CacheBean;
 public class CacheCleanActivity extends Activity {
 
     private static final String TAG = "CacheCleanActivity";
-    private ImageView civ_line;
     private ImageView iv_icon;
     private ProgressBar pb_progress;
     private TextView tv_title;
@@ -56,7 +55,6 @@ public class CacheCleanActivity extends Activity {
     private ListView lv_clean;
     private List<CacheBean> mListData;
     private CleanCacheAdapter mAdapter;
-    private ImageView iv_line;
     private RelativeLayout rl_clean_pre;
     private RelativeLayout rl_scan_result;
     private RelativeLayout rl_clean_pre1;
@@ -73,14 +71,8 @@ public class CacheCleanActivity extends Activity {
            /*获取包管理者*/
         mPm = getPackageManager();
         cacheObserver = new ClearCacheObserver();
-
-        //初始化View
         initView();
-
-        //初始化事件
         initEvent();
-
-        //初始化数据
         initData();
 
     }
@@ -91,9 +83,9 @@ public class CacheCleanActivity extends Activity {
         tv_title = (TextView) findViewById(R.id.cc_tv_title);
         pb_progress = (ProgressBar) findViewById(R.id.cc_pb_progress);
         iv_icon = (ImageView) findViewById(R.id.cc_iv_icon);
-        civ_line = (ImageView) findViewById(R.id.cc_iv_line);
+        //civ_line = (ImageView) findViewById(R.id.cc_iv_line);
         lv_clean = (ListView) findViewById(R.id.lv_clean);
-        iv_line = (ImageView) findViewById(R.id.cc_iv_line);
+        //iv_line = (ImageView) findViewById(R.id.cc_iv_line);
 
         rl_clean_pre1 = (RelativeLayout) findViewById(R.id.rl_clean_pre);
         rl_scan_result = (RelativeLayout) findViewById(R.id.rl_scan_result);
@@ -195,7 +187,7 @@ public class CacheCleanActivity extends Activity {
             ta.setDuration(800);
             ta.setRepeatCount(Animation.INFINITE);
             ta.setRepeatMode(Animation.REVERSE);
-            iv_line.startAnimation(ta);
+            //iv_line.startAnimation(ta);
         }
 
         @Override
@@ -238,7 +230,7 @@ public class CacheCleanActivity extends Activity {
             pb_progress.setProgress(process);
             tv_title.setText(bean.name);
             iv_icon.setImageDrawable(bean.icon);
-            tv_cachesize.setText("占用有" + Formatter.formatFileSize(CacheCleanActivity.this, bean.cachesize) + "缓存");
+            tv_cachesize.setText(getString(R.string.cachetotal, Formatter.formatFileSize(CacheCleanActivity.this, bean.cachesize)));
             cacheCount = cacheCount + bean.cachesize;
             mListData.add(bean);
 
@@ -249,7 +241,7 @@ public class CacheCleanActivity extends Activity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            tv_show_scan_result.setText("总有" + Formatter.formatFileSize(CacheCleanActivity.this, cacheCount) + "缓存");
+            tv_show_scan_result.setText(getString(R.string.cachecount, Formatter.formatFileSize(CacheCleanActivity.this, cacheCount)));
             /*显示和隐藏相关的界面*/
             rl_clean_pre1.setVisibility(View.GONE);
             rl_scan_result.setVisibility(View.VISIBLE);
@@ -328,7 +320,7 @@ public class CacheCleanActivity extends Activity {
             final CacheBean bean = (CacheBean) getItem(position);
             holder.mIcon.setImageDrawable(bean.icon);
             holder.mTitle.setText(bean.name);
-            holder.mCacheSize.setText("缓存" + Formatter.formatFileSize(CacheCleanActivity.this, bean.cachesize));
+            holder.mCacheSize.setText(getString(R.string.cache, Formatter.formatFileSize(CacheCleanActivity.this, bean.cachesize)));
 
             if (bean.cachesize > 0) {
                 holder.mCacheSize.setTextColor(getResources().getColor(R.color.normalColor));
@@ -360,11 +352,12 @@ public class CacheCleanActivity extends Activity {
         ImageView mClean;
 
     }
+
     private class ClearCacheObserver extends IPackageDataObserver.Stub {
 
         @Override
         public void onRemoveCompleted(String packageName, boolean succeeded) throws RemoteException {
-            Log.i(TAG, "清除了："+packageName+"  缓存成功");
+            Log.i(TAG, "清除了：" + packageName + "  缓存成功");
         }
     }
 

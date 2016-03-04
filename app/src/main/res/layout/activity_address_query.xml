@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/titlebarStyle"
-        android:text="号码归属地查询"/>
+        android:text="@string/numberaddress"/>
 
     <EditText
         android:id="@+id/et_add_number"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:background="@drawable/input_shape_normal"
-        android:inputType="number"
-        android:hint="请输入要查询的号码"/>
+        android:hint="@string/inputchecknumber"
+        android:inputType="number"/>
 
     <Button
         android:id="@+id/bt_query_ok"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:layout_margin="5dp"
         android:background="@drawable/btn_primary_selector"
-        android:text="查询"/>
+        android:padding="12dp"
+        android:text="@string/checkout"/>
 
     <TextView
         android:id="@+id/tv_address"
-        android:layout_margin="5dp"
         style="@style/NormalTextViewStyle"
-        android:text="号码归属地是："/>
-
+        android:layout_margin="5dp"
+        android:text="@string/numberaddressis"/>
 
 
 </LinearLayout>

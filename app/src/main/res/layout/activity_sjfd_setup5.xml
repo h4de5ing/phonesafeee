@@ -1,54 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/settingTitlebarStyle"
-        android:text="5.恭喜您！设置完成" />
+        android:text="@string/settingfinish"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <CheckBox
             android:id="@+id/cb_sjfd_protect"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
+
         <TextView
             style="@style/SetupTextViewStyle"
-            android:text="选择开启防盗保护"/>
+            android:text="@string/settingfinishdec"/>
 
     </LinearLayout>
-
-
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--中间图片-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/hm" />
-        <!--上一步按钮  -->
+            android:src="@mipmap/hm"/>
         <Button
             style="@style/PreBtnStyle"
-            android:text="上一步" />
+            android:text="@string/back"/>
 
-        <!--下一步按钮-->
         <Button
             style="@style/NextBtnStyle"
-            android:text="完成" />
+            android:text="@string/next"/>
 
 
-        <!--点-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,30 +56,32 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/point_normal" />
+                android:src="@drawable/point_normal"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
 
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_selected" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_selected"/>
         </LinearLayout>
 
     </RelativeLayout>

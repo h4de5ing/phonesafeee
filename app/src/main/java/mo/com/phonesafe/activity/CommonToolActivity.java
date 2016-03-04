@@ -32,11 +32,7 @@ public class CommonToolActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_tool);
-
-        //初始化Vie
         initView();
-
-        //事件的监听
         initEvent();
 
     }
@@ -162,7 +158,7 @@ public class CommonToolActivity extends Activity  {
         si_appsocke_manager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preNextActivty(AppLockManagerAcitivity.class);
+                preNextActivty(AppLockManagerActivity.class);
             }
         });
     }
@@ -177,9 +173,8 @@ public class CommonToolActivity extends Activity  {
     private void preNextActivty(Class clazz) {
         Intent intent = new Intent(CommonToolActivity.this, clazz);
         startActivity(intent);
-        //左右切入
-        overridePendingTransition(R.anim.next_enter, R.anim.next_exit);
         finish();
+        overridePendingTransition(R.anim.next_enter, R.anim.next_exit);
     }
 
 
@@ -190,8 +185,5 @@ public class CommonToolActivity extends Activity  {
         mSms_restore = (NormalItemView) findViewById(R.id.si_sms_restore);
         si_appsocke_manager = (NormalItemView) findViewById(R.id.si_appsocke_manager);
         open_dog = (SettingItemView) findViewById(R.id.siv_open_dog);
-
-
     }
-
 }

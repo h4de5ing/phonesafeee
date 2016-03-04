@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:mo="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:mo="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <!--显示标题-->
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             style="@style/titlebarStyle"
-            android:text="手机安全卫士设置"  />
-        
+            android:text="@string/setting"/>
+
         <ImageView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:onClick="exitSetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/setting_exit_selector"/>
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/setting_exit_selector"
+            android:onClick="exitSetting"/>
     </RelativeLayout>
-   
+
 
     <mo.com.phonesafe.view.SettingItemView
         android:id="@+id/setting_siv_autoupdate"
@@ -31,34 +30,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         mo:sivBackground="green"
-        mo:sivTitle="自动更新"
-        />
+        mo:sivTitle="@string/autouintercept"/>
+
     <mo.com.phonesafe.view.SettingItemView
         android:id="@+id/setting_siv_autouIntercept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mo:sivBackground="blue"
-        mo:sivTitle="拦截设置"
         android:layout_marginTop="10dp"
+        mo:sivBackground="blue"
+        mo:sivTitle="@string/autouintercept"/>
 
-        />
     <mo.com.phonesafe.view.SettingItemView
         android:id="@+id/setting_siv_numberaddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mo:sivBackground="purple"
-        mo:sivTitle="归属地设置"
         android:layout_marginTop="10dp"
-        />
+        mo:sivBackground="purple"
+        mo:sivTitle="@string/numberaddresssetting"/>
+
     <mo.com.phonesafe.view.SettingItemView
         android:id="@+id/setting_siv_numberaddress_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mo:sivBackground="purple"
-        mo:sivTitle="归属地风格设置"
         android:layout_marginTop="10dp"
-        mo:sivToggle="false"
-        />
+        mo:sivBackground="purple"
+        mo:sivTitle="@string/numberaddressstyle"
+        mo:sivToggle="false"/>
 
 
 </LinearLayout>

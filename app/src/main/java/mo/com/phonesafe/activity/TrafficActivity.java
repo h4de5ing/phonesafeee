@@ -124,7 +124,7 @@ public class TrafficActivity extends Activity {
                 }
 
                 /*显示数据,隐藏进度*/
-                    ll_normal_loading.setVisibility(View.GONE);
+                ll_normal_loading.setVisibility(View.GONE);
                 lv_traffic.setVisibility(View.VISIBLE);
                 mAdapter.notifyDataSetChanged();
 
@@ -134,7 +134,7 @@ public class TrafficActivity extends Activity {
 
     /*获取发送的数据流量，通过程序运行是的UId*/
     private long getTcp_snd(int uid) {
-        File file = new File("/proc/uid_stat/"+uid+"/tcp_snd");
+        File file = new File("/proc/uid_stat/" + uid + "/tcp_snd");
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(file));
@@ -155,9 +155,10 @@ public class TrafficActivity extends Activity {
 
         }
     }
+
     /*获取接收到的数据流量，通过程序运行是的UId*/
     private long getTcp_rcv(int uid) {
-        File file = new File("/proc/uid_stat/"+uid+"/tcp_rcv");
+        File file = new File("/proc/uid_stat/" + uid + "/tcp_rcv");
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(file));
@@ -184,6 +185,7 @@ public class TrafficActivity extends Activity {
         lv_traffic = (ListView) findViewById(R.id.lv_traffic);
         ll_normal_loading = (LinearLayout) findViewById(R.id.ll_normal_loading);
     }
+
     private class TrafficAdapter extends BaseAdapter {
 
         @Override
@@ -214,7 +216,7 @@ public class TrafficActivity extends Activity {
                 convertView = View.inflate(TrafficActivity.this, R.layout.item_traffic_list, null);
                 holder = new ViewHolder();
                 convertView.setTag(holder);
-               holder.mIcon= (ImageView) convertView.findViewById(R.id.iv_traffic_item_icon);
+                holder.mIcon = (ImageView) convertView.findViewById(R.id.iv_traffic_item_icon);
                 holder.mTitle = (TextView) convertView.findViewById(R.id.tv_item_title);
                 holder.mInTraffic = (TextView) convertView.findViewById(R.id.tv_item_rcv);
                 holder.mOutTraffic = (TextView) convertView.findViewById(R.id.tv_item_snd);
@@ -225,8 +227,8 @@ public class TrafficActivity extends Activity {
 
             holder.mIcon.setImageDrawable(bean.icon);
             holder.mTitle.setText(bean.app_name);
-            holder.mInTraffic.setText("接收"+ Formatter.formatFileSize(TrafficActivity.this,bean.inTraffic));
-            holder.mOutTraffic.setText("发送"+ Formatter.formatFileSize(TrafficActivity.this,bean.outTraffic));
+            holder.mInTraffic.setText(getString(R.string.rcv, Formatter.formatFileSize(TrafficActivity.this, bean.inTraffic)));
+            holder.mOutTraffic.setText(getString(R.string.snd, Formatter.formatFileSize(TrafficActivity.this, bean.outTraffic)));
             return convertView;
         }
     }

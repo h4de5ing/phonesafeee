@@ -14,167 +14,214 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.ProcessBean;
 
 /**
- * Created by Gh0st on 2016/3/3 003.
+ * 作者：MoMxMo on 2015/9/9 21:57
+ * 邮箱：xxxx@qq.com
  */
+
+
 public class ProcessProvider {
+
     private static final String TAG = "ProcessProvider";
 
     /**
-     * @param context     上下文
-     * @param packageName 包名称
-     */
-    public static void cleanProcess(Context context, String packageName) {
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        am.killBackgroundProcesses(packageName);
-    }
-
-    /**
-     * @param context 上下文
-     * @return 总内存
-     */
-    public static long getMemoryCount(Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
-        am.getMemoryInfo(outInfo);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return outInfo.totalMem;
-        } else {
-            return loadLowVersionTotalMemory();
-        }
-    }
-
-    /**
-     * @param context 上下文
-     * @return 可用内存
-     */
-    public static long getVaildMemomy(Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        ActivityManager.MemoryInfo outInfo = new ActivityManager.MemoryInfo();
-        am.getMemoryInfo(outInfo);
-        return outInfo.availMem;
-    }
-
-    /**
-     * @return 返回正在运行的进程数量
-     */
-    public static int getProcessRunningCount(Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
-        Log.i(TAG, "getRuningProcessCount 运行进程数量" + runningAppProcesses.size());
-        return runningAppProcesses.size();
-    }
-
-    /**
-     * @param context 上下文
-     * @return 所有进程的数量
-     */
-    public static int getProcessTotal(Context context) {
-        PackageManager pm = context.getPackageManager();
-        List<PackageInfo> packages = pm.getInstalledPackages(0);
-
-        Set<String> set = new HashSet<String>(); //利用set去重
-
-        for (PackageInfo pkg : packages) {
-
-            ActivityInfo[] activities = pkg.activities;
-            if (activities != null) {
-                for (ActivityInfo activityInfo : activities) {
-                    set.add(activityInfo.processName);
-                }
-            }
-
-            ServiceInfo[] services = pkg.services;
-            if (services != null) {
-                for (ServiceInfo serviceInfo : services) {
-                    set.add(serviceInfo.processName);
-                }
-            }
-
-            ProviderInfo[] providers = pkg.providers;
-            if (providers != null) {
-                for (ProviderInfo providerInfo : providers) {
-                    set.add(providerInfo.packageName);
-                }
-            }
-
-            ActivityInfo[] receivers = pkg.receivers;
-            if (receivers != null) {
-                for (ActivityInfo receiver : receivers) {
-                    set.add((receiver.processName));
-                }
-            }
-            set.add(pkg.applicationInfo.processName);
-        }
-        return set.size();
-    }
-
-    /**
-     * @param context 上下文
-     * @return 获取正在运行的进程信息
+     * 获取进程的数据信息
+     *
+     * @param context
+     * @return
      */
     public static List<ProcessBean> getProcessInfo(Context context) {
+        List<ProcessBean> list = null;
+
+        /*包管理器*/
         PackageManager pm = context.getPackageManager();
 
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ProcessBean> list = new ArrayList<ProcessBean>();
-        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = am.getRunningAppProcesses();
-        ApplicationInfo applicationInfo = null;
-        for (ActivityManager.RunningAppProcessInfo runapp : runningAppProcesses) {
-            ProcessBean bean = new ProcessBean();
-            try {
-                applicationInfo = pm.getApplicationInfo(runapp.processName, 0);
-                bean.name = applicationInfo.loadLabel(pm).toString();
-                if (applicationInfo.loadIcon(pm) != null) {
-                    bean.icon = applicationInfo.loadIcon(pm);
-                } else {
-                    Log.i(TAG, "系统的进程没有图标");
-                }
-                bean.packageName = runapp.processName;
 
-                //判断是否是系统进程
+
+        List<ActivityManager.RunningAppProcessInfo> running = am.getRunningAppProcesses();
+
+        list = new ArrayList<ProcessBean>();
+        for (ActivityManager.RunningAppProcessInfo info : running) {
+
+            ProcessBean bean = new ProcessBean();
+            //获取进程名称
+            String packeName = info.processName;
+            bean.packageName = packeName;
+            ApplicationInfo applicationInfo = null;
+            try {
+                applicationInfo = pm.getApplicationInfo(packeName, 0);
+
+                bean.name = applicationInfo.loadLabel(pm).toString();
+                bean.icon = applicationInfo.loadIcon(pm);
+
                 int flags = applicationInfo.flags;
+
+                //判断进程是否是系统进程
                 if ((flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM) {
                     bean.isSystem = true;
                 } else {
                     bean.isSystem = false;
                 }
+
             } catch (PackageManager.NameNotFoundException e) {
-                bean.name = runapp.processName;
+                //默认找不到，因为手机系统中有些进程是使用C语言编写的
+                bean.name = packeName;
+                bean.icon = context.getResources().getDrawable(R.mipmap.ic_launcher);
                 bean.isSystem = true;
             }
-            Debug.MemoryInfo memory = am.getProcessMemoryInfo(new int[]{runapp.pid})[0];
-            bean.memory = memory.getTotalPss() * 1024;
+
+            //获取进程占用的内存
+            Debug.MemoryInfo memoryInfo = am.getProcessMemoryInfo(new int[]{info.pid})[0];
+            bean.memory = memoryInfo.getTotalPss() * 1024;
             list.add(bean);
         }
+
         return list;
     }
 
-    //获取低版本系统的内存信息
-    public static long loadLowVersionTotalMemory() {
-        String s = null;
-        File file = new File("/proc/meminfo");
-        BufferedReader reader = null;
+    /**
+     * 获取所有进程数量
+     *
+     * @param context
+     * @return
+     */
+    public static int getProcessTotal(Context context) {
+
+        PackageManager pm = context.getPackageManager();
+        List<PackageInfo> packList = pm.getInstalledPackages(0);
+
+        Set<String> set = new HashSet<String>();
+        for (PackageInfo info : packList) {
+
+            ActivityInfo[] activities = info.activities;
+            if (activities != null) {
+                for (ActivityInfo ac : activities) {
+                    set.add(ac.processName);
+                }
+            }
+
+            ServiceInfo[] services = info.services;
+            if (services != null) {
+                for (ServiceInfo si : services) {
+                    set.add(si.processName);
+                }
+            }
+
+            ProviderInfo[] providers = info.providers;
+            if (providers != null) {
+                for (ProviderInfo pi : providers) {
+                    set.add(pi.processName);
+                }
+            }
+
+            ActivityInfo[] receivers = info.receivers;
+            if (receivers != null) {
+                for (ActivityInfo ai : receivers) {
+                    set.add(ai.processName);
+                }
+            }
+
+            set.add(info.applicationInfo.processName);
+        }
+        return set.size();
+    }
+
+    /**
+     * 获取正在运行的进程数量
+     *
+     * @param context
+     * @return
+     */
+    public static int getProcessRunningCount(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        /*获取进程数量*/
+        List<ActivityManager.RunningAppProcessInfo> runningAppProcessInfoList = am.getRunningAppProcesses();
+
+        return runningAppProcessInfoList.size();
+    }
+
+    /**
+     * 获取手机内存的大小
+     *
+     * @param context
+     * @return
+     */
+    public static long getMemoryCount(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        am.getMemoryInfo(memoryInfo);
+
+
+        /*这里要进行版本的适配*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            Log.i(TAG, "目前手机是AIP 16以上的版本 ");
+            return memoryInfo.totalMem;
+        } else {
+            Log.i(TAG, "目前手机是AIP 16以下的版本");
+            return getLowVersionMemoryTotal();
+        }
+    }
+
+    private static long getLowVersionMemoryTotal() {
+        //低版本的手机可以去系统中查询系统文件中的配置信息
+        //手机系统是基于Linux系统中，
+        // 所有系统中的硬件信息的配置信息都是写在硬盘中
+        // proc/meminfo文件中
+
+            /*MemTotal:         900792 kB*/
+
+        long total = 0;
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line = reader.readLine();
-            s = line.replace("MemTotal:", "").toString().replace("kB", "").trim();
+            File file = new File("proc/meminfo");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = br.readLine();
+            line = line.replace("MemTotal:", "");
+            line = line.replace("kB", "");
+            line = line.trim();
+            total = new Integer(line) * 1000;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Long.valueOf(s) * 1024;
+        return total;
+    }
+
+    /**
+     * 获取手机可用的内存
+     *
+     * @param context
+     * @return
+     */
+    public static long getVaildMemomy(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        am.getMemoryInfo(memoryInfo);
+        return memoryInfo.availMem;
+    }
+
+
+    /**
+     * 清理进程
+     *
+     * @param context
+     * @param packageName
+     */
+    public static void cleanProcess(Context context, String packageName) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        am.killBackgroundProcesses(packageName);
     }
 }

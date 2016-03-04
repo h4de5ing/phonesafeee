@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/settingTitlebarStyle"
-        android:text="4.激活设备管理员" />
+        android:text="@string/activitdevicesadmin"/>
 
-    <!--textView功能文本介绍-->
     <TextView
         style="@style/SetupTextViewStyle"
-        android:text="激活设备管理员：\n可远程锁屏，远程擦除数据" />
+        android:text="@string/devicesadmindescription"/>
 
     <RelativeLayout
         android:id="@+id/set_rl_admin"
@@ -27,17 +25,17 @@
             style="@style/SetupTextViewStyle"
             android:layout_marginTop="20dp"
             android:padding="4dp"
-            android:text="点击激活/取消激活设备管理员"
-            android:textColor="@android:color/white" />
+            android:text="@string/clickactivity"
+            android:textColor="@android:color/white"/>
 
         <ImageView
             android:id="@+id/set_iv_admin"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
-            android:src="@mipmap/i" />
+            android:layout_marginEnd="8dp"
+            android:src="@mipmap/i"/>
     </RelativeLayout>
 
 
@@ -45,24 +43,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--中间图片-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/hm" />
-        <!--上一步按钮  -->
+            android:src="@mipmap/hm"/>
         <Button
             style="@style/PreBtnStyle"
-            android:text="上一步" />
+            android:text="@string/back"/>
 
-        <!--下一步按钮-->
         <Button
             style="@style/NextBtnStyle"
-            android:text="下一步" />
+            android:text="@string/next"/>
 
 
-        <!--点-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,29 +69,31 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/point_normal" />
+                android:src="@drawable/point_normal"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_selected" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/point_normal" />
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_selected"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/point_normal"/>
         </LinearLayout>
 
     </RelativeLayout>

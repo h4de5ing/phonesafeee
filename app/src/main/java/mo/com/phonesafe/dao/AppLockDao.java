@@ -134,8 +134,8 @@ public class AppLockDao {
                 if (cursor.moveToNext()) {
                     count = cursor.getInt(0);
                 }
+                cursor.close();
             }
-            cursor.close();
         }
         db.close();
         return count;

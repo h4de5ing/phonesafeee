@@ -79,8 +79,8 @@ public class AppManagerActivity extends Activity {
                 //显示PopupWindow*/
 
                 final AppBean bean = (AppBean) mAdapter.getItem(position);
-                Log.i(TAG, "onItemSelected 您好。。。。。。" + position + ".....");
-                if (bean!=null) {
+                //Log.i(TAG, "onItemSelected 您好。。。。。。" + position + ".....");
+                if (bean != null) {
 
                     showPopup(view, bean);
                 }
@@ -93,14 +93,18 @@ public class AppManagerActivity extends Activity {
         lv_applist.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
+
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (listdataUser != null && firstVisibleItem == 0) {
-                    tv_titile.setText("SD卡(" + listdataUser.size() + ")应用");
+                    //tv_titile.setText("SD卡(" + listdataUser.size() + ")应用");
+                    tv_titile.setText(getString(R.string.sdcardappcount, listdataUser.size()));
                 }
                 if (listdataSystem != null && firstVisibleItem == listdataUser.size() + 1) {
-                    tv_titile.setText("手机存储(" + listdataSystem.size() + ")应用");
+                    //tv_titile.setText("手机存储(" + listdataSystem.size() + ")应用");
+                    tv_titile.setText(getString(R.string.phoneappcount, listdataSystem.size()));
                 }
             }
         });
@@ -126,20 +130,16 @@ public class AppManagerActivity extends Activity {
         window.setAnimationStyle(R.style.PopupAnimation);
 
         //展示位置，在当前Activity位置
-        window.showAsDropDown(view,view.getWidth(),-view.getHeight());
+        window.showAsDropDown(view, view.getWidth(), -view.getHeight());
 
         //卸载
         ll_popup.findViewById(R.id.pop_uninstall).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (bean.isInstallSD) {  TODO  手机因为是不是装载手机内部就是system应用
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_UNINSTALL_PACKAGE);
-                    intent.setData(Uri.parse("package:" + bean.packageName));
-                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(AppManagerActivity.this, "系统程序不能卸载", Toast.LENGTH_SHORT).show();
-//                }
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_UNINSTALL_PACKAGE);
+                intent.setData(Uri.parse("package:" + bean.packageName));
+                startActivity(intent);
                 window.dismiss();
             }
         });
@@ -148,7 +148,6 @@ public class AppManagerActivity extends Activity {
         ll_popup.findViewById(R.id.pop_open).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onItemSelected 打开。。....."+bean.toString());
 
                 //启动程序
                 PackageManager pm = getPackageManager();
@@ -249,16 +248,16 @@ public class AppManagerActivity extends Activity {
         //获取SD内存大小
         File sdFile = Environment.getExternalStorageDirectory();
         String[] sdMemory = getMemory(sdFile);
-        tv_out_remainder.setText("剩余：" + sdMemory[0]);
-        tv_out_total.setText("总内存：" + sdMemory[1]);
+        tv_out_remainder.setText(getString(R.string.remainder, sdMemory[0]));
+        tv_out_total.setText(getString(R.string.total, sdMemory[1]));
     }
 
     private void getRomMemory() {
         //获取Rom内存大小
         File romFile = Environment.getDataDirectory();
         String[] romMemory = getMemory(romFile);
-        tv_inter_remainder.setText("剩余：" + romMemory[0]);
-        tv_inter_total.setText("总内存：" + romMemory[1]);
+        tv_inter_remainder.setText(getString(R.string.remainder, romMemory[0]));
+        tv_inter_total.setText(getString(R.string.total, romMemory[1]));
     }
 
     /**
@@ -338,18 +337,18 @@ public class AppManagerActivity extends Activity {
         public View getView(int position, android.view.View convertView, ViewGroup parent) {
 
             //显示用户
-            if (position == 0 ) {
+            if (position == 0) {
                 TextView tvSD = new TextView(AppManagerActivity.this);
                 tvSD.setBackgroundColor(getResources().getColor(R.color.switch_thumb_normal_material_dark));
                 tvSD.setPadding(8, 8, 8, 8);
-                tvSD.setText("SD卡共" + listdataUser.size() + "个应用");
+                tvSD.setText(getString(R.string.sdcardappcount, listdataUser.size()));
                 return tvSD;
             }
-            if (position == listdataUser.size()+1) {
+            if (position == listdataUser.size() + 1) {
                 TextView tvSD = new TextView(AppManagerActivity.this);
                 tvSD.setBackgroundColor(getResources().getColor(R.color.switch_thumb_normal_material_dark));
-                tvSD.setPadding(8,8, 8, 8);
-                tvSD.setText("手机存储(" + listdataSystem.size() + ")应用");
+                tvSD.setPadding(8, 8, 8, 8);
+                tvSD.setText(getString(R.string.phoneappcount, listdataSystem.size()));
                 return tvSD;
             }
 
@@ -378,10 +377,10 @@ public class AppManagerActivity extends Activity {
 
             //应用的安装位置
             if (appBean.isInstallSD) {
-                holder.mPostion.setText("SD卡");
+                holder.mPostion.setText(getString(R.string.sdcard));
             }
             if (appBean.isSystem) {
-                holder.mPostion.setText("手机内存");
+                holder.mPostion.setText(getString(R.string.phonemeoney));
             }
 
             return convertView;

@@ -72,7 +72,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
         smsManager.sendTextMessage(
                 sjfd_phone,    // 收件人
                 null,    // 短信中心号码
-                "yoru phone was lose.....", // 内容
+                "yor phone was lose.....", // 内容
                 null,
                 null);
 

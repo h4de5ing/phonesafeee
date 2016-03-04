@@ -69,17 +69,9 @@ public class ProcessManagerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_processmanager);
-
-        //初始化VIew
         initView();
-
-        //初始化动画
         initAnim();
-
-        //初始化数据
         initData();
-
-        //初始化事件的监听
         initEvent();
     }
 

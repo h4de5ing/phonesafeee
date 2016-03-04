@@ -1,59 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/settingTitlebarStyle"
-        android:text="1.欢迎使用手机防盗" />
+        android:text="@string/welcome"/>
 
-    <!--textView功能文本介绍-->
     <TextView
         style="@style/SetupTextViewStyle"
-        android:text="您的手机防盗卫士：" />
+        android:text="@string/yours"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="SIM卡变更报警" />
+        android:text="@string/simcard"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="GPS追踪" />
+        android:text="@string/gps"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="远程锁屏" />
+        android:text="@string/remotelockscreen"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="远程销毁数据" />
+        android:text="@string/remotewipedate"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--中间图片-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/hm" />
+            android:src="@mipmap/hm"/>
 
-        <!--下一步按钮-->
         <Button
             style="@style/NextBtnStyle"
-            android:text="下一步" />
+            android:text="@string/next"/>
 
 
-        <!--点-->
         <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
 
@@ -61,25 +56,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/point_selected"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
         </LinearLayout>
 

@@ -129,7 +129,7 @@ public class BlackDao {
         /*sql语句：select * from black limit 20 offset 3;*/
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<BlackBean> list = null;
-        if (db.isOpen()) {
+        //if (db.isOpen()) {
             String[] columns = {BlackListUtils.BlackTable.COLUMN_NUMBER, BlackListUtils.BlackTable.COLUMN_TYPE};
             String selection = "limit ? offset ?";
             String[] selectionArgs = {size + "", index + ""};
@@ -154,7 +154,7 @@ public class BlackDao {
                 }
                 cursor.close();
             }
-        }
+       // }
         db.close();
         return list;
     }

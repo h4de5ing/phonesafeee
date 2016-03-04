@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/settingTitlebarStyle"
-        android:text="3.设置安全号码" />
+        android:text="@string/settingsafenumber"/>
 
-    <!--textView功能文本介绍-->
     <TextView
         style="@style/SetupTextViewStyle"
-        android:text="SIM卡如果发生变化：\n就会发送短信给安全号码" />
+        android:text="@string/safenumberdescription"/>
 
     <EditText
         android:id="@+id/sjfd_et_phoneNumber"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入安全号码"/>
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:hint="@string/inputsafenumber"
+        android:inputType="phone"/>
 
     <RelativeLayout
         android:id="@+id/select_contact"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:background="@drawable/btn_primary_selector">
-    <TextView
-        android:padding="4dp"
-        android:layout_marginTop="20dp"
-        style="@style/SetupTextViewStyle"
-        android:textColor="@android:color/white"
-        android:layout_centerInParent="true"
-        android:text="请选择安全号码"/>
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_primary_selector"
+        android:clickable="true">
+
+        <TextView
+            style="@style/SetupTextViewStyle"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:padding="4dp"
+            android:text="@string/selectsafenumber"
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
 
 
@@ -46,31 +46,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--中间图片-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/hm"
-           />
-        <!--上一步按钮  -->
+            android:src="@mipmap/hm"/>
+
         <Button
             style="@style/PreBtnStyle"
-            android:text="上一步" />
+            android:text="@string/back"/>
 
-        <!--下一步按钮-->
         <Button
             style="@style/NextBtnStyle"
-            android:text="下一步" />
+            android:text="@string/next"/>
 
 
-        <!--点-->
         <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
 
@@ -78,25 +74,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_selected"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
         </LinearLayout>
 

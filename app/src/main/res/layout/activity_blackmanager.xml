@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,16 +10,16 @@
 
         <TextView
             style="@style/titlebarStyle"
-            android:text="黑名单管理" />
+            android:text="@string/blacklist"/>
 
         <ImageView
             android:id="@+id/iv_lm_icon"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/iv_bm_seletor" />
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/iv_bm_seletor"/>
     </RelativeLayout>
 
     <FrameLayout
@@ -32,37 +31,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:src="@drawable/empty"/>
+            android:src="@drawable/empty"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/pb_bm_load"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:indeterminateDrawable="@anim/anim_loading"
-                 />
+                android:indeterminateDrawable="@anim/anim_loading"/>
 
             <TextView
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="加载数据中.."/>
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/loadingdata"/>
         </LinearLayout>
 
         <ListView
             android:id="@+id/lv_bm_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent"/>
     </FrameLayout>
-
 
 </LinearLayout>

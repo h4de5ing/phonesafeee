@@ -23,7 +23,6 @@ public class DBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //创建表结构
         db.execSQL(BlackListUtils.BlackTable.CREATE_TABLE_SQL);
     }
 

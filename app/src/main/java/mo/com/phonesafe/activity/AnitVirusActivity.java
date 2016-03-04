@@ -45,7 +45,6 @@ import mo.com.phonesafe.tools.MD5Utils;
 
 public class AnitVirusActivity extends Activity {
 
-    private static final String TAG = "AnitVirusActivity";
     private ListView lv_virus;
     private List<VirusBean> mlistData;
     private PackageManager mPm;
@@ -63,22 +62,16 @@ public class AnitVirusActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anit_virus);
         mPm = getPackageManager();
-        /*初始化VIew*/
         initView();
-
-        /*初始化数据*/
         initData();
-
-        /*初始化监听事件*/
         initEvent();
 
         /*注册包删除的广播*/
-
         packageReceiver = new PackageRemovedReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addDataScheme("package");
-        registerReceiver(packageReceiver,filter);
+        registerReceiver(packageReceiver, filter);
 
 
     }
@@ -87,8 +80,6 @@ public class AnitVirusActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            //接收包被卸载的广播
-
             /*重新开始扫描*/
             startScan();
 
@@ -117,7 +108,7 @@ public class AnitVirusActivity extends Activity {
     private void startScan() {
           /*使用线程加载数据*/
         new AsyncTask<Void, VirusBean, Boolean>() {
-            int count ;
+            int count;
             int progress;
             int anitvirusCount;
 
@@ -133,7 +124,7 @@ public class AnitVirusActivity extends Activity {
                 }
                 if (mlistData == null) {
                     mlistData = new ArrayList<VirusBean>();
-                }else {
+                } else {
                 /*清空前一次的记录*/
                     mlistData.clear();
                     mAdapter.notifyDataSetChanged();
@@ -165,7 +156,7 @@ public class AnitVirusActivity extends Activity {
                         md5 = MD5Utils.encode(in);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    }finally {
+                    } finally {
                         if (in != null) {
                             try {
                                 in.close();
@@ -185,12 +176,6 @@ public class AnitVirusActivity extends Activity {
 
                     bean.packageName = packageName;
                     progress++;
-            /*        try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }*/
-
                     /*主线程UI数据的更新*/
                     publishProgress(bean);
                 }
@@ -226,9 +211,9 @@ public class AnitVirusActivity extends Activity {
             @Override
             protected void onPostExecute(Boolean aBoolean) {
                 super.onPostExecute(aBoolean);
-                if (anitvirusCount>0) {
+                if (anitvirusCount > 0) {
                     tv_scan_result.setTextColor(getResources().getColor(R.color.normalColor));
-                    tv_scan_result.setText("共有"+anitvirusCount+"个病毒");
+                    tv_scan_result.setText(getString(R.string.viruscount, anitvirusCount));
                 }
 
                 /*listView回到第一个位置*/
@@ -253,7 +238,7 @@ public class AnitVirusActivity extends Activity {
     }
 
     private void initData() {
-        mAdapter =  new VirusAdapter();
+        mAdapter = new VirusAdapter();
         /*添加适配器*/
         lv_virus.setAdapter(mAdapter);
 
@@ -303,12 +288,10 @@ public class AnitVirusActivity extends Activity {
             holder.mIcon.setImageDrawable(bean.icon);
             holder.mTitle.setText(bean.name);
             if (bean.isSafe) {
-                //是病毒
                 holder.mIsSafe.setTextColor(getResources().getColor(R.color.normalColor));
-                holder.mIsSafe.setText("危险");
+                holder.mIsSafe.setText(getString(R.string.unsafe));
                 holder.mClean.setImageResource(R.drawable.list_clean_cache_seletor);
                 holder.mClean.setVisibility(View.VISIBLE);
-
 
                 holder.mClean.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -323,16 +306,13 @@ public class AnitVirusActivity extends Activity {
                     }
                 });
             } else {
-                //不是病毒
-                holder.mIsSafe.setText("安全");
+                holder.mIsSafe.setText(getString(R.string.safe));
                 holder.mIsSafe.setTextColor(getResources().getColor(R.color.normalblue_green));
                 holder.mClean.setVisibility(View.GONE);
             }
 
-
             return convertView;
         }
-
     }
 
     private class ViewHolder {

@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/settingTitlebarStyle"
-        android:text="2.手机卡绑定" />
+        android:text="@string/phonecardbind"/>
 
-    <!--textView功能文本介绍-->
     <TextView
         style="@style/SetupTextViewStyle"
-        android:text="通过绑定手机卡：\n下次手机重启时SIM卡发生变化,就会发送警报短信" />
+        android:text="@string/phonecardbinddecription"/>
 
     <RelativeLayout
         android:id="@+id/setup2_rl_bind"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:background="@drawable/btn_primary_selector">
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:background="@drawable/btn_primary_selector"
+        android:clickable="true">
+
         <TextView
-            android:padding="4dp"
-            android:layout_marginTop="20dp"
             style="@style/SetupTextViewStyle"
-            android:textColor="@android:color/white"
-            android:text="点击绑定/解绑SIM卡"/>
+            android:layout_marginTop="20dp"
+            android:padding="4dp"
+            android:text="@string/clickbindsimcard"
+            android:textColor="@android:color/white"/>
 
         <ImageView
             android:id="@+id/setup_bing_icon"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
             android:src="@mipmap/unlock"/>
     </RelativeLayout>
 
@@ -43,31 +42,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--中间图片-->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@mipmap/hm"
-           />
-        <!--上一步按钮  -->
+            android:src="@mipmap/hm"/>
+
         <Button
             style="@style/PreBtnStyle"
-            android:text="上一步" />
+            android:text="@string/back"/>
 
-        <!--下一步按钮-->
         <Button
             style="@style/NextBtnStyle"
-            android:text="下一步" />
+            android:text="@string/next"/>
 
-
-        <!--点-->
         <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
 
@@ -75,26 +69,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_selected"/>
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
+
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:src="@drawable/point_normal"/>
         </LinearLayout>
 

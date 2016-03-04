@@ -14,10 +14,9 @@ import android.content.SharedPreferences;
 public class PreferenceUtils {
     private static SharedPreferences mPreferences;
 
-    //设置成单例模式
-    private static SharedPreferences getSp(Context context){
-        if(mPreferences == null) {
-            mPreferences = context.getSharedPreferences("sjws", Context.MODE_PRIVATE);
+    private static SharedPreferences getSp(Context context) {
+        if (mPreferences == null) {
+            mPreferences = context.getSharedPreferences("safe", Context.MODE_PRIVATE);
         }
         return mPreferences;
     }
@@ -25,10 +24,9 @@ public class PreferenceUtils {
     /**
      * 设置shared_prefrence的
      *
-     * @param context
-     * @param key
-     * @param value
-     * @return
+     * @param context 上下文
+     * @param key     键
+     * @param value   默认值
      */
     public static void putBoolean(Context context, String key, boolean value) {
         SharedPreferences sp = getSp(context);
@@ -40,90 +38,91 @@ public class PreferenceUtils {
     /**
      * 获得boolean类型的数据
      *
-     * @param context
-     * @param key
-     * @param deValue
-     * @return
+     * @param context 上下文
+     * @param key     键
+     * @param deValue 默认值
      */
     public static boolean getBoolean(Context context, String key, boolean deValue) {
         SharedPreferences sp = getSp(context);
-        boolean value = sp.getBoolean(key, deValue);
-        return value;
-
+        return sp.getBoolean(key, deValue);
     }
 
     /**
      * 获得boolean类型的数据,没有时默认值为false
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
+     * @return 返回值
      */
     public static boolean getBoolean(Context context, String key) {
-        return getBoolean(context,key,false);
+        return getBoolean(context, key, false);
 
     }
 
     /**
      * 获得String类型的数据,没有时默认值为null
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
+     * @return 返回值
      */
     public static String getString(Context context, String key) {
-       return   getString(context, key, null);
+        return getString(context, key, null);
     }
 
     /**
      * 获得String类型的数据,没有时默认值为null
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
+     * @return 返回值
      */
-    public static String getString(Context context, String key,String defValue) {
+    public static String getString(Context context, String key, String defValue) {
         SharedPreferences sp = getSp(context);
-        String value = sp.getString(key, defValue);
-        return value;
+        return sp.getString(key, defValue);
     }
 
 
     /**
      * 保存String类型的数据,没有时默认值为null
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
      */
     public static void putString(Context context, String key, String value) {
         SharedPreferences sp = getSp(context);
         sp.edit().putString(key, value).commit();
     }
+
     /**
      * 获得int类型的数据,没有时默认值为-1
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
+     * @return 返回值
      */
     public static int getInt(Context context, String key) {
-       return   getInt(context, key, -1);
+        return getInt(context, key, -1);
     }
 
     /**
      * 获得int类型的数据,没有时默认值为null
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
+     * @return 返回值
      */
-    public static int getInt(Context context, String key,int defValue) {
+    public static int getInt(Context context, String key, int defValue) {
         SharedPreferences sp = getSp(context);
-        int value = sp.getInt(key, defValue);
-        return value;
+        return sp.getInt(key, defValue);
     }
 
 
     /**
      * 保存int类型的数据,没有时默认值为-1
-     * @param context
-     * @param key
-     * @return
+     *
+     * @param context 上下文
+     * @param key     键
      */
     public static void putInt(Context context, String key, int value) {
         SharedPreferences sp = getSp(context);

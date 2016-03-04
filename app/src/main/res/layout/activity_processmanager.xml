@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:mo="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:mo="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -10,16 +10,16 @@
 
         <TextView
             style="@style/titlebarStyle"
-            android:text="进程管理" />
+            android:text="@string/processmanager"/>
 
         <ImageView
             android:id="@+id/iv_clean"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:scaleType="center"
-            android:src="@drawable/pp" />
+            android:src="@drawable/pp"/>
     </RelativeLayout>
 
 
@@ -37,21 +37,21 @@
                 android:id="@+id/tv_process"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="进程数" />
+                android:text="@string/processcount"/>
 
             <TextView
                 android:id="@+id/tv_run_process"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_process"
-                android:text="正在运行" />
+                android:layout_toEndOf="@+id/tv_process"
+                android:text="@string/runningprocess"/>
 
             <TextView
                 android:id="@+id/tv_process_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="总进程" />
+                android:layout_alignParentEnd="true"
+                android:text="@string/processtotal"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -62,35 +62,28 @@
                 android:id="@+id/tv_memory"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:text="内存" />
+                android:text="@string/memory"/>
 
             <TextView
                 android:id="@+id/tv_used_memory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tv_memory"
-                android:text="占用内存" />
+                android:layout_toEndOf="@+id/tv_memory"
+                android:text="@string/usedmemory"/>
 
             <TextView
                 android:id="@+id/tv_vaild_memory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="可用内存" />
+                android:layout_alignParentEnd="true"
+                android:text="@string/vaildmemory"/>
         </RelativeLayout>
     </LinearLayout>
-    <!--    <TextView
-            android:id="@+id/tv_titile"
-            android:layout_width="match_parent"
-            android:text="用户进程"
-            android:padding="5dp"
-            android:background="@color/switch_thumb_normal_material_dark"
-            android:layout_height="wrap_content" />-->
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <RelativeLayout
             android:id="@+id/rl_loading"
@@ -98,8 +91,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone">
+
             <include
-                layout="@layout/normal_loading"></include>
+                layout="@layout/normal_loading"/>
         </RelativeLayout>
 
         <se.emilsjolander.stickylistheaders.StickyListHeadersListView
@@ -108,99 +102,89 @@
             android:layout_height="match_parent"
             android:divider="@color/button_material_light"
             android:dividerHeight="1dp"
-            android:paddingBottom="30dp"
-            android:listSelector="@drawable/btn_info_selector">
+            android:listSelector="@drawable/btn_info_selector"
+            android:paddingBottom="30dp">
 
         </se.emilsjolander.stickylistheaders.StickyListHeadersListView>
 
-        <!--        <ListView
+        <SlidingDrawer
+            android:id="@+id/sd_pull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:content="@+id/content"
+            android:handle="@+id/handle">
+
+            <LinearLayout
+                android:id="@+id/handle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/drawer_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_arrow_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/drawer_arrow_up"/>
+
+                <ImageView
+                    android:id="@+id/iv_arrow_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drawer_arrow_up"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/button_material_light"
+                android:orientation="vertical">
+
+                <mo.com.phonesafe.view.SettingItemView
+                    android:id="@+id/siv_show_sysprp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="@color/button_material_light"
-                    android:listSelector="@drawable/btn_info_selector"
-                    android:dividerHeight="1dp"></ListView>-->
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    mo:sivBackground="green"
+                    mo:sivTitle="@string/showsystemprocess"/>
 
-
-
-<SlidingDrawer
-    android:id="@+id/sd_pull"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:handle="@+id/handle"
-    android:content="@+id/content">
-
-    <LinearLayout
-        android:id="@+id/handle"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@drawable/drawer_bg"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/iv_arrow_1"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/drawer_arrow_up" />
-        <ImageView
-            android:id="@+id/iv_arrow_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/drawer_arrow_up" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/button_material_light"
-        android:orientation="vertical">
-
-        <mo.com.phonesafe.view.SettingItemView
-            android:id="@+id/siv_show_sysprp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            mo:sivBackground="green"
-            mo:sivTitle="显示系统进程"
-            />
-        <mo.com.phonesafe.view.SettingItemView
-            android:id="@+id/siv_auto_clean"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            mo:sivBackground="purple"
-            mo:sivTitle="锁屏自动清理"
-            />
-    </LinearLayout>
-</SlidingDrawer>
+                <mo.com.phonesafe.view.SettingItemView
+                    android:id="@+id/siv_auto_clean"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    mo:sivBackground="purple"
+                    mo:sivTitle="@string/lockscreenautoclean"/>
+            </LinearLayout>
+        </SlidingDrawer>
     </FrameLayout>
 
-<LinearLayout
-    android:id="@+id/ll_bottom_select"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:layout_weight="0"
-    android:orientation="horizontal">
-
-    <Button
-        android:onClick="allSelect"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_bottom_select"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/NormalBtnStyle.OK"
-        android:gravity="center"
-        android:text="全选" />
+        android:background="@android:color/white"
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="unSelect"
-        android:layout_weight="1"
-        style="@style/NormalBtnStyle.OK"
-        android:gravity="center"
-        android:text="反选" />
-</LinearLayout>
+        <Button
+            style="@style/NormalBtnStyle.OK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="allSelect"
+            android:text="@string/selectall"/>
+
+        <Button
+            style="@style/NormalBtnStyle.OK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="unSelect"
+            android:text="@string/unselectall"/>
+    </LinearLayout>
 </LinearLayout>

@@ -14,13 +14,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AppLockDBHelper extends SQLiteOpenHelper{
     public AppLockDBHelper(Context context) {
-        /*创建数据库*/
         super(context, AppLockDB.APPLOCK_DATABASE_NAME, null, AppLockDB.VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //创建表
         db.execSQL(AppLockDB.ApplockTable.TABLE_SQL);
     }
 

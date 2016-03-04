@@ -1,19 +1,141 @@
 <resources>
     <string name="app_name">MO安全卫士</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="versionurl">http://192.168.23.1/psversion.json</string>
     <string name="sample_device_admin">手机安全卫士</string>
     <string name="sample_device_admin_description">手机安全卫士为您保驾护航</string>
+    <!--Home部分-->
+    <array name="home_title">
+        <item>手机防盗</item>
+        <item>骚扰拦截</item>
+        <item>软件管家</item>
+        <item>进程管理</item>
+        <item>流量统计</item>
+        <item>手机杀毒</item>
+        <item>缓存清理</item>
+        <item>常用工具</item>
+    </array>
+    <array name="home_title_description">
+        <item>远程定位手机</item>
+        <item>全面拦截骚扰</item>
+        <item>管理您的软件</item>
+        <item>管理运行进程</item>
+        <item>流量一目了然</item>
+        <item>病毒无处藏身</item>
+        <item>系统快如火箭</item>
+        <item>实用工具大全</item>
+    </array>
+    <string name="passwordempyt">密码不能为空</string>
+    <string name="passworderrer">密码错误</string>
+    <string name="confpassworderrer">两次密码不一致</string>
+    <!--手机防盗部分-->
+    <string name="welcome">1.欢迎使用手机防盗</string>
+    <string name="yours">您的手机防盗卫士：</string>
+    <string name="simcard">SIM卡变更报警</string>
+    <string name="gps">GPS追踪</string>
+    <string name="remotelockscreen">远程锁屏</string>
+    <string name="remotewipedate">远程销毁数据</string>
+    <string name="phonecardbind">2.手机卡绑定</string>
+    <string name="phonecardbinddecription">通过绑定手机卡：\n下次手机重启时SIM发生变化，就会发送报警短信</string>
+    <string name="clickbindsimcard">点击绑定/解绑SIM卡</string>
+    <string name="settingsafenumber">3.设置安全号码</string>
+    <string name="safenumberdescription">SIM卡如果发生变化：\n就会发送短信给安全号码</string>
+    <string name="inputsafenumber">请输入安全号码</string>
+    <string name="selectsafenumber">请选择安全号码</string>
+    <string name="activitdevicesadmin">4.激活设备管理员</string>
+    <string name="devicesadmindescription">激活设备管理员：\n可远程锁屏，远程擦除数据</string>
+    <string name="clickactivity">点击激活/取消激活设备管理员</string>
+    <string name="settingfinish">5.恭喜您！设置完成</string>
+    <string name="settingfinishdec">选择开启防盗保护</string>
+    <string name="phonelost">手机防盗</string>
+    <string name="safenumber">安全号码</string>
+    <string name="isopenphonelost">防盗保护是否开启</string>
+    <string name="reinsetting">重新进入设置向导页面</string>
+    <string name="functionintrodution">功能介绍</string>
+    <string name="fungps">GPS追踪：#*location*#</string>
+    <string name="funwipe">远程销毁数据：#*wipeddata*#</string>
+    <string name="funmusic">播放报警音乐：#*alarm*#</string>
+    <string name="funlock">远程锁屏：#*lockscreen*#</string>
+    <string name="back">上一步</string>
+    <string name="next">下一步</string>
+    <!--骚扰拦截-->
+    <string name="blacklist">黑名单管理</string>
+    <string name="loadingdata">加载数据中..</string>
+    <string name="blacklistadd">黑名单添加</string>
+    <string name="blackphonenumber">电话号码</string>
+    <string name="notempty">号码不能为空</string>
+    <string name="selectphonenumber">通讯录选择号码</string>
+    <string name="blacktype">拦截类型</string>
+    <string name="blacktypephone">电话</string>
+    <string name="blacktypesms">短信</string>
+    <string name="blacktypeall">全部</string>
+    <string name="blacklistnumbernoempty">黑名单号码不能为空</string>
+    <string name="changesuccess">修改成功</string>
+    <string name="changefaild">修改失败</string>
+    <string name="deletesuccess">删除成功</string>
+    <string name="deletefaild">删除失败</string>
+    <!--软件管家-->
+    <string name="appmanager">手机应用管理</string>
+    <string name="phonemeoney">手机内存</string>
+    <string name="remainder">剩余:%s</string>
+    <string name="total">总内存:%s</string>
+    <string name="sdcard">SD卡</string>
+    <string name="sdcardapp">SD卡应用</string>
+    <string name="sdcardappcount">SD卡(%s)应用</string>
+    <string name="phoneappcount">手机存储(%s)应用</string>
+    <!--进程管理-->
+    <string name="processmanager">进程管理</string>
+    <string name="processcount">进程数</string>
+    <string name="runningprocess">正在运行N个</string>
+    <string name="processtotal">总进程数NN个</string>
+    <string name="memory">内存</string>
+    <string name="usedmemory">占用内存：</string>
+    <string name="vaildmemory">可用内存</string>
+    <string name="showsystemprocess">显示系统内存</string>
+    <string name="lockscreenautoclean">锁屏自动清理</string>
+    <string name="selectall">全选</string>
+    <string name="unselectall">反选</string>
+    <!--流量统计-->
+    <string name="data">流量统计</string>
+    <string name="rcv">接收:%s</string>
+    <string name="snd">发送:%s</string>
+    <!--手机杀毒-->
+    <string name="antvirus">手机杀毒</string>
+    <string name="yourphonesafe">您的手机很安全</string>
+    <string name="rescan">重新扫描</string>
+    <string name="scanning">扫描中</string>
+    <string name="viruscount">共有%s个病毒</string>
+    <string name="safe">安全</string>
+    <string name="unsafe">危险</string>
+    <!--缓存清理-->
+    <string name="cacheclean">缓存清理</string>
+    <string name="quickscan">快速扫描</string>
+    <string name="onkeyclean">一键清理</string>
+    <string name="cachetotal">占用有%s缓存</string>
+    <string name="cachecount">总有%s缓存</string>
+    <string name="cache">缓存：%s</string>
+    <!--常用工具-->
+    <string name="commontools">常用工具</string>
+    <string name="numberaddress">号码归属地查询</string>
+    <string name="commonnumber">常用号码查询</string>
+    <string name="backupsms">短信备份</string>
+    <string name="recorverysms">短息还原</string>
+    <!--设置-->
+    <string name="setting">手机安全卫士设置</string>
+    <string name="autoupdate">自动更新</string>
+    <string name="autouintercept">自动拦截</string>
+    <string name="numberaddresssetting">归属地设置</string>
+    <string name="numberaddressstyle">归属地风格</string>
 
 
-    <string name="crash_toast_text">Ooooops ! I crashed, but a report has been sent to my developer to help fix the issue !</string>
-    <string name="crash_dialog_title">CrashTest has crashed</string>
-    <string name="crash_dialog_text">An unexpected error occurred forcing the
-    application to stop. Please help us fix this by sending us error data,
-    all you have to do is click OK.</string>
-    <string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
-    <string name="crash_dialog_ok_toast">Thank you !</string>
-    <string name="crash_user_email_label">xxx@xx.com</string>
+    <string name="ok">确定</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="initpassword">密码初始化设置</string>
+    <string name="inputpassword">请输入密码</string>
+    <string name="validatepassword">密码验证</string>
+    <string name="inputchecknumber">请输入要查询的号码</string>
+    <string name="checkout">查询</string>
+    <string name="numberaddressis">号码归属地是</string>
+
 </resources>

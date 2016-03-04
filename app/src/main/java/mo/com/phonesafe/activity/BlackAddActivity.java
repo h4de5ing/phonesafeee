@@ -24,30 +24,19 @@ public class BlackAddActivity extends Activity {
     private static final int CONTACT_CODE_PHONE = 100;
     private static final String TAG = "BlackAddActivity";
     EditText viewById;
-    RadioGroup ba_tyle;
+    RadioGroup ba_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blackall);
-
-        //初始化view
         initView();
-
-//        初始化event
         initEvent();
-
-        //初始化数据
-        initData();
     }
 
     private void initView() {
-
         viewById = (EditText) findViewById(R.id.et_bm_number);
-        ba_tyle = (RadioGroup) findViewById(R.id.rg_ba_type);
-    }
-
-    private void initData() {
+        ba_type = (RadioGroup) findViewById(R.id.rg_ba_type);
     }
 
     /**
@@ -63,7 +52,7 @@ public class BlackAddActivity extends Activity {
             public void onClick(View v) {
                 //进入联系人选取号码中，使用On
                 Intent intent = new Intent(BlackAddActivity.this, ContactActivity2.class);
-                startActivityForResult(intent,CONTACT_CODE_PHONE);
+                startActivityForResult(intent, CONTACT_CODE_PHONE);
             }
         });
 
@@ -77,7 +66,7 @@ public class BlackAddActivity extends Activity {
                     return;
                 }
                 //获取被点击的radio 的ID
-                int checkedId = ba_tyle.getCheckedRadioButtonId();
+                int checkedId = ba_type.getCheckedRadioButtonId();
 
                 int type = BlackBean.TYPE_CALL;
                 //用户选择的类型
@@ -100,11 +89,9 @@ public class BlackAddActivity extends Activity {
                 boolean insert = dao.insert(number, type);
                 if (insert) {
                     Toast.makeText(BlackAddActivity.this, "成功添加黑名单", Toast.LENGTH_SHORT).show();
-
                     finish();
                 } else {
-                    Toast.makeText(BlackAddActivity.this, "添加黑名单失败", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(BlackAddActivity.this, "已经存在,添加黑名单失败", Toast.LENGTH_SHORT).show();
                     //关闭当前页面
                     finish();
                 }
@@ -112,13 +99,13 @@ public class BlackAddActivity extends Activity {
             }
         });
 
-         findViewById(R.id.tb_ba_cancel).setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 //关闭当前页面
-                 finish();
-             }
-         });
+        findViewById(R.id.tb_ba_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //关闭当前页面
+                finish();
+            }
+        });
     }
 
 
@@ -131,7 +118,6 @@ public class BlackAddActivity extends Activity {
                 case Activity.RESULT_OK:
                     //获取数据
                     String number = data.getStringExtra(ContactActivity.KEY_NUMBER);
-
                     Log.i(TAG, "...........number:" + number);
                     viewById.setText(number);
 

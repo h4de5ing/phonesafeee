@@ -1,110 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/titlebarStyle"
-        android:text="手机防盗" />
+        android:text="@string/phonelost"/>
 
-    <!--安全号码-->
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:layout_height="48dp">
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_margin="8dp"
             style="@style/NormalTextViewStyle"
             android:layout_centerVertical="true"
-            android:text="安全号码" />
+            android:layout_margin="8dp"
+            android:text="@string/safenumber"/>
 
         <TextView
             android:id="@+id/tv_sjfd_number"
-            android:layout_margin="8dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             style="@style/NormalTextViewStyle"
-            android:text="123" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            tools:text="123"/>
 
         <View
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:background="@android:color/darker_gray"
-            android:layout_height="0.5dp"/>
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"/>
     </RelativeLayout>
 
-    <!--手机防护开启-->
     <RelativeLayout
         android:id="@+id/rl_sjfd_protect"
-        android:background="@drawable/sjfd_bg_select"
         android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:layout_height="48dp">
+        android:background="@drawable/sjfd_bg_select"
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_centerVertical="true"
             style="@style/NormalTextViewStyle"
+            android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:text="防盗保护是否开启" />
+            android:text="@string/isopenphonelost"/>
 
         <ImageView
             android:id="@+id/iv_setup_icon"
-            android:layout_centerVertical="true"
-            android:layout_margin="8dp"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
             android:src="@mipmap/lock"/>
 
         <View
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:background="@android:color/darker_gray"
-            android:layout_height="0.5dp"/>
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/darker_gray"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_enter_setting"
         android:layout_width="match_parent"
-        android:background="@drawable/sjfd_bg_select"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:background="@drawable/sjfd_bg_select">
+
         <TextView
-            android:layout_margin="8dp"
             style="@style/NormalTextViewStyle"
             android:layout_centerVertical="true"
-            android:text="重新进入设置向导页面" />
+            android:layout_margin="8dp"
+            android:text="@string/reinsetting"/>
     </RelativeLayout>
 
     <TextView
-        android:padding="10dp"
-        android:layout_width="match_parent"
         style="@style/NormalTextViewStyle"
-        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
         android:background="@android:color/darker_gray"
-        android:text="功能介绍" />
-
-    <!--textView功能文本介绍-->
-    <TextView
-        style="@style/SetupTextViewItemStyle"
-        android:text="GPS追踪：#*location*#" />
+        android:padding="10dp"
+        android:text="@string/functionintrodution"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="远程销毁数据：#*wipeddata*#" />
+        android:text="@string/fungps"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="播放报警音乐：#*alarm*#" />
+        android:text="@string/funwipe"/>
 
     <TextView
         style="@style/SetupTextViewItemStyle"
-        android:text="远程锁频：#*lockscreen*#" />
+        android:text="@string/funmusic"/>
 
-
+    <TextView
+        style="@style/SetupTextViewItemStyle"
+        android:text="@string/funlock"/>
 
 </LinearLayout>

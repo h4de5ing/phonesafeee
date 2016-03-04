@@ -60,10 +60,6 @@ public abstract class SjfdSetupBaseActivity extends Activity {
                     preformPre();
                     return true;
                 }
-
-                //不继续分发消费
-//                return false;
-
             }
         });
     }
@@ -93,9 +89,8 @@ public abstract class SjfdSetupBaseActivity extends Activity {
         // enterAnim: 进入的动画, 让进入的activity做动画
         // exitAnim: 退出的动画,让退出的activity做动画
 //        overridePendingTransition(R.anim.pre_enter, R.anim.pre_exit);  水平位移
-        overridePendingTransition(R.anim.pre_enter_rotate, R.anim.pre_exit_rotate);
-
         finish();
+        overridePendingTransition(R.anim.pre_enter_rotate, R.anim.pre_exit_rotate);
     }
 
     /**
@@ -111,8 +106,8 @@ public abstract class SjfdSetupBaseActivity extends Activity {
         // 动画
         // enterAnim: 进入的动画, 让进入的activity做动画
         // exitAnim: 退出的动画,让退出的activity做动画
-        overridePendingTransition(R.anim.next_enter_rotate, R.anim.next_exit_rotate);
         finish();
+        overridePendingTransition(R.anim.next_enter_rotate, R.anim.next_exit_rotate);
     }
 
     /**
@@ -126,10 +121,7 @@ public abstract class SjfdSetupBaseActivity extends Activity {
      * 下一步的点击事件（共同的操作）
      */
     public void ClickNext(View view) {
-
         preformNext();
-
-
     }
 
     /**

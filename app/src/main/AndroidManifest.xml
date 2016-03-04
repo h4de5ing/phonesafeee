@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mo.com.phonesafe">
+<manifest package="mo.com.phonesafe"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <!--任务栈信息获取权限-->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <!--Toast在 Window显示的权限-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <!-- 来电电话拦截 -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!--电话去电监听权限-->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
 
 
     <!-- 手机发送短信的权限 和 广播接收 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.WRITE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
 
     <!-- 手机启动获取广播的权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <!-- GPS -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <!--清理进程的权限-->
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
 
     <!--手机安装快捷图标的权限-->
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
 
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
 
     <application
         android:name=".BaseApplication"
@@ -56,53 +56,55 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!--Home主页-->
         <activity
             android:name=".activity.HomeActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="mo.com.phonesafe" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="mo.com.phonesafe"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SettingActivity"
+        <activity
+            android:name=".activity.SettingActivity"
             android:theme="@style/AppBaseTheme"/>
-        <activity android:name=".activity.SjfdSetupActivity" />
-        <activity android:name=".activity.SjfdSetup1Activity" />
-        <activity android:name=".activity.SjfdSetup2Activity" />
-        <activity android:name=".activity.SjfdSetup3Activity" />
-        <activity android:name=".activity.SjfdSetup4Activity" />
-        <activity android:name=".activity.SjfdSetup5Activity" />
-        <activity android:name=".activity.ContactActivity" />
-        <activity android:name=".activity.ContactActivity2" />
+        <activity android:name=".activity.SjfdSetupActivity"/>
+        <activity android:name=".activity.SjfdSetup1Activity"/>
+        <activity android:name=".activity.SjfdSetup2Activity"/>
+        <activity android:name=".activity.SjfdSetup3Activity"/>
+        <activity android:name=".activity.SjfdSetup4Activity"/>
+        <activity android:name=".activity.SjfdSetup5Activity"/>
+        <activity android:name=".activity.ContactActivity"/>
+        <activity android:name=".activity.ContactActivity2"/>
 
         <!--流量统计-->
-        <activity android:name=".activity.TrafficActivity" />
+        <activity android:name=".activity.TrafficActivity"/>
 
         <!--手机杀毒-->
-        <activity android:name=".activity.AnitVirusActivity" />
+        <activity android:name=".activity.AnitVirusActivity"/>
 
         <!--缓存清理-->
-        <activity android:name=".activity.CacheCleanActivity" />
+        <activity android:name=".activity.CacheCleanActivity"/>
 
         <!--进程管理-->
         <activity android:name=".activity.ProcessManagerActivity"/>
 
         <!--常见号码查询-->
-        <activity android:name=".activity.NormalNumerActivity" />
+        <activity android:name=".activity.NormalNumerActivity"/>
 
         <!-- 黑名单管理 -->
-        <activity android:name=".activity.BlackManagerActivity" />
+        <activity android:name=".activity.BlackManagerActivity"/>
 
         <!-- 黑名单添加 -->
-        <activity android:name=".activity.BlackAddActivity" />
+        <activity android:name=".activity.BlackAddActivity"/>
         <!-- 黑名单更新 -->
-        <activity android:name=".activity.BlackUpdateActivity" />
+        <activity
+            android:name=".activity.BlackUpdateActivity"
+            android:launchMode="singleTask"/>
 
         <!--常用工具-->
         <activity android:name=".activity.CommonToolActivity"/>
@@ -114,27 +116,27 @@
         <activity android:name=".activity.AppManagerActivity"/>
 
         <!--程序锁管理-->
-        <activity android:name=".activity.AppLockManagerAcitivity"/>
+        <activity android:name=".activity.AppLockManagerActivity"/>
 
         <!-- 手机启动广播 -->
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter android:priority="1000">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
 
         <!-- 手机短信广播 -->
         <receiver android:name=".receiver.SmsReceiver">
             <intent-filter android:priority="1000">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
 
         <!-- GPS服务 -->
-        <service android:name=".service.GPSService" />
+        <service android:name=".service.GPSService"/>
 
         <!-- 电话和短信拦截的服务 -->
-        <service android:name=".service.CallSmsInterceptService" />
+        <service android:name=".service.CallSmsInterceptService"/>
 
         <!--电话归属地显示-->
         <service android:name=".service.NumberAddressService"/>
@@ -147,40 +149,42 @@
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
-                android:resource="@xml/device_admin_sample" />
+                android:resource="@xml/device_admin_sample"/>
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
             </intent-filter>
         </receiver>
 
         <!--手机锁屏自动清理进程服务-->
-        <service android:name=".service.AutoCleanService"></service>
+        <service android:name=".service.AutoCleanService"/>
 
         <!--桌面效果据Widget-->
         <receiver android:name=".receiver.ProcessWidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/process_widget_provider" />
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/process_widget_provider"/>
         </receiver>
 
         <!--一键清理广播-->
         <receiver android:name=".receiver.OneKeyCleanReceiver">
             <intent-filter android:priority="1000">
-                <action android:name="mo.com.phonesafe.onekeyclean"></action>
+                <action android:name="mo.com.phonesafe.onekeyclean"/>
             </intent-filter>
 
         </receiver>
 
         <!--一键清理的后台服务-->
-        <service android:name=".service.ProcessService"></service>
+        <service android:name=".service.ProcessService"/>
 
         <!--电子狗服务一-->
-        <service android:name=".service.AppLockDogService" />
+        <service android:name=".service.AppLockDogService"/>
 
         <!--程序锁界面-->
-        <activity android:name=".activity.LockScreenActivity"
+        <activity
+            android:name=".activity.LockScreenActivity"
             android:launchMode="singleInstance"
             />
     </application>

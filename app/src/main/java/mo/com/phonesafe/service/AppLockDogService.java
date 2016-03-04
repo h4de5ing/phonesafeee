@@ -122,7 +122,6 @@ public class AppLockDogService extends Service {
 
                     /*判断应用程序是否已经被临时放行*/
                     if (mFreeDatas.contains(packageName)) {
-//                        放行
                         continue;
                     }
 
@@ -131,9 +130,7 @@ public class AppLockDogService extends Service {
                         //进行拦截，启动程序锁界面
 
                         Intent intent = new Intent(AppLockDogService.this, LockScreenActivity.class);
-                        //这是什么东西 TODO:
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //带数据过去
                         intent.putExtra(PCK_NAME, packageName);
                         startActivity(intent);
                     }

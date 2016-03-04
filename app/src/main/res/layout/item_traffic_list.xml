@@ -1,63 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-        <RelativeLayout
-            android:id="@+id/rl_traffic"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/iv_traffic_item_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:layout_margin="12dp"
-                android:padding="2dp"/>
-            <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_traffic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_traffic_item_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="12dp"
+            android:padding="2dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/iv_traffic_item_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/iv_traffic_item_icon"
-                android:orientation="vertical">
+                android:singleLine="true"
+                android:textSize="18sp"
+                tools:text="App名称"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
                 <TextView
-                    android:id="@+id/tv_item_title"
+                    android:id="@+id/tv_item_rcv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="App名称"
-                    android:textSize="18sp" />
+                    android:text="@string/rcv"
+                    android:textSize="15sp"/>
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/tv_item_snd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
-                    <TextView
-                        android:id="@+id/tv_item_rcv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="接收"
-                        android:textSize="15sp" />
-                    <TextView
-                        android:id="@+id/tv_item_snd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginRight="8dp"
-                        android:singleLine="true"
-                        android:text="发送"
-                        android:textSize="15sp" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:singleLine="true"
+                    android:text="@string/snd"
+                    android:textSize="15sp"/>
 
-                </RelativeLayout>
+            </RelativeLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

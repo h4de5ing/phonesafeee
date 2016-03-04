@@ -30,9 +30,9 @@ import mo.com.phonesafe.view.SegementView;
  */
 
 
-public class AppLockManagerAcitivity extends Activity {
+public class AppLockManagerActivity extends Activity {
 
-    private static final String TAG = "AppLockManagerAcitivity";
+    private static final String TAG = "AppLockManagerActivity";
     private ListView lv_unlock;
     private ListView lv_lock;
     private SegementView sv_lock;
@@ -67,7 +67,7 @@ public class AppLockManagerAcitivity extends Activity {
         lv_lock.setAdapter(mLockAdatper);
         lv_unlock.setAdapter(mUnlockAdatper);
 
-        mDao = new AppLockDao(AppLockManagerAcitivity.this);
+        mDao = new AppLockDao(AppLockManagerActivity.this);
 
         /*使用线程获取数据*/
         new AsyncTask<Void, Void, Void>() {
@@ -85,7 +85,7 @@ public class AppLockManagerAcitivity extends Activity {
             @Override
             protected Void doInBackground(Void... params) {
                 //获取所有有运行图标的App程序信息列表
-                List<AppBean> list = AppProvider.getAllLauncherApps(AppLockManagerAcitivity.this);
+                List<AppBean> list = AppProvider.getAllLauncherApps(AppLockManagerActivity.this);
 
                 listDataLock = new ArrayList<AppBean>();
                 listDataUnLock = new ArrayList<AppBean>();
@@ -212,29 +212,29 @@ public class AppLockManagerAcitivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHodler hodler = null;
+            ViewHolder holder = null;
             if (convertView == null) {
-                convertView = View.inflate(AppLockManagerAcitivity.this, R.layout.item_app_lock, null);
-                hodler = new ViewHodler();
-                hodler.mIcon = (ImageView) convertView.findViewById(R.id.iv_item_applock_icon);
-                hodler.mAppName = (TextView) convertView.findViewById(R.id.tv_app_name);
-                hodler.mLock = (ImageView) convertView.findViewById(R.id.lv_item_lock);
-                convertView.setTag(hodler);
+                convertView = View.inflate(AppLockManagerActivity.this, R.layout.item_app_lock, null);
+                holder = new ViewHolder();
+                holder.mIcon = (ImageView) convertView.findViewById(R.id.iv_item_applock_icon);
+                holder.mAppName = (TextView) convertView.findViewById(R.id.tv_app_name);
+                holder.mLock = (ImageView) convertView.findViewById(R.id.lv_item_lock);
+                convertView.setTag(holder);
             } else {
-                hodler = (ViewHodler) convertView.getTag();
+                holder = (ViewHolder) convertView.getTag();
             }
             final AppBean bean = (AppBean) getItem(position);
-            hodler.mIcon.setImageDrawable(bean.icon);
-            hodler.mAppName.setText(bean.name);
+            holder.mIcon.setImageDrawable(bean.icon);
+            holder.mAppName.setText(bean.name);
             if (mIsLock) {
-                hodler.mLock.setImageResource(R.drawable.app_unlock_selector);
+                holder.mLock.setImageResource(R.drawable.app_unlock_selector);
             } else {
-                hodler.mLock.setImageResource(R.drawable.app_lock_selector);
+                holder.mLock.setImageResource(R.drawable.app_lock_selector);
             }
 
             final View view = convertView;
             //监听点击枷锁图标的事件
-            hodler.mLock.setOnClickListener(new View.OnClickListener() {
+            holder.mLock.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     //设置标记，防止点击过导致的Bug
@@ -276,7 +276,7 @@ public class AppLockManagerAcitivity extends Activity {
                                     mUnlockAdatper.notifyDataSetChanged();
                                     mLockAdatper.notifyDataSetChanged();
                                 } else {
-                                    Toast.makeText(AppLockManagerAcitivity.this, "解锁失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AppLockManagerActivity.this, "解锁失败", Toast.LENGTH_SHORT).show();
                                 }
                                 v.setTag(false);
                             }
@@ -317,7 +317,7 @@ public class AppLockManagerAcitivity extends Activity {
                                     mUnlockAdatper.notifyDataSetChanged();
                                     mLockAdatper.notifyDataSetChanged();
                                 } else {
-                                    Toast.makeText(AppLockManagerAcitivity.this, "上锁失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AppLockManagerActivity.this, "上锁失败", Toast.LENGTH_SHORT).show();
                                 }
                                 v.setTag(false);
                             }
@@ -334,7 +334,7 @@ public class AppLockManagerAcitivity extends Activity {
             return convertView;
         }
     }
-    private static class ViewHodler {
+    private static class ViewHolder {
         ImageView mIcon;
         ImageView mLock;
         TextView mAppName;

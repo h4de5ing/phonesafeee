@@ -1,24 +1,21 @@
 package mo.com.phonesafe.activity;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,6 @@ import mo.com.phonesafe.tools.Constants;
 
 
 public class HomeActivity extends Activity implements AdapterView.OnItemClickListener {
-    private static final String TAG = "HomeActivity";
     ImageView home_icon;
     GridView home_gridview;
     List<HomeBean> mDatas;
@@ -44,10 +40,8 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private ImageView iv_ui3;
     private ObjectAnimator oa2;
     private ObjectAnimator oa3;
-    private final static String[] TITLES = new String[]{"手机防盗", "骚扰拦截",
-            "软件管家", "进程管理", "流量统计", "手机杀毒", "缓存清理", "常用工具"};
-    private final static String[] DESCS = new String[]{"远程定位手机", "全面拦截骚扰",
-            "管理您的软件", "管理运行进程", "流量一目了然", "病毒无处藏身", "系统快如火箭", "工具大全"};
+    private String[] TITLES;
+    private String[] DESCRIPTION;
     private final static int[] ICONS = new int[]{
             R.mipmap.lj, R.mipmap.cm,
             R.mipmap.oh, R.mipmap.mm,
@@ -55,26 +49,19 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             R.mipmap.qh, R.mipmap.lh,
     };
     private TextView tv_precent;
-    private Animation bottnm_animation;
-    private HomeAdapter mAdapter;
+    private InputMethodManager mIm;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityi_home2);
-        //初始化View
+        TITLES = getResources().getStringArray(R.array.home_title);
+        DESCRIPTION = getResources().getStringArray(R.array.home_title_description);
         initView();
-
-        //创建动画
         initCreatAnim();
-
-        //加载事件
         initEvent();
-
-        //加载数据
         initDate();
-
     }
 
     @Override
@@ -87,9 +74,9 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 98; i++) {
+                for (int i = 0; i <= 100; i++) {
                     try {
-                        Thread.sleep(25);
+                        Thread.sleep(30);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -107,44 +94,18 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     }
 
     private void initCreatAnim() {
-
         //透明圆圈动画
         oa2 = ObjectAnimator.ofFloat(iv_ui2, "rotation", new float[]{0, 45, 270, 360});
         oa2.setDuration(1500);
         oa2.setRepeatCount(1);
         oa2.setRepeatMode(ObjectAnimator.REVERSE);
-        oa2.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-        });
-
-        //外边园动画
+        //外边圆动画
         oa3 = ObjectAnimator.ofFloat(iv_ui3, "rotation", new float[]{360, 20});
         oa3.setDuration(1500);
         oa3.setRepeatCount(1);
         oa3.setRepeatMode(ObjectAnimator.REVERSE);
-
-        //底部上下移动效果
-        bottnm_animation = AnimationUtils.loadAnimation(this,
-                R.anim.home_bottom_ranslate);
     }
 
-    /**
-     * 加载事件
-     */
     private void initEvent() {
         home_gridview.setOnItemClickListener(this);
 
@@ -156,42 +117,27 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         });
     }
 
-    /**
-     * 加载数据
-     */
     private void initDate() {
 
         mDatas = new ArrayList<HomeBean>();
         for (int i = 0; i < ICONS.length; i++) {
             HomeBean homebean = new HomeBean();
             homebean.title = TITLES[i];
-            homebean.desc = DESCS[i];
+            homebean.desc = DESCRIPTION[i];
             homebean.icon = ICONS[i];
             mDatas.add(homebean);
         }
-        mAdapter = new HomeAdapter();
-        home_gridview.setAdapter(mAdapter);
+        home_gridview.setAdapter(new HomeAdapter());
     }
 
-
-    /**
-     * 点击设置
-     *
-     * @param view
-     */
     public void clickSetting(View view) {
         Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
         startActivity(intent);
-
     }
 
-    /**
-     * 初始化View
-     */
     private void initView() {
         home_icon = (ImageView) findViewById(R.id.iv_home_icon);
         home_gridview = (GridView) findViewById(R.id.gv_home_gridview);
-
 
         iv_ui = (ImageView) findViewById(R.id.iv_ui_360);
         iv_ui2 = (ImageView) findViewById(R.id.iv_ui2_360);
@@ -202,29 +148,24 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
 
     /**
-     * 监听主界面的点击事件
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
+     * 主界面Item的点击事件
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                //进入手机防盗界面  先设置跳过进入密码设置的界面
-                /*判断用户是否已经开启防盗功能
-                */
                 performSjfd();
                 break;
             case 1:
+                /*黑名单管理*/
                 preformNextActivity(BlackManagerActivity.class);
                 break;
             case 2:
+                /*软件管理*/
                 preformNextActivity(AppManagerActivity.class);
                 break;
             case 3:
+                /*进程管理*/
                 preformNextActivity(ProcessManagerActivity.class);
                 break;
             case 4:
@@ -240,6 +181,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 preformNextActivity(CacheCleanActivity.class);
                 break;
             case 7:
+                /*常用工具*/
                 preformNextActivity(CommonToolActivity.class);
                 break;
             default:
@@ -250,7 +192,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     /**
      * 到下一个界面
      *
-     * @param clazz
+     * @param clazz 类名
      */
     private void preformNextActivity(Class clazz) {
         Intent intent = new Intent(HomeActivity.this, clazz);
@@ -261,30 +203,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      * 进入手机防盗界面
      */
     private void performSjfd() {
-        //第一次使用此功能---没有密码设置
         String pwd = PreferenceUtils.getString(this, Constants.SJFD_PWD);
         if (TextUtils.isEmpty(pwd)) {
-            //如果为空，表示是用户第一次进入使用,
-            Log.i(TAG, "提示用户初始化代码");
-            // 显示Dialog,提示用户初始化密码
             showInitPwdDialog();
         } else {
-            // 显示Dialog,提示用户输入密码
-            Log.i(TAG, "提示用户输入密码");
             showEnterPwdDialog();
         }
-    }
-
-    /*进入手机防盗设置向导界面*/
-    private void loadSjfd1Activity() {
-        Intent intent = new Intent(this, SjfdSetup1Activity.class);
-        startActivity(intent);
-    }
-
-    /*进入手机防盗界面*/
-    private void loadSjfdActivity() {
-        Intent intent = new Intent(this, SjfdSetupActivity.class);
-        startActivity(intent);
     }
 
 
@@ -292,6 +216,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      * 弹出dialog.提示用户输入密码,
      */
     private void showEnterPwdDialog() {
+        mIm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View view = View.inflate(this, R.layout.dialog_enter_pwd, null);
         builder.setView(view);
@@ -299,52 +224,38 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
 
         dialog.show();
 
-        //点击确定
         view.findViewById(R.id.dialog_btn_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //获取用户输入的密码
                 EditText EtPwd = (EditText) view.findViewById(R.id.dialog_et_pwd);
+                mIm.showSoftInput(EtPwd, 0);
                 String password = EtPwd.getText().toString().trim();
                 if (TextUtils.isEmpty(password)) {
-                    //用户输入的密码为空
-                    //Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                    EtPwd.setError("密码不能为空");
+                    EtPwd.setError(getString(R.string.passwordempyt)); //密码不能为空
                     return;
                 }
                 String Sjfd_pwd = PreferenceUtils.getString(HomeActivity.this, Constants.SJFD_PWD);
-
-                //判断用户输入的密码和初始密码是否一致
                 if (!password.equals(Sjfd_pwd)) {
-                    //用户输入密码不一致
-                    //Toast.makeText(HomeActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-                    EtPwd.setError("密码错误");
+                    EtPwd.setError(getString(R.string.passworderrer)); //密码错误
                     return;
                 }
 
-                //关闭Dialog
                 dialog.dismiss();
 
-                //如果用户是
-                // 第一次进入设置页面，显示设置向导
-                // 进入手机防盗页面
+                //如果用户是 第一次进入设置页面，显示设置向导进入手机防盗页面
 
                 //判断用户是否已经开启防盗功能
                 boolean sjfd_protect = PreferenceUtils.getBoolean(HomeActivity.this, Constants.SJFD_PROTECT);
-                if (sjfd_protect) {
-                    // 已经开启防盗功能，直接进入到SjfdSetupActivity的设置界面中
-                    loadSjfdActivity();
-                } else {
-
-                    //进入设置向导界面
-                    loadSjfd1Activity();
+                if (sjfd_protect) {// 已经开启防盗功能，直接进入到SjfdSetupActivity的设置界面中
+                    preformNextActivity(SjfdSetup1Activity.class);
+                } else {//进入设置向导界面
+                    preformNextActivity(SjfdSetupActivity.class);
                 }
             }
         });
         view.findViewById(R.id.dialog_btn_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //关闭dialog
                 dialog.dismiss();
             }
         });
@@ -357,7 +268,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
      */
     private void showInitPwdDialog() {
 
-        //向老师咨询Dialog的显示风格为什么不样
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final View view = View.inflate(this, R.layout.dialog_init_pwd, null);
         builder.setView(view);
@@ -372,45 +282,35 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             public void onClick(View v) {
                 EditText mPwd = (EditText) view.findViewById(R.id.dialog_et_pwd);
                 EditText mPwdConfirm = (EditText) view.findViewById(R.id.dialog_et_confirm);
-                //获取用户输入的密码和确认密码
                 String password = mPwd.getText().toString().trim();
                 String confirm = mPwdConfirm.getText().toString().trim();
 
                 //判断用户输入的密码是否为空
                 if (TextUtils.isEmpty(password)) {
-                    //用户输入的密码为空
-                    //让用户的输入框获取焦点
                     mPwd.requestFocus();
-                    //Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
-                    mPwd.setError("密码不能为空");
+                    mPwd.setError(getString(R.string.passwordempyt));
                     return;
                 }
                 // 判断用户输入的确认密码是否为空
                 if (TextUtils.isEmpty(confirm)) {
-                    //用户输入的确认密码为空
-                    //让用户的输入框获取焦点
                     mPwdConfirm.requestFocus();
-                    //Toast.makeText(HomeActivity.this, "确认密码不能为空", Toast.LENGTH_SHORT).show();
-                    mPwdConfirm.setError("密码不能为空");
+                    mPwdConfirm.setError(getString(R.string.passwordempyt));
                     return;
                 }
 
                 //判断用户输入的密码和确认密码是否一致
                 if (!password.equals(confirm)) {
-                    //mPwd.requestFocus();
-                    //Toast.makeText(HomeActivity.this, "密码不一致", Toast.LENGTH_SHORT).show();
-                    mPwdConfirm.setError("两次密码不一致");
+                    mPwdConfirm.requestFocus();
+                    mPwdConfirm.setError(getString(R.string.confpassworderrer));
                     return;
                 }
 
-                //用户输入密码和确认密码是一致的
                 //将用户输入的密码保存到配置文件中
                 PreferenceUtils.putString(HomeActivity.this, Constants.SJFD_PWD, password);
 
-
                 //进入手机防盗向导页面
-                loadSjfd1Activity();
-                //Log.i(TAG, "mpwd:" + password + "............mPwdConfirm:" + confirm);
+                //loadSjfd1Activity();
+                preformNextActivity(SjfdSetupActivity.class);
                 dialog.dismiss();
             }
         });
@@ -419,7 +319,6 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                //Log.i(TAG, "用户取消输入Cancel");
             }
         });
     }
@@ -431,18 +330,12 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
     private class HomeAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            if (mDatas != null) {
-                return mDatas.size();
-            }
-            return 0;
+            return mDatas != null ? mDatas.size() : 0;
         }
 
         @Override
         public Object getItem(int position) {
-            if (mDatas != null) {
-                return mDatas.get(position);
-            }
-            return null;
+            return mDatas != null ? mDatas.get(position) : null;
         }
 
         @Override
@@ -455,16 +348,17 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
             if (convertView == null) {
                 convertView = View.inflate(HomeActivity.this, R.layout.item_home, null);
             }
-            ImageView home_itme_icon = (ImageView) convertView.findViewById(R.id.iv_home_item_icon);
+            ImageView home_item_icon = (ImageView) convertView.findViewById(R.id.iv_home_item_icon);
             TextView home_item_title = (TextView) convertView.findViewById(R.id.tv_home_item_title);
             TextView home_item_desc = (TextView) convertView.findViewById(R.id.tv_home_item_desc);
 
             HomeBean homebean = mDatas.get(position);
 
-            home_itme_icon.setImageResource(homebean.icon);
+            home_item_icon.setImageResource(homebean.icon);
             home_item_desc.setText(homebean.desc);
             home_item_title.setText(homebean.title);
             return convertView;
         }
     }
+
 }

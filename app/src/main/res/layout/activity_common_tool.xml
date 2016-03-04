@@ -1,12 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:mo="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:mo="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
         style="@style/titlebarStyle"
-        android:text="常用工具类" />
+        android:text="@string/commontools"/>
 
     <mo.com.phonesafe.view.NormalItemView
         android:id="@+id/si_address_query"
@@ -17,7 +17,7 @@
         mo:nivGo="true"
         mo:nivIcon="@drawable/bd"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="号码归属地查询" />
+        mo:nivTile="@string/numberaddress"/>
 
     <mo.com.phonesafe.view.NormalItemView
         android:id="@+id/si_normal_query"
@@ -28,7 +28,7 @@
         mo:nivGo="true"
         mo:nivIcon="@drawable/ic_share"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="常用号码查询" />
+        mo:nivTile="@string/commonnumber"/>
 
     <mo.com.phonesafe.view.NormalItemView
         android:id="@+id/si_sms_backup"
@@ -39,7 +39,7 @@
         mo:nivGo="false"
         mo:nivIcon="@drawable/cd"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="短信备份" />
+        mo:nivTile="@string/backupsms"/>
 
     <mo.com.phonesafe.view.NormalItemView
         android:id="@+id/si_sms_restore"
@@ -50,7 +50,7 @@
         mo:nivGo="false"
         mo:nivIcon="@drawable/qc"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="短信还原" />
+        mo:nivTile="@string/recorverysms"/>
 
 
     <mo.com.phonesafe.view.NormalItemView
@@ -62,8 +62,7 @@
         mo:nivGo="true"
         mo:nivIcon="@drawable/ad"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="程序锁管理" />
-
+        mo:nivTile="程序锁管理"/>
 
 
     <mo.com.phonesafe.view.NormalItemView
@@ -75,17 +74,17 @@
         mo:nivGo="true"
         mo:nivIcon="@drawable/fd"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="开启电子狗服务" />
+        mo:nivTile="开启电子狗服务"/>
 
     <mo.com.phonesafe.view.SettingItemView
-        android:layout_marginTop="8dp"
         android:id="@+id/siv_open_dog"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        mo:sivToggle="true"
-        mo:sivTitle="开启电子狗"
+        android:layout_marginTop="8dp"
         mo:paddingEnd="18dp"
-        mo:sivBackground="purple">
+        mo:sivBackground="purple"
+        mo:sivTitle="开启电子狗"
+        mo:sivToggle="true">
     </mo.com.phonesafe.view.SettingItemView>
 
 </LinearLayout>
