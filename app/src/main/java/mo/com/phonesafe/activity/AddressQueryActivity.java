@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.dao.AddressDao;
@@ -19,6 +18,7 @@ import mo.com.phonesafe.dao.AddressDao;
  * 号码归属地Activity
  */
 public class AddressQueryActivity extends Activity {
+    private static final String TAG = "AddressQueryActivity";
 
     private EditText et_number;
     private Button bt_ok;
@@ -28,11 +28,7 @@ public class AddressQueryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_query);
-
-        //初始化Vie
         initView();
-
-        //事件的监听
         initEvent();
     }
 
@@ -45,7 +41,7 @@ public class AddressQueryActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(AddressQueryActivity.this,CommonToolActivity.class);
+        Intent intent = new Intent(AddressQueryActivity.this, CommonToolActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.pre_enter, R.anim.pre_exit);
         super.onBackPressed();
@@ -60,19 +56,25 @@ public class AddressQueryActivity extends Activity {
                 if (TextUtils.isEmpty(number)) {
                     Animation shake = AnimationUtils.loadAnimation(AddressQueryActivity.this, R.anim.shake);
                     et_number.startAnimation(shake);
-
-                    Toast.makeText(AddressQueryActivity.this, "号码不能为空", Toast.LENGTH_SHORT).show();
+                    et_number.setError("号码不能为空");
                     return;
                 }
+/*                String url = "http://www.gpsspg.com/phone/?q=" + number;
+                OkHttpClientManager.getAsyn(url, new OkHttpClientManager.ResultCallback<String>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        tv_address.setText(response);
+                    }
+                });*/
+
                 AddressDao dao = new AddressDao();
                 String address = dao.getAddress(AddressQueryActivity.this, number);
-                if (address != null) {
-
-
-                    tv_address.setText("号码归属地为："+address);
-                } else {
-                    tv_address.setText("您输入的不是地球的手机号码");
-                }
+                    tv_address.setText("号码归属地为：" + address);
             }
         });
 

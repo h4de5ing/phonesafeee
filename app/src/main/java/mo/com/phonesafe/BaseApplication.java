@@ -3,6 +3,8 @@ package mo.com.phonesafe;
 import android.app.Application;
 import android.util.Log;
 
+import com.baidu.apistore.sdk.ApiStoreSDK;
+
 
 /**
  * 作者：MoMxMo on 2015/9/16 19:07

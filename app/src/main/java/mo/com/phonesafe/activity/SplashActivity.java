@@ -59,28 +59,19 @@ public class SplashActivity extends Activity {
     private int mCurrentPreset = 1;    //默认的闪动方式
     private ShimmerFrameLayout mShimmerViewContainer;   //布局的闪动对象
     TextView tv_app_version;    //显示版本名称
-    int mCurrentversionCode;    //版本号
+    int mCurrentVersionCode;    //版本号
     VersionMessage versionMessage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //界面View
         initView();
-        //数据model,检测版本更新
         initData();
-        //启动动画
         startAnimation();
-
-        //复制常见号码到files文件下
-        copyCommonNormalPhone();
-
-        //解压号码归属地数据库
-        unZipAddressDB();
-
-        //复制病毒库到files文件夹下
-        copyAnitVirusDB();
+        copyCommonNormalPhone();//复制常见号码到files文件下
+        unZipAddressDB();//解压号码归属地数据库
+        copyAnitVirusDB();//复制病毒库到files文件夹下
 
         // 生成快捷图标
         //
@@ -96,14 +87,9 @@ public class SplashActivity extends Activity {
         if (!flag) {
             Intent intent = new Intent();
             intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-            /* icon，name，点击功能  */
-            // name
             intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士");
-            // icon 图标显示
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                    R.mipmap.mo);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.mo);
             intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);
-            // 点击的意图
             Intent clickIntent = new Intent(this, HomeActivity.class);
             clickIntent.setAction("mo.com.phonesafe");
             intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, clickIntent);
@@ -195,23 +181,13 @@ public class SplashActivity extends Activity {
         }
     }
 
-    /**
-     * 初始化界面
-     */
     private void initView() {
-
-        //布局文件
         setContentView(R.layout.activity_splash);
-        //动态对象布局
         mShimmerViewContainer = (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
-
         tv_app_version = (TextView) findViewById(R.id.tv_app_version);
 
     }
 
-    /**
-     * 进入主界面
-     */
     private void loadHome() {
         //等待一段时间进入
         //延时执行任务
@@ -219,16 +195,11 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 //主线程中执行
-
                 Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                 startActivity(intent);
-
-                //关闭自己
                 finish();
-
             }
         }, 1500);
-
 
     }
 
@@ -259,7 +230,7 @@ public class SplashActivity extends Activity {
             tv_app_version.setText(versionName);
 
             //当前版本号
-            mCurrentversionCode = PackageInfoUtil.getVersionCode(SplashActivity.this);
+            mCurrentVersionCode = PackageInfoUtil.getVersionCode(SplashActivity.this);
 
             //开启线程去访问网络，获取版本信息
             //判断用户设置了自动更新
@@ -327,7 +298,6 @@ public class SplashActivity extends Activity {
         builder.setNegativeButton("稍后再说", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 //进入主页面
                 loadHome();
             }
@@ -521,7 +491,6 @@ public class SplashActivity extends Activity {
             msg.sendToTarget();
             e.printStackTrace();
         } finally {
-
             //记得一定要关闭网络，否则会出现异常
             client.close();
         }

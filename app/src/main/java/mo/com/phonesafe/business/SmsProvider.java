@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -16,7 +17,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import mo.com.phonesafe.bean.SmsBean;
@@ -78,7 +82,9 @@ public class SmsProvider {
                 BufferedReader in = null;
                 try {
                     //获取流，使用Gson解析json文本
-                    File file = new File(context.getFilesDir(),"sms_backup.json");
+                    //SystemClock.currentThreadTimeMillis();
+                    String smsbackup=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(Calendar.getInstance().getTimeInMillis()));
+                    File file = new File(context.getFilesDir(),smsbackup+".json");
                     in = new BufferedReader(new FileReader(file));
                     String json = in.readLine();
                     Gson gson = new Gson();
@@ -138,7 +144,6 @@ public class SmsProvider {
      * 备份短信
      */
     public static  void backup(final Context context, final OnBackUpListener listener) {
-
         //这里使用安卓中提供的的线程方式处理（Google建议使用这种方式）
 
         new AsyncTask<Void, Integer, Boolean > (){
@@ -148,7 +153,6 @@ public class SmsProvider {
                 super.onPreExecute();
             }
 
-            //执行耗时操做（子线程中执行）
             @Override
             protected Boolean doInBackground(Void... params) {
                 //数据的加载到json格式文件中(使用内容提供者获取短信数据)
@@ -194,7 +198,8 @@ public class SmsProvider {
                     String json = gson.toJson(list);
 
                     //保存备份文件的位置在安装包下的files文件夹
-                    File file = new File(context.getFilesDir(),"sms_backup.json");
+                    String smsbackup=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(Calendar.getInstance().getTimeInMillis()));
+                    File file = new File(context.getFilesDir(),smsbackup+".json");
 
                     FileOutputStream fos = null;
                     try {

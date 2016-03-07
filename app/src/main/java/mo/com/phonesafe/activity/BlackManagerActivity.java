@@ -33,10 +33,10 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
     public static final String BLACK_NUMBER = "black_number";
     public static final String BLACK_TYPE = "black_type";
     private static final int REQUEST_CODE_UPDATE = 100;
-    private ImageView lm_ivon;
+    private ImageView lm_icon;
     private ListView bm_list;
-    private List<BlackBean> listdata;
-    private BlackListAdater listAdater;
+    private List<BlackBean> mListData;
+    private BlackListAdapter listAdapter;
     private LinearLayout pb_load;
     private BlackDao blackDao;
     private int pageSize = 20;
@@ -53,8 +53,63 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
 
     }
 
+    private void initView() {
+        lm_icon = (ImageView) findViewById(R.id.iv_lm_icon);
+        bm_list = (ListView) findViewById(R.id.lv_bm_list);
+        pb_load = (LinearLayout) findViewById(R.id.pb_bm_load);
+
+        /*设置加载进度的样式图片*/
+
+    }
+
+    private void initData() {
+
+        //避免删除的时候  重新常见Adapter
+        if (listAdapter == null) {
+            listAdapter = new BlackListAdapter();
+            bm_list.setAdapter(listAdapter);
+        } else {
+            listAdapter.notifyDataSetChanged();
+        }
+        blackDao = new BlackDao(BlackManagerActivity.this);
+
+        //显示加载的
+        pb_load.setVisibility(View.VISIBLE);
+
+        /*使用线程去加载数据*/
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //获取所有的黑名单
+                // mListData = blackDao.queryAll();
+
+                //分页参训
+                mListData = blackDao.querySize(pageSize, 0);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //主线程中操作UI
+                        pb_load.setVisibility(View.GONE);
+                        listAdapter.notifyDataSetChanged();
+                        //当listview为空的时候，可以显示指定的View
+                        bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
+                        //刷新完数据之后
+                        isLoading = false;
+                    }
+                });
+            }
+        }).start();
+
+
+    }
+
     private void initEvent() {
-        lm_ivon.setOnClickListener(new View.OnClickListener() {
+        lm_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*进入黑名单添加界面*/
@@ -91,7 +146,7 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
     }
 
     private void loadMore() {
-        if (listdata == null) {//数据为空的时候，禁止滑动刷新
+        if (mListData == null) {//数据为空的时候，禁止滑动刷新
             return;
         }
 
@@ -105,8 +160,7 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
         int currentlast = bm_list.getLastVisiblePosition();    //当前listview最后的位置是
 
         //当滑动到底部的时候（底部位置可见的时候）
-        if (currentlast == listAdater.getCount() - 1) {
-            //Log.i(TAG, "加载更多数据。。。。。。");
+        if (currentlast == listAdapter.getCount() - 1) {
 
             //显示加载进度
             pb_load.setVisibility(View.VISIBLE);
@@ -121,7 +175,7 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
                         e.printStackTrace();
                     }
                     //分页查询加载黑名单
-                    final List<BlackBean> list = blackDao.querySize(pageSize, listdata.size());
+                    final List<BlackBean> list = blackDao.querySize(pageSize, mListData.size());
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -133,10 +187,10 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
                                 hasMore = false;
                             }
 
-                            listdata.addAll(list);
+                            mListData.addAll(list);
                             //主线程中操作UI
                             pb_load.setVisibility(View.GONE);
-                            listAdater.notifyDataSetChanged();
+                            listAdapter.notifyDataSetChanged();
                             //当listview为空的时候，可以显示指定的View
                             bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
                         }
@@ -149,83 +203,16 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
         }
     }
 
-    private void initData() {
-
-        //避免删除的时候  重新常见Adapter
-        if (listAdater == null) {
-            listAdater = new BlackListAdater();
-            bm_list.setAdapter(listAdater);
-        } else {
-            listAdater.notifyDataSetChanged();
-        }
-        blackDao = new BlackDao(BlackManagerActivity.this);
-
-        //显示加载的
-        pb_load.setVisibility(View.VISIBLE);
-
-        /*使用线程去加载数据*/
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                //获取所有的黑名单
-                // listdata = blackDao.queryAll();
-
-                //分页参训
-                listdata = blackDao.querySize(pageSize, 0);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //主线程中操作UI
-                        pb_load.setVisibility(View.GONE);
-                        listAdater.notifyDataSetChanged();
-                        //当listview为空的时候，可以显示指定的View
-                        bm_list.setEmptyView(findViewById(R.id.iv_bm_icon_empty));
-                        //刷新完数据之后
-                        isLoading = false;
-                    }
-                });
-            }
-        }).start();
-
-
-    }
-
-    private void initView() {
-        lm_ivon = (ImageView) findViewById(R.id.iv_lm_icon);
-        bm_list = (ListView) findViewById(R.id.lv_bm_list);
-        pb_load = (LinearLayout) findViewById(R.id.pb_bm_load);
-
-        /*设置加载进度的样式图片*/
-
-    }
-
-    /**
-     * 点击进入修改界面
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //Log.i(TAG, "onItemSelected 当前点击的是：" + position);
         //点击进入更新界面
         Intent intent = new Intent(BlackManagerActivity.this, BlackUpdateActivity.class);
-
-        //获取当前号码
-        BlackBean blackBean = listdata.get(position);
-
-        //将当前号码发送到下一个界面
+        BlackBean blackBean = mListData.get(position);
         intent.putExtra(BLACK_NUMBER, blackBean.number);
         intent.putExtra(BLACK_TYPE, blackBean.type);
 
-        //优化，使用result放回的方式，将更改的数据从在内存中添加，不用再去搜索数据库
+        //使用result放回的方式，将更改的数据从在内存中添加，不用再去搜索数据库
         startActivityForResult(intent, REQUEST_CODE_UPDATE);
     }
 
@@ -239,24 +226,27 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        listdata = blackDao.queryAll();
-        listAdater.notifyDataSetChanged();
+        mListData = blackDao.queryAll();
+        if (mListData != null) {
+            listAdapter.notifyDataSetChanged();
+        }
+        //listAdapter.notifyDataSetChanged();
     }
 
-    private class BlackListAdater extends BaseAdapter {
+    private class BlackListAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            if (listdata != null) {
-                return listdata.size();
+            if (mListData != null) {
+                return mListData.size();
             }
             return 0;
         }
 
         @Override
         public Object getItem(int position) {
-            if (listdata != null) {
-                return listdata.get(position);
+            if (mListData != null) {
+                return mListData.get(position);
             }
             return null;
         }
@@ -281,7 +271,7 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
 
             holder = (ViewHolder) convertView.getTag();
 
-            final BlackBean blackBean = listdata.get(position);
+            final BlackBean blackBean = mListData.get(position);
 
 
             holder.item_number.setText(blackBean.number);
@@ -311,15 +301,15 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
                         Toast.makeText(BlackManagerActivity.this, getString(R.string.deletesuccess), Toast.LENGTH_SHORT).show();
 
                         //从内容中移除，不再查找数据库
-                        listdata.remove(position);
+                        mListData.remove(position);
 
                         //删除一条添加一条
-                        List<BlackBean> list = blackDao.querySize(1, listAdater.getCount());
+                        List<BlackBean> list = blackDao.querySize(1, listAdapter.getCount());
 
                         //添加到数据内存中
-                        listdata.addAll(list);
+                        mListData.addAll(list);
 
-                        listAdater.notifyDataSetChanged();
+                        listAdapter.notifyDataSetChanged();
 
                     } else {
                         Toast.makeText(BlackManagerActivity.this, getString(R.string.deletefaild), Toast.LENGTH_SHORT).show();

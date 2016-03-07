@@ -18,7 +18,7 @@ import mo.com.phonesafe.view.SettingItemView;
 /**
  * 常用工具Activity
  */
-public class CommonToolActivity extends Activity  {
+public class CommonToolActivity extends Activity {
 
     private static final String TAG = "CommonToolActivity";
     private NormalItemView ct_address_que;
@@ -34,7 +34,6 @@ public class CommonToolActivity extends Activity  {
         setContentView(R.layout.activity_common_tool);
         initView();
         initEvent();
-
     }
 
     private void initEvent() {
@@ -122,12 +121,13 @@ public class CommonToolActivity extends Activity  {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick 开始还原短信");
+                startActivity(new Intent(CommonToolActivity.this, ViewBackupSmsActivity.class));
 
                 //UI进度的显示
-                final ProgressDialog dialog = new ProgressDialog(CommonToolActivity.this);
-                dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);   //设置进度条的显示风格样式
-                dialog.setCanceledOnTouchOutside(false);    //设置外侧获取不到焦点
-                dialog.show();
+                //final ProgressDialog dialog = new ProgressDialog(CommonToolActivity.this);
+                //dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);   //设置进度条的显示风格样式
+                //dialog.setCanceledOnTouchOutside(false);    //设置外侧获取不到焦点
+                //dialog.show();
 
                 //数据的还原 真机测试权限短信还原代码 TODO
                 /*SmsProvider.restore(CommonToolActivity.this, new SmsProvider.onRestoreListener() {

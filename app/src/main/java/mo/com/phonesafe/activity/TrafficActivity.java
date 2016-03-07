@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.TrafficBean;
+import mo.com.phonesafe.tools.GZIPUtils;
 
 /**
  * 作者：MoMxMo on 2015/9/15 14:34
@@ -36,7 +39,6 @@ import mo.com.phonesafe.bean.TrafficBean;
  */
 
 public class TrafficActivity extends Activity {
-
 
     private static final String TAG = "TrafficActivity";
     private ListView lv_traffic;
@@ -49,25 +51,27 @@ public class TrafficActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_traffic);
-
-        /*获取包管理器*/
         mPm = getPackageManager();
-
-        /*初始化VIew*/
         initView();
-
-        /*初始化数据*/
         initData();
+    }
 
+    private void initView() {
+        lv_traffic = (ListView) findViewById(R.id.lv_traffic);
+        ll_normal_loading = (LinearLayout) findViewById(R.id.ll_normal_loading);
     }
 
     private void initData() {
         mAdapter = new TrafficAdapter();
         lv_traffic.setAdapter(mAdapter);
+        final File file = new File("/proc/uid_stat");
+        if (!file.exists()) {
+            Toast.makeText(TrafficActivity.this, "手机不支持流量统计", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         /*使用线程获取数据*/
         new AsyncTask<Void, Void, Void>() {
-            /*准备*/
             @Override
             protected void onPreExecute() {
                 if (mListData == null) {
@@ -135,6 +139,9 @@ public class TrafficActivity extends Activity {
     /*获取发送的数据流量，通过程序运行是的UId*/
     private long getTcp_snd(int uid) {
         File file = new File("/proc/uid_stat/" + uid + "/tcp_snd");
+        if (!file.exists()) {
+            return 0;
+        }
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(file));
@@ -144,64 +151,39 @@ public class TrafficActivity extends Activity {
             e.printStackTrace();
             return 0;
         } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                in = null;
-            }
-
+            GZIPUtils.closeIO(in);
         }
     }
 
     /*获取接收到的数据流量，通过程序运行是的UId*/
     private long getTcp_rcv(int uid) {
         File file = new File("/proc/uid_stat/" + uid + "/tcp_rcv");
+        if (!file.exists()) {
+            return 0;
+        }
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(file));
-
             String line = in.readLine();
             return Long.valueOf(line);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                in = null;
-            }
-
+            GZIPUtils.closeIO(in);
         }
         return 0;
-    }
-
-    private void initView() {
-        lv_traffic = (ListView) findViewById(R.id.lv_traffic);
-        ll_normal_loading = (LinearLayout) findViewById(R.id.ll_normal_loading);
     }
 
     private class TrafficAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            if (mListData != null) {
-                return mListData.size();
-            }
-            return 0;
+            return mListData != null ? mListData.size() : 0;
         }
 
         @Override
         public Object getItem(int position) {
-            if (mListData != null) {
-                return mListData.get(position);
-            }
-            return null;
+            return mListData != null ? mListData.get(position) : null;
         }
 
         @Override

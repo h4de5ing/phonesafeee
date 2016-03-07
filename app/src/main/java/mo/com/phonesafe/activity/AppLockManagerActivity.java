@@ -49,14 +49,8 @@ public class AppLockManagerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_lock_manager);
-
-        //初始化view
         initView();
-
-        //初始化数据
         initData();
-
-        //初始化事件
         initEvent();
     }
 

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MO安全卫士</string>
     <string name="action_settings">设置</string>
-    <string name="versionurl">http://192.168.23.1/psversion.json</string>
+    <string name="versionurl">http://www.19code.com/app/psversion.json</string>
     <string name="sample_device_admin">手机安全卫士</string>
     <string name="sample_device_admin_description">手机安全卫士为您保驾护航</string>
     <!--Home部分-->
@@ -80,9 +80,14 @@
     <string name="remainder">剩余:%s</string>
     <string name="total">总内存:%s</string>
     <string name="sdcard">SD卡</string>
-    <string name="sdcardapp">SD卡应用</string>
-    <string name="sdcardappcount">SD卡(%s)应用</string>
-    <string name="phoneappcount">手机存储(%s)应用</string>
+    <string name="userappcount">用户应用(%s)个</string>
+    <string name="systemappcount">系统应用(%s)个</string>
+    <string name="open">打开</string>
+    <string name="uninstall">卸载</string>
+    <string name="share">分享</string>
+    <string name="info">信息</string>
+    <string name="uninstallerr">系统应用无法卸载</string>
+    <string name="noui">此应用没有界面</string>
     <!--进程管理-->
     <string name="processmanager">进程管理</string>
     <string name="processcount">进程数</string>
@@ -119,7 +124,7 @@
     <string name="numberaddress">号码归属地查询</string>
     <string name="commonnumber">常用号码查询</string>
     <string name="backupsms">短信备份</string>
-    <string name="recorverysms">短息还原</string>
+    <string name="checkbackupsms">查看备份</string>
     <!--设置-->
     <string name="setting">手机安全卫士设置</string>
     <string name="autoupdate">自动更新</string>

@@ -50,7 +50,7 @@
         mo:nivGo="false"
         mo:nivIcon="@drawable/qc"
         mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="@string/recorverysms"/>
+        mo:nivTile="@string/checkbackupsms"/>
 
 
     <mo.com.phonesafe.view.NormalItemView

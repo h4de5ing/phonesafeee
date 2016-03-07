@@ -34,17 +34,17 @@
             android:gravity="center"
             android:visibility="gone">
             <include
-                layout="@layout/normal_loading"></include>
+                layout="@layout/normal_loading"/>
         </RelativeLayout>
         <ListView
             android:id="@+id/lv_lock"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent"/>
         <ListView
             android:id="@+id/lv_unlock"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"></ListView>
+            android:visibility="gone"/>
     </FrameLayout>
 
 </LinearLayout>

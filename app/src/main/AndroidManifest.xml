@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!--百度sdk需要的权限-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <!--任务栈信息获取权限-->
     <uses-permission android:name="android.permission.GET_TASKS"/>
@@ -117,7 +121,8 @@
 
         <!--程序锁管理-->
         <activity android:name=".activity.AppLockManagerActivity"/>
-
+        <!--查看备份短息-->
+        <activity android:name=".activity.ViewBackupSmsActivity"/>
         <!-- 手机启动广播 -->
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter android:priority="1000">

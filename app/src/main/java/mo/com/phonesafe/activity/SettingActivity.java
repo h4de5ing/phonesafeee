@@ -43,10 +43,7 @@ public class SettingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityi_setting);
-        //初始化View
         initView();
-
-        //初始化数据
         initData();
     }
 

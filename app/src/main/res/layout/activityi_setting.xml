@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         mo:sivBackground="green"
-        mo:sivTitle="@string/autouintercept"/>
+        mo:sivTitle="@string/autoupdate"/>
 
     <mo.com.phonesafe.view.SettingItemView
         android:id="@+id/setting_siv_autouIntercept"
