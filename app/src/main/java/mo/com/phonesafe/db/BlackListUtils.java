@@ -1,8 +1,7 @@
 package mo.com.phonesafe.db;
 
 /**
- * 作者：MoMxMo on 2015/9/2 22:28
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 22:28
  */
 
 
@@ -18,7 +17,7 @@ public interface BlackListUtils {
      */
     int VERSION = 1;
 
-    public interface BlackTable{
+    interface BlackTable {
 
         /**
          * 表名
@@ -32,10 +31,10 @@ public interface BlackListUtils {
         /**
          * SQL创建表的语句
          */
-        String CREATE_TABLE_SQL = "create table "+ TABLE_NAME + "(" +
-                COLUMN_ID + " integer primary key autoincrement,"+
-                COLUMN_NUMBER +" text unique," +
-                COLUMN_TYPE+ " integer)";
+        String CREATE_TABLE_SQL = "create table " + TABLE_NAME + "(" +
+                COLUMN_ID + " integer primary key autoincrement," +
+                COLUMN_NUMBER + " text unique," +
+                COLUMN_TYPE + " integer)";
     }
 
 }

@@ -7,8 +7,7 @@ import android.content.Context;
 import java.util.List;
 
 /**
- * 作者：MoMxMo on 2015/9/4 14:49
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/4 14:49
  */
 
 

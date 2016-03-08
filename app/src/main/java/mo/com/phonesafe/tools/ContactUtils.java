@@ -16,8 +16,7 @@ import java.util.List;
 import mo.com.phonesafe.bean.ContactInfo;
 
 /**
- * 作者：MoMxMo on 2015/8/31 20:26
- * 邮箱：momxmo@qq.com
+ * Created by Gh0st on 2015/8/31 20:26
  * <p/>
  * 通过内容提供者获取系统中的联系人信息
  *

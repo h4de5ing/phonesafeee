@@ -21,11 +21,10 @@ import mo.com.phonesafe.bean.ContactInfo;
 import mo.com.phonesafe.tools.ContactUtils;
 
 /**
- * 作者：MoMxMo on 2015/8/31 19:59
- * 邮箱：momxmo@qq.com
+ * Created by Gh0st on 2015/8/31 19:59
  * <p/>
  * 显示用户联系人的Activity
- *
+ * <p/>
  * 优化的版本  专门应用于大数据量的访问的时候，使用这个获取数据是比较能减少消耗内存的
  */
 
@@ -37,17 +36,13 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
     ListView lv_contact;
     Cursor cursor;
     ProgressBar pb_contact;
-    ContactCursorAdater mContactAdater;
+    ContactCursorAdapter mContactAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sjfd_contact);
-
-        //初始化view
         initView();
-
-        //初始化数据
         initData();
     }
 
@@ -55,39 +50,22 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
      * 初始化数据
      */
     private void initData() {
-        mContactAdater = new ContactCursorAdater(this,cursor);
-
-
-        //设置适配器
-        lv_contact.setAdapter(mContactAdater);
-        //显示监督条
+        mContactAdapter = new ContactCursorAdapter(this, cursor);
+        lv_contact.setAdapter(mContactAdapter);
         pb_contact.setVisibility(View.VISIBLE);
-
-//        获取数据的优化,在主线程中获取资源太消耗时间，我们使用子线程进行操作
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                Log.i(TAG, "...........执行到子线程了");
-
-                //获取手机联系人,返回的是Cursor
                 cursor = ContactUtils.getAllCursor(ContactActivity2.this);
-
                 if (cursor == null) {
-
-                    Log.i(TAG, "...........cursor为空");
+                    return;
                 }
-                //当用户进入的时候显示进度
-
                 //使用这个方法在主线程中显示UI
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //关闭进度条
                         pb_contact.setVisibility(ProgressBar.GONE);
-
-                        // 更新adapter--->UI
-                        mContactAdater.changeCursor(cursor);
+                        mContactAdapter.changeCursor(cursor);
                     }
                 });
             }
@@ -104,7 +82,6 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
     private void initView() {
         lv_contact = (ListView) findViewById(R.id.lv_contact);
         pb_contact = (ProgressBar) findViewById(R.id.pb_contact);
-        // 设置点击事件
         lv_contact.setOnItemClickListener(this);
     }
 
@@ -119,18 +96,12 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Log.i(TAG, "onItemClick" + position);
-
         cursor.moveToPosition(position);
         ContactInfo info = ContactUtils.getContactInfo(cursor);
 
         Intent data = new Intent();
         data.putExtra(KEY_NUMBER, info.number);
-
         setResult(Activity.RESULT_OK, data);
-
-        //关闭当前页面
         finish();
     }
 
@@ -138,18 +109,16 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
     /**
      * 手机联系人的适配器
      */
-    private class ContactCursorAdater extends CursorAdapter {
+    private class ContactCursorAdapter extends CursorAdapter {
 
-        public ContactCursorAdater(Context context, Cursor c) {
+        public ContactCursorAdapter(Context context, Cursor c) {
             super(context, c);
         }
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-            //加载联系人条目
-           View  view = View.inflate(ContactActivity2.this, R.layout.item_contact, null);
-            return view;
+            return View.inflate(ContactActivity2.this, R.layout.item_contact, null);
         }
 
         @Override
@@ -164,9 +133,9 @@ public class ContactActivity2 extends Activity implements AdapterView.OnItemClic
             tvNumber.setText(info.number);
 
             Bitmap bitmap = ContactUtils.getContactBitmap(ContactActivity2.this, info.contactId);
-            if(bitmap != null){
+            if (bitmap != null) {
                 ivIcon.setImageBitmap(bitmap);
-            }else{
+            } else {
                 ivIcon.setImageResource(R.mipmap.vc);
             }
         }

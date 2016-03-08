@@ -1,8 +1,7 @@
 package mo.com.phonesafe.bean;
 
 /**
- * 作者：MoMxMo on 2015/9/2 23:51
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 23:51
  */
 
 

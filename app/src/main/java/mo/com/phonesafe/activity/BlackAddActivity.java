@@ -15,8 +15,7 @@ import mo.com.phonesafe.bean.BlackBean;
 import mo.com.phonesafe.dao.BlackDao;
 
 /**
- * 作者：MoMxMo on 2015/9/2 20:33
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 20:33
  */
 
 
@@ -62,7 +61,7 @@ public class BlackAddActivity extends Activity {
             public void onClick(View v) {
                 String number = viewById.getText().toString().trim();
                 if (TextUtils.isEmpty(number)) {
-                    Toast.makeText(BlackAddActivity.this, "黑名单号码不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BlackAddActivity.this, getString(R.string.notempty), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //获取被点击的radio 的ID
@@ -88,11 +87,10 @@ public class BlackAddActivity extends Activity {
                 BlackDao dao = new BlackDao(BlackAddActivity.this);
                 boolean insert = dao.insert(number, type);
                 if (insert) {
-                    Toast.makeText(BlackAddActivity.this, "成功添加黑名单", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BlackAddActivity.this, getString(R.string.addsuccess), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(BlackAddActivity.this, "已经存在,添加黑名单失败", Toast.LENGTH_SHORT).show();
-                    //关闭当前页面
+                    Toast.makeText(BlackAddActivity.this, getString(R.string.addfaild), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
@@ -102,7 +100,6 @@ public class BlackAddActivity extends Activity {
         findViewById(R.id.tb_ba_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //关闭当前页面
                 finish();
             }
         });
@@ -118,7 +115,6 @@ public class BlackAddActivity extends Activity {
                 case Activity.RESULT_OK:
                     //获取数据
                     String number = data.getStringExtra(ContactActivity.KEY_NUMBER);
-                    Log.i(TAG, "...........number:" + number);
                     viewById.setText(number);
 
                     if (!TextUtils.isEmpty(number)) {
@@ -137,7 +133,6 @@ public class BlackAddActivity extends Activity {
     public void finish() {
         Intent intent = new Intent(BlackAddActivity.this, BlackManagerActivity.class);
         startActivity(intent);
-        //关闭当前页面
         super.finish();
     }
 }

@@ -34,14 +34,8 @@ public class LockScreenActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_screen);
-
-        //初始化Vie
         initView();
-
-        //事件的监听
         initEvent();
-
-        //初始化数据
         initData();
     }
 

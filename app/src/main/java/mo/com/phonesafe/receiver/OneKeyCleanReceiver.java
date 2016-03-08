@@ -13,14 +13,12 @@ import mo.com.phonesafe.business.ProcessProvider;
 
 /**
  * 自定义一键清理进程广播
- *
- * 作者：MoMxMo on 2015/9/11 18:25
- * 邮箱：xxxx@qq.com
+ * <p/>
+ * Created by Gh0st on 2015/9/11 18:25
  */
 
 
-
-public  class OneKeyCleanReceiver extends BootCompleteReceiver {
+public class OneKeyCleanReceiver extends BootCompleteReceiver {
     private static final String TAG = "OneKeyCleanReceiver";
 
     @Override
@@ -41,7 +39,7 @@ public  class OneKeyCleanReceiver extends BootCompleteReceiver {
                 continue;
             }
             //清理进程
-            ProcessProvider.cleanProcess(context,bean.packageName);
+            ProcessProvider.cleanProcess(context, bean.packageName);
             count++;
         }
 
@@ -49,11 +47,11 @@ public  class OneKeyCleanReceiver extends BootCompleteReceiver {
 
         if (count > 0) {
             Toast.makeText(context, "共清理了" + count + "个进程,"
-                    + "节省了" + Formatter.formatFileSize(context, endMemory - startMemory) + "内存"
+                            + "节省了" + Formatter.formatFileSize(context, endMemory - startMemory) + "内存"
                     , Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "没有可以清理的进程", Toast.LENGTH_SHORT).show();
-        } 
+        }
 
     }
 }

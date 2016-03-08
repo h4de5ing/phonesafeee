@@ -7,8 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * 作者：MoMxMo on 2015/8/29 19:55
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/29 19:55
  *
  * 自定义----------走马灯字体
  *

@@ -5,8 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 /**
- * 作者：MoMxMo on 2015/8/29 12:24
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/29 12:24
  * <p/>
  * 获取版本信息工具类
  */

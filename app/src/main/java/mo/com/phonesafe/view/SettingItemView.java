@@ -11,8 +11,7 @@ import android.widget.TextView;
 import mo.com.phonesafe.R;
 
 /**
- * 作者：MoMxMo on 2015/8/29 22:05
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/29 22:05
  *
  * 自定义setting控件
  */
@@ -44,26 +43,16 @@ public class SettingItemView extends RelativeLayout {
     public SettingItemView(Context context, AttributeSet set) {
         super(context, set);
 
-        //挂载xml布局，xml和当前类绑定
         View.inflate(context, R.layout.view_setting_item, this);
 
         mTvTitle = (TextView) findViewById(R.id.view_tv_title);
         mIvIcon = (ImageView) findViewById(R.id.view_iv_icon);
-
-        //读属性值
         TypedArray ta = context.obtainStyledAttributes(set, R.styleable.SettingItemView);
-
-        //读取属性
         String title = ta.getString(R.styleable.SettingItemView_sivTitle);
         int background = ta.getInt(R.styleable.SettingItemView_sivBackground,BACKGROUND_BLUE);
         boolean flag = ta.getBoolean(R.styleable.SettingItemView_sivToggle,true);
-
         ta.recycle();
-
-        //设置属性
         mTvTitle.setText(title);
-
-        //设置背景
         switch (background){
             case BACKGROUND_BLUE:
                 findViewById(R.id.view_root).setBackgroundResource(R.drawable.item_setting_blue_selector);

@@ -30,8 +30,7 @@ import mo.com.phonesafe.bean.AppBean;
 import mo.com.phonesafe.business.AppProvider;
 
 /**
- * 作者：MoMxMo on 2015/9/8 10:19
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/8 10:19
  */
 
 
@@ -288,7 +287,7 @@ public class AppManagerActivity extends Activity {
         @Override
         public Object getItem(int position) {
             if (position == 0) {
-                return null;    //显示用户程序
+                return null;
             }
 
             if (position > 0 && position <= mUserDatas.size()) {

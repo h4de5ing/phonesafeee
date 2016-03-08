@@ -11,8 +11,7 @@ import mo.com.phonesafe.preference.PreferenceUtils;
 import mo.com.phonesafe.tools.Constants;
 
 /**
- * 作者：MoMxMo on 2015/9/1 22:07
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/1 22:07
  * <p/>
  * 开启启动的广播接收者，主要监听启动手机时
  * 手机的SIM卡是否发生了变更
@@ -27,18 +26,12 @@ import mo.com.phonesafe.tools.Constants;
 
 public class BootCompleteReceiver extends BroadcastReceiver {
 
-    private static final String TAG = "BootCompleteReceiver";
-
     @Override
     public void onReceive(Context context, Intent intent) {
-
         //1.先判断用户是否开启防盗保护
-
         boolean isProtect = PreferenceUtils.getBoolean(context, Constants.SJFD_PROTECT);
-
         if (!isProtect) {
     //  没有开启防盗保护，不执行下面的操作
-
             return;
         }
 
@@ -68,11 +61,10 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 
         SmsManager smsManager = SmsManager.getDefault();
 
-        Log.i(TAG, "----------sjfd_phone:"+sjfd_phone);
         smsManager.sendTextMessage(
                 sjfd_phone,    // 收件人
                 null,    // 短信中心号码
-                "yor phone was lose.....", // 内容
+                "yor phone was lose.....send by PhoneSafe", // 内容
                 null,
                 null);
 

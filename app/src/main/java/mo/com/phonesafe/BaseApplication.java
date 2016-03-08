@@ -3,12 +3,10 @@ package mo.com.phonesafe;
 import android.app.Application;
 import android.util.Log;
 
-import com.baidu.apistore.sdk.ApiStoreSDK;
 
 
 /**
- * 作者：MoMxMo on 2015/9/16 19:07
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/16 19:07
  * <p/>
  */
 
@@ -19,7 +17,6 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // 应用打开时的回调
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {

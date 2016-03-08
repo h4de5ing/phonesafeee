@@ -10,8 +10,7 @@ import java.io.File;
 /**
  * 号码归属地数据库DAO
  * <p/>
- * 作者：MoMxMo on 2015/9/5 14:08
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/5 14:08
  */
 
 
@@ -53,7 +52,7 @@ public class AddressDao {
                 case 5:
                     address = "服务电话";
                     break;
-                case 7:     //电话座机
+                case 7:
                 case 8:
                     address = "本地座机";
                     break;

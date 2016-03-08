@@ -36,10 +36,7 @@ import mo.com.phonesafe.dao.AnitVirusDao;
 import mo.com.phonesafe.tools.MD5Utils;
 
 /**
- * 作者：MoMxMo on 2015/9/15 14:34
- * 邮箱：xxxx@qq.com
- * <p/>
- * <p/>
+ * Created by Gh0st  on 2015/9/15 14:34
  * 手机杀毒
  */
 

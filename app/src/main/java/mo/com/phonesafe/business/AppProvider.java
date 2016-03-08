@@ -16,8 +16,7 @@ import mo.com.phonesafe.bean.AppBean;
 /**
  * 手机程序应用的所有信息
  *
- * 作者：MoMxMo on 2015/9/8 14:10
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/8 14:10
  */
 
 

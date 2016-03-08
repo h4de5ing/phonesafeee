@@ -1,8 +1,7 @@
 package mo.com.phonesafe.tools;
 
 /**
- * 作者：MoMxMo on 2015/8/30 13:14
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/30 13:14
  *
  *
  * 记录全局的常量

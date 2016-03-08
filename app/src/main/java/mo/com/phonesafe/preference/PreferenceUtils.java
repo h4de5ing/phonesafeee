@@ -4,8 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * 作者：MoMxMo on 2015/8/30 13:11
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/30 13:11
  * <p/>
  * 获取一个配置和用户信息的工具类
  */

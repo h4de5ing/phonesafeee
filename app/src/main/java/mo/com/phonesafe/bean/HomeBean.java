@@ -1,8 +1,7 @@
 package mo.com.phonesafe.bean;
 
 /**
- * 作者：MoMxMo on 2015/8/29 20:20
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/29 20:20
  *
  *  主界面的显示的gridView对应的对象
  */

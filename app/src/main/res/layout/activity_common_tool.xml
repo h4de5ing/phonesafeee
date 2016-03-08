@@ -52,39 +52,4 @@
         mo:nivTextColor="@color/normalblue_right"
         mo:nivTile="@string/checkbackupsms"/>
 
-
-    <mo.com.phonesafe.view.NormalItemView
-        android:id="@+id/si_appsocke_manager"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        mo:nivBackground="green"
-        mo:nivGo="true"
-        mo:nivIcon="@drawable/ad"
-        mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="程序锁管理"/>
-
-
-    <mo.com.phonesafe.view.NormalItemView
-        android:id="@+id/si_open_dog"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="2dp"
-        mo:nivBackground="green"
-        mo:nivGo="true"
-        mo:nivIcon="@drawable/fd"
-        mo:nivTextColor="@color/normalblue_right"
-        mo:nivTile="开启电子狗服务"/>
-
-    <mo.com.phonesafe.view.SettingItemView
-        android:id="@+id/siv_open_dog"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        mo:paddingEnd="18dp"
-        mo:sivBackground="purple"
-        mo:sivTitle="开启电子狗"
-        mo:sivToggle="true">
-    </mo.com.phonesafe.view.SettingItemView>
-
 </LinearLayout>

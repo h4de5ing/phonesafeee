@@ -15,8 +15,7 @@ import mo.com.phonesafe.service.GPSService;
 import mo.com.phonesafe.tools.Constants;
 
 /**
- * 作者：MoMxMo on 2015/9/1 22:26
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/1 22:26
  * <p/>
  * 短信广播接收者
  * <p/>

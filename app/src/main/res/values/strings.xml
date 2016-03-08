@@ -38,6 +38,7 @@
     <string name="phonecardbind">2.手机卡绑定</string>
     <string name="phonecardbinddecription">通过绑定手机卡：\n下次手机重启时SIM发生变化，就会发送报警短信</string>
     <string name="clickbindsimcard">点击绑定/解绑SIM卡</string>
+    <string name="tipnobind">请绑定SIM卡</string>
     <string name="settingsafenumber">3.设置安全号码</string>
     <string name="safenumberdescription">SIM卡如果发生变化：\n就会发送短信给安全号码</string>
     <string name="inputsafenumber">请输入安全号码</string>
@@ -45,10 +46,12 @@
     <string name="activitdevicesadmin">4.激活设备管理员</string>
     <string name="devicesadmindescription">激活设备管理员：\n可远程锁屏，远程擦除数据</string>
     <string name="clickactivity">点击激活/取消激活设备管理员</string>
+    <string name="activityadmin">请激活设备管理员</string>
     <string name="settingfinish">5.恭喜您！设置完成</string>
     <string name="settingfinishdec">选择开启防盗保护</string>
     <string name="phonelost">手机防盗</string>
     <string name="safenumber">安全号码</string>
+    <string name="noactivitylost">您还未启动手机防盗功能</string>
     <string name="isopenphonelost">防盗保护是否开启</string>
     <string name="reinsetting">重新进入设置向导页面</string>
     <string name="functionintrodution">功能介绍</string>
@@ -70,6 +73,8 @@
     <string name="blacktypesms">短信</string>
     <string name="blacktypeall">全部</string>
     <string name="blacklistnumbernoempty">黑名单号码不能为空</string>
+    <string name="addsuccess">添加成功</string>
+    <string name="addfaild">添加失败</string>
     <string name="changesuccess">修改成功</string>
     <string name="changefaild">修改失败</string>
     <string name="deletesuccess">删除成功</string>
@@ -104,6 +109,7 @@
     <string name="data">流量统计</string>
     <string name="rcv">接收:%s</string>
     <string name="snd">发送:%s</string>
+    <string name="nosupport">手机不支持流量统计</string>
     <!--手机杀毒-->
     <string name="antvirus">手机杀毒</string>
     <string name="yourphonesafe">您的手机很安全</string>
@@ -125,6 +131,8 @@
     <string name="commonnumber">常用号码查询</string>
     <string name="backupsms">短信备份</string>
     <string name="checkbackupsms">查看备份</string>
+    <string name="backupsuccess">备份成功</string>
+    <string name="backupfaild">备份失败</string>
     <!--设置-->
     <string name="setting">手机安全卫士设置</string>
     <string name="autoupdate">自动更新</string>

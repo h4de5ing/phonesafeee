@@ -14,8 +14,7 @@ import mo.com.phonesafe.db.AppLockDB;
 import mo.com.phonesafe.db.AppLockDBHelper;
 
 /**
- * 作者：MoMxMo on 2015/9/13 09:37
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/13 09:37
  */
 
 

@@ -4,8 +4,7 @@ package mo.com.phonesafe.tools;
 import android.util.Log;
 
 /**
- * 作者：MoMxMo on 2015/9/16 14:07
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/16 14:07
  *
  *
  * log日志工具类(重新封装Log类)

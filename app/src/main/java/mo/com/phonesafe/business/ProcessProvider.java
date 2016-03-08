@@ -26,8 +26,7 @@ import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.ProcessBean;
 
 /**
- * 作者：MoMxMo on 2015/9/9 21:57
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/9 21:57
  */
 
 

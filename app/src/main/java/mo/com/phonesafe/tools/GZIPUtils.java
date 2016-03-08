@@ -10,8 +10,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * 压缩和和解压的工具类
  *
- * 作者：MoMxMo on 2015/9/5 00:00
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st onn 2015/9/5 00:00
  *
  */
 public class GZIPUtils {

@@ -5,8 +5,7 @@ import android.graphics.drawable.Drawable;
 /**
  * APP管理Bean
  *
- * 作者：MoMxMo on 2015/9/8 13:11
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/8 13:11
  */
 
 

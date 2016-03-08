@@ -25,8 +25,7 @@ import mo.com.phonesafe.dao.AppLockDao;
 import mo.com.phonesafe.view.SegementView;
 
 /**
- * 作者：MoMxMo on 2015/9/12 15:42
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/12 15:42
  */
 
 

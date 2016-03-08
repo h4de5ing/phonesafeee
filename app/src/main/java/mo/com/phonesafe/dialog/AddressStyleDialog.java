@@ -15,8 +15,7 @@ import mo.com.phonesafe.R;
 /**
  * 自定义号码归属地Dialog
  *
- * 作者：MoMxMo on 2015/9/7 09:28
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/7 09:28
  *
  */
 

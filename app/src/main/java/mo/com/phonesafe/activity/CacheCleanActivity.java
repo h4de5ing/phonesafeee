@@ -38,8 +38,7 @@ import mo.com.phonesafe.R;
 import mo.com.phonesafe.bean.CacheBean;
 
 /**
- * 作者：MoMxMo on 2015/9/14 12:30
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/14 12:30
  */
 
 

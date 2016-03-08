@@ -9,8 +9,7 @@ import android.widget.TextView;
 import mo.com.phonesafe.R;
 
 /**
- * 作者：MoMxMo on 2015/9/12 19:43
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/12 19:43
  * <p/>
  * 选择
  */

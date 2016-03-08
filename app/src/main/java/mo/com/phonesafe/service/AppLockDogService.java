@@ -22,9 +22,7 @@ import mo.com.phonesafe.activity.LockScreenActivity;
 import mo.com.phonesafe.dao.AppLockDao;
 
 /**
- * 作者：MoMxMo on 2015/9/13 22:43
- * 邮箱：xxxx@qq.com
- *
+ * Created by Gh0st on 2015/9/13 22:43
  *
  * 电子狗服务
  */

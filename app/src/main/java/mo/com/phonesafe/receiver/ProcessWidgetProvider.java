@@ -8,8 +8,7 @@ import android.content.Intent;
 import mo.com.phonesafe.service.ProcessService;
 
 /**
- * 作者：MoMxMo on 2015/9/11 13:43
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/11 13:43
  *
  * 桌面小工具Widget，这里我们使用服务的方式实时更新数据
  */

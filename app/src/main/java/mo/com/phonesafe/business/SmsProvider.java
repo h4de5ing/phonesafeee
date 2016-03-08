@@ -26,8 +26,7 @@ import java.util.List;
 import mo.com.phonesafe.bean.SmsBean;
 
 /**
- * 作者：MoMxMo on 2015/9/11 22:27
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/11 22:27
  *
  *
  * 短信的备份和还原业务

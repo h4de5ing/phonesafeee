@@ -27,8 +27,7 @@ import mo.com.phonesafe.bean.BlackBean;
 import mo.com.phonesafe.dao.BlackDao;
 
 /**
- * 作者：MoMxMo on 2015/9/4 15:01
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st onn 2015/9/4 15:01
  * <p/>
  * <p/>
  * 电话和短信拦截的服务
@@ -58,7 +57,6 @@ public class CallSmsInterceptService extends Service {
         //1.电话拦截
         tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         tm.listen(new CallInterceptPhoneStateListener(), PhoneStateListener.LISTEN_CALL_STATE);
-
 
         //2.短信拦截
          /*  <action android:name="android.provider.Telephony.SMS_RECEIVED" />*/

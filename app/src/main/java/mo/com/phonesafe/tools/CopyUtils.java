@@ -8,8 +8,7 @@ import java.io.OutputStream;
 /**
  * 复制工具类
  *
- * 作者：MoMxMo on 2015/9/7 20:20
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/7 20:20
  */
 
 

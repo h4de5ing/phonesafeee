@@ -15,8 +15,7 @@ import mo.com.phonesafe.R;
 import mo.com.phonesafe.dao.CommonNumberDao;
 
 /**
- * 作者：MoMxMo on 2015/9/7 20:04
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/7 20:04
  */
 
 
@@ -29,11 +28,7 @@ public class NormalNumerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_number_query);
-
-        //初始化view
         initView();
-
-        //初始化事件
         initEvent();
     }
 
@@ -109,7 +104,7 @@ public class NormalNumerActivity extends Activity {
 
         @Override
         public int getGroupCount() {
-            return CommonNumberDao.getGroupConut(NormalNumerActivity.this);
+            return CommonNumberDao.getGroupCount(NormalNumerActivity.this);
         }
 
         @Override
@@ -145,55 +140,53 @@ public class NormalNumerActivity extends Activity {
 
         @Override
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-            GroupViewHodler hodler = null;
+            GroupViewHolder holder = null;
             if (convertView == null) {
                 convertView = new TextView(NormalNumerActivity.this);
-                hodler = new GroupViewHodler();
-                hodler.tv_tile = (TextView) convertView;
-                hodler.tv_tile.setTextSize(20);
-                hodler.tv_tile.setTextColor(Color.parseColor("#44A1F7"));
-                hodler.tv_tile.setPadding(45, 45, 45, 45);
+                holder = new GroupViewHolder();
+                holder.tv_tile = (TextView) convertView;
+                holder.tv_tile.setTextSize(20);
+                holder.tv_tile.setTextColor(Color.parseColor("#44A1F7"));
+                holder.tv_tile.setPadding(45, 45, 45, 45);
 
-                convertView.setTag(hodler);
+                convertView.setTag(holder);
             } else {
-                hodler = (GroupViewHodler) convertView.getTag();
+                holder = (GroupViewHolder) convertView.getTag();
             }
             String content = CommonNumberDao.getGroupContent(NormalNumerActivity.this, groupPosition);
-            hodler.tv_tile.setText(content);
+            holder.tv_tile.setText(content);
             return convertView;
         }
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            ChildViewHodler hodler = null;
+            ChildViewHolder holder = null;
             if (convertView == null) {
                 convertView = new TextView(NormalNumerActivity.this);
-                hodler = new ChildViewHodler();
-                hodler.tv_tile = (TextView) convertView;
-                hodler.tv_tile.setTextSize(18);
-                hodler.tv_tile.setTextColor(Color.parseColor("#B9C2C5"));
-                hodler.tv_tile.setPadding(40, 40, 40, 40);
-                convertView.setTag(hodler);
+                holder = new ChildViewHolder();
+                holder.tv_tile = (TextView) convertView;
+                holder.tv_tile.setTextSize(18);
+                holder.tv_tile.setTextColor(Color.parseColor("#B9C2C5"));
+                holder.tv_tile.setPadding(40, 40, 40, 40);
+                convertView.setTag(holder);
             } else {
-                hodler = (ChildViewHodler) convertView.getTag();
+                holder = (ChildViewHolder) convertView.getTag();
             }
             String content = CommonNumberDao.getChildContent(NormalNumerActivity.this,groupPosition, childPosition);
-            hodler.tv_tile.setText(content);
+            holder.tv_tile.setText(content);
             return convertView;
         }
 
         @Override
         public boolean isChildSelectable(int groupPosition, int childPosition) {
-
-            //设置Child是否可以进行点击
             return true;
         }
     }
 
-    static class GroupViewHodler {
+    static class GroupViewHolder {
         TextView tv_tile;
     }
-    static class ChildViewHodler {
+    static class ChildViewHolder {
         TextView tv_tile;
     }
 }

@@ -8,8 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.File;
 
 /**
- * 作者：MoMxMo on 2015/9/15 16:48
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/15 16:48
  *
  * 病毒库查询
  */

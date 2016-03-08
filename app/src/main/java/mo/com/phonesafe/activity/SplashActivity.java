@@ -120,7 +120,6 @@ public class SplashActivity extends Activity {
                         os = new FileOutputStream(file);
                         CopyUtils.copy(is, os);
                     } catch (IOException e) {
-                        //出现异常，删除解压产生的数据
                         file.delete();
                     }
 
@@ -148,7 +147,6 @@ public class SplashActivity extends Activity {
                         OutputStream out = new FileOutputStream(file);
                         CopyUtils.copy(is, out);
                     } catch (IOException e) {
-                        //出现异常，删除解压产生的数据
                         file.delete();
                     }
                 }
@@ -172,7 +170,6 @@ public class SplashActivity extends Activity {
                         os = new FileOutputStream(file);
                         GZIPUtils.unzip(is, os);
                     } catch (IOException e) {
-                        //出现异常，删除解压产生的数据
                         file.delete();
                     }
                 }
@@ -210,7 +207,6 @@ public class SplashActivity extends Activity {
 
         //设置闪动的方式的默认的2（以后可以切换模式）
         selectPreset(mCurrentPreset);
-        //开启闪动效果
         mShimmerViewContainer.startShimmerAnimation();
 
     }

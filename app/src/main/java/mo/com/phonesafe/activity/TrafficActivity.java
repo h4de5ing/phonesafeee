@@ -19,10 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +29,7 @@ import mo.com.phonesafe.bean.TrafficBean;
 import mo.com.phonesafe.tools.GZIPUtils;
 
 /**
- * 作者：MoMxMo on 2015/9/15 14:34
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/15 14:34
  * <p/>
  * <p/>
  * 手机流量统计
@@ -66,7 +63,7 @@ public class TrafficActivity extends Activity {
         lv_traffic.setAdapter(mAdapter);
         final File file = new File("/proc/uid_stat");
         if (!file.exists()) {
-            Toast.makeText(TrafficActivity.this, "手机不支持流量统计", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TrafficActivity.this, getString(R.string.nosupport), Toast.LENGTH_SHORT).show();
             return;
         }
 

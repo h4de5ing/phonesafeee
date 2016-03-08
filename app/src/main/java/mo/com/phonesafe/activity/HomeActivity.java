@@ -26,8 +26,7 @@ import mo.com.phonesafe.preference.PreferenceUtils;
 import mo.com.phonesafe.tools.Constants;
 
 /**
- * 作者：momxmo on 2015/8/28 19:06
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/8/28 19:06
  */
 
 

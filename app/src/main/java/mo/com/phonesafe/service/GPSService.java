@@ -28,8 +28,7 @@ import mo.com.phonesafe.tools.Constants;
 import mo.com.phonesafe.tools.ModifyOffset;
 
 /**
- * 作者：MoMxMo on 2015/9/2 00:55
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 00:55
  * <p/>
  * 获取GPS定位的服务
  */

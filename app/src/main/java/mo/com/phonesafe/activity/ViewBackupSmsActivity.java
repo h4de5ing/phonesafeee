@@ -29,7 +29,6 @@ import mo.com.phonesafe.tools.GZIPUtils;
  * Created by Gh0st on 2016/3/7 007.
  */
 public class ViewBackupSmsActivity extends Activity {
-    private static final String TAG = "ViewBackupSmsActivity";
     private List<String> mList;
     private ListView mListView;
 

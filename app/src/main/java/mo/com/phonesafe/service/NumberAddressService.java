@@ -15,8 +15,7 @@ import mo.com.phonesafe.dao.AddressDao;
 import mo.com.phonesafe.view.AddressToast;
 
 /**
- * 作者：MoMxMo on 2015/9/6 13:53
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/6 13:53
  *
  * 电话号码归属地的服务
  */

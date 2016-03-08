@@ -4,8 +4,7 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 
 /**
- * 作者：MoMxMo on 2015/9/15 19:04
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/15 19:04
  */
 
 

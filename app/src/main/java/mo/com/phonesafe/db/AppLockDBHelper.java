@@ -7,8 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * 程序锁数据库
  *
- * 作者：MoMxMo on 2015/9/13 09:23
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/13 09:23
  */
 
 

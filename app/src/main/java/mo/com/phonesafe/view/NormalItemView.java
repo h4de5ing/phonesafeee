@@ -13,8 +13,7 @@ import android.widget.TextView;
 import mo.com.phonesafe.R;
 
 /**
- * 作者：MoMxMo on 2015/9/11 20:03
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/11 20:03
  */
 
 

@@ -18,7 +18,6 @@ import mo.com.phonesafe.dao.AddressDao;
  * 号码归属地Activity
  */
 public class AddressQueryActivity extends Activity {
-    private static final String TAG = "AddressQueryActivity";
 
     private EditText et_number;
     private Button bt_ok;

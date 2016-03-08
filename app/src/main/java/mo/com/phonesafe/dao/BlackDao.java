@@ -13,8 +13,7 @@ import mo.com.phonesafe.db.DBHelper;
 import mo.com.phonesafe.db.BlackListUtils;
 
 /**
- * 作者：MoMxMo on 2015/9/2 22:26
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 22:26
  */
 
 

@@ -33,8 +33,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
- * 作者：MoMxMo on 2015/9/9 21:40
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/9 21:40
  */
 
 

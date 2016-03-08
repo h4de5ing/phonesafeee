@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.File;
 
 /**
- * 作者：MoMxMo on 2015/9/7 20:44
- * 邮箱：xxxx@qq.com
- *
+ * Created by Gh0st onn 2015/9/7 20:44
  *
  * 常用号码查询
  */
@@ -18,7 +16,7 @@ import java.io.File;
 public class CommonNumberDao {
 
     //获取Group条目数量
-    public static int getGroupConut(Context context) {
+    public static int getGroupCount(Context context) {
         File file = new File(context.getFilesDir(), "commonnum.db");
         SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, SQLiteDatabase.OPEN_READONLY);
 

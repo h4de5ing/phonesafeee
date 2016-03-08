@@ -14,9 +14,7 @@ import mo.com.phonesafe.bean.BlackBean;
 import mo.com.phonesafe.dao.BlackDao;
 
 /**
- * 作者：MoMxMo on 2015/9/2 20:33
- * 邮箱：xxxx@qq.com
- * <p/>
+ * Created by Gh0st on 2015/9/2 20:33
  * 黑名单的修改
  */
 
@@ -49,7 +47,7 @@ public class BlackUpdateActivity extends Activity {
         /*回显数据*/
         bm_number.setText(pre_number);
 
-        int id = R.id.rg_ba_type_all; //默认的
+        int id = R.id.rg_ba_type_all;
         switch (pre_type) {
             case BlackBean.TYPE_ALL:
                 id = R.id.rg_ba_type_all;
@@ -69,7 +67,6 @@ public class BlackUpdateActivity extends Activity {
      * 事件的监听
      */
     private void initEvent() {
-        //点击更新用户修改的黑名单
         findViewById(R.id.tb_ba_Update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

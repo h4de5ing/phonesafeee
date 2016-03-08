@@ -5,8 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * 作者：MoMxMo on 2015/9/2 22:27
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/2 22:27
  *
  * 数据库
  */

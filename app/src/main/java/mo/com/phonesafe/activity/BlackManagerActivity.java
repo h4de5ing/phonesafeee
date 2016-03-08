@@ -21,9 +21,7 @@ import mo.com.phonesafe.bean.BlackBean;
 import mo.com.phonesafe.dao.BlackDao;
 
 /**
- * 作者：MoMxMo on 2015/8/31 19:59
- * 邮箱：momxmo@qq.com
- * <p/>
+ * Created by Gh0st on 2015/8/31 19:59
  * 黑名单管理的Activity
  */
 
@@ -296,21 +294,12 @@ public class BlackManagerActivity extends Activity implements AdapterView.OnItem
                 @Override
                 public void onClick(View v) {
                     boolean delete = blackDao.delete(blackBean.number);
-                    //Log.i(TAG, "onClick delete itme: number-->" + blackBean.number);
                     if (delete) {
                         Toast.makeText(BlackManagerActivity.this, getString(R.string.deletesuccess), Toast.LENGTH_SHORT).show();
-
-                        //从内容中移除，不再查找数据库
                         mListData.remove(position);
-
-                        //删除一条添加一条
                         List<BlackBean> list = blackDao.querySize(1, listAdapter.getCount());
-
-                        //添加到数据内存中
                         mListData.addAll(list);
-
                         listAdapter.notifyDataSetChanged();
-
                     } else {
                         Toast.makeText(BlackManagerActivity.this, getString(R.string.deletefaild), Toast.LENGTH_SHORT).show();
                     }

@@ -15,8 +15,7 @@ import mo.com.phonesafe.bean.ProcessBean;
 import mo.com.phonesafe.business.ProcessProvider;
 
 /**
- * 作者：MoMxMo on 2015/9/11 00:16
- * 邮箱：xxxx@qq.com
+ * Created by Gh0st on 2015/9/11 00:16
  *
  * 锁屏自动清理服务
  */
